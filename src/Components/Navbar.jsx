@@ -1,17 +1,36 @@
 import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 export default function Sidebar() {
   const { user } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
-  const [activeLink, setActiveLink] = useState("home");
+  const [activeLink, setActiveLink] = useState("/");
+  useEffect(() => {
+    // Get the current URL path
+    const currentPath = window.location.pathname;
+    console.log(currentPath);
+    // Define the links you want to match for active status
+    const linksToMatch = [
+      "/",
+      "/recipes",
+      "/favorites",
+      "/community",
+      "/settings",
+      "/help",
+    ];
+
+    // Find the link that matches the current path
+    const matchedLink = linksToMatch.find((link) =>
+      currentPath.startsWith(link)
+    );
+
+    if (matchedLink) {
+      setActiveLink(matchedLink);
+    }
+  }, []);
 
   const expandSidebar = () => {
     setCollapsed(!collapsed);
-  };
-
-  const handleLinkClick = (href) => {
-    setActiveLink(href);
   };
 
   const handleSearchFocus = () => {
@@ -81,8 +100,7 @@ export default function Sidebar() {
             <a
               href="/"
               title="Home"
-              className={`tooltip ${activeLink === "home" ? "active" : ""}`}
-              onClick={() => handleLinkClick("home")}>
+              className={`tooltip ${activeLink === "/" ? "active" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-home"
@@ -107,8 +125,9 @@ export default function Sidebar() {
             <a
               href="/recipes"
               title="recipes"
-              onClick={() => handleLinkClick("recipes")}
-              className={`tooltip ${activeLink === "recipes" ? "active" : ""}`}>
+              className={`tooltip ${
+                activeLink === "/recipes" ? "active" : ""
+              }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -131,9 +150,8 @@ export default function Sidebar() {
             <a
               href="/favorites"
               title="favorites"
-              onClick={() => handleLinkClick("favorites")}
               className={`tooltip ${
-                activeLink === "favorites" ? "active" : ""
+                activeLink === "/favorites" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -156,9 +174,8 @@ export default function Sidebar() {
             <a
               href="/community"
               title="community"
-              onClick={() => handleLinkClick("community")}
               className={`tooltip ${
-                activeLink === "community" ? "active" : ""
+                activeLink === "/community" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -183,9 +200,8 @@ export default function Sidebar() {
             <a
               href="/settings"
               title="Settings"
-              onClick={() => handleLinkClick("settings")}
               className={`tooltip ${
-                activeLink === "settings" ? "active" : ""
+                activeLink === "/settings" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -209,8 +225,7 @@ export default function Sidebar() {
             <a
               href="/help"
               title="Help"
-              onClick={() => handleLinkClick("help")}
-              className={`tooltip ${activeLink === "help" ? "active" : ""}`}>
+              className={`tooltip ${activeLink === "/help" ? "active" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -248,8 +263,7 @@ export default function Sidebar() {
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-log-in">
+              strokeLinejoin="round">
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
               <polyline points="10 17 15 12 10 7" />
               <line x1="15" x2="3" y1="12" y2="12" />
@@ -266,8 +280,7 @@ export default function Sidebar() {
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-log-in">
+                strokeLinejoin="round">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                 <polyline points="10 17 15 12 10 7" />
                 <line x1="15" x2="3" y1="12" y2="12" />
@@ -321,7 +334,7 @@ export default function Sidebar() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
             class="">
