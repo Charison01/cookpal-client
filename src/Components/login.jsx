@@ -45,6 +45,7 @@ export const LoginModal = () => {
   //function to handle signup and sigin
   function handleLogin(e) {
     e.preventDefault();
+    setLoading(true);
     toast("processing signin request...", {
       icon: "⏳",
     });
@@ -52,7 +53,7 @@ export const LoginModal = () => {
   }
   function handleSignup(e) {
     e.preventDefault();
-    e.preventDefault();
+    setLoading(true);
     toast("processing signup request...", {
       icon: "⏳",
     });
@@ -66,7 +67,10 @@ export const LoginModal = () => {
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
             type="button"
-            onClick={() => document.getElementById("my_modal_3").close()}>
+            onClick={() => {
+              document.getElementById("my_modal_3").close();
+              setLoading(false);
+            }}>
             ✕
           </button>
           {!signup ? (
@@ -113,12 +117,9 @@ export const LoginModal = () => {
                 />
                 <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
               </div>
-              <button
-                type="submit"
-                className="btn btn-primary w-full"
-                onClick={() => setLoading(true)}>
+              <button type="submit" className="btn btn-primary w-full">
                 {loading ? (
-                  <span class="loading loading-spinner text-accent"></span>
+                  <span class="loading loading-spinner text-white"></span>
                 ) : (
                   " Login"
                 )}
@@ -192,12 +193,9 @@ export const LoginModal = () => {
                 />
                 <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
               </div>
-              <button
-                type="submit"
-                className="btn btn-primary w-full"
-                onClick={() => setLoading(true)}>
+              <button type="submit" className="btn btn-primary w-full">
                 {loading ? (
-                  <span class="loading loading-spinner text-accent"></span>
+                  <span class="loading loading-spinner text-white"></span>
                 ) : (
                   "Signup"
                 )}
