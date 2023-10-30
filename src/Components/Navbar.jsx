@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function Sidebar() {
   const { user } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState("home");
 
   const expandSidebar = () => {
     setCollapsed(!collapsed);
@@ -81,8 +81,8 @@ export default function Sidebar() {
             <a
               href="/"
               title="Home"
-              className={`tooltip ${activeLink === "#home" ? "active" : ""}`}
-              onClick={() => handleLinkClick("#home")}>
+              className={`tooltip ${activeLink === "home" ? "active" : ""}`}
+              onClick={() => handleLinkClick("home")}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-home"
@@ -107,10 +107,8 @@ export default function Sidebar() {
             <a
               href="/recipes"
               title="recipes"
-              onClick={() => handleLinkClick("#recipes")}
-              className={`tooltip ${
-                activeLink === "#recipes" ? "active" : ""
-              }`}>
+              onClick={() => handleLinkClick("recipes")}
+              className={`tooltip ${activeLink === "recipes" ? "active" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -133,9 +131,9 @@ export default function Sidebar() {
             <a
               href="/favorites"
               title="favorites"
-              onClick={() => handleLinkClick("#favorites")}
+              onClick={() => handleLinkClick("favorites")}
               className={`tooltip ${
-                activeLink === "#favorites" ? "active" : ""
+                activeLink === "favorites" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -158,9 +156,9 @@ export default function Sidebar() {
             <a
               href="/community"
               title="community"
-              onClick={() => handleLinkClick("#community")}
+              onClick={() => handleLinkClick("community")}
               className={`tooltip ${
-                activeLink === "#community" ? "active" : ""
+                activeLink === "community" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -185,9 +183,9 @@ export default function Sidebar() {
             <a
               href="/settings"
               title="Settings"
-              onClick={() => handleLinkClick("#settings")}
+              onClick={() => handleLinkClick("settings")}
               className={`tooltip ${
-                activeLink === "#settings" ? "active" : ""
+                activeLink === "settings" ? "active" : ""
               }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -211,8 +209,8 @@ export default function Sidebar() {
             <a
               href="/help"
               title="Help"
-              onClick={() => handleLinkClick("#help")}
-              className={`tooltip ${activeLink === "#help" ? "active" : ""}`}>
+              onClick={() => handleLinkClick("help")}
+              className={`tooltip ${activeLink === "help" ? "active" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
