@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { handleLoginRequest, handleSignupRequest } from "../lib";
 import toast from "react-hot-toast";
-
+import { useAppContext } from "../Context/Provider";
 export const LoginModal = () => {
+  const { setUser } = useAppContext();
   const [signup, setSignup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -31,11 +34,13 @@ export const LoginModal = () => {
   const openSignupModal = () => {
     setSignup(true);
     setShowPassword(false);
+    setLoading(false);
   };
 
   const closeSignupModal = () => {
     setSignup(false);
     setShowPassword(false);
+    setLoading(false);
   };
   //function to handle signup and sigin
   function handleLogin(e) {
@@ -43,6 +48,7 @@ export const LoginModal = () => {
     toast("processing signin request...", {
       icon: "⏳",
     });
+    handleLoginRequest(loginData, setLoading, setUser);
   }
   function handleSignup(e) {
     e.preventDefault();
@@ -50,6 +56,7 @@ export const LoginModal = () => {
     toast("processing signup request...", {
       icon: "⏳",
     });
+    handleSignupRequest(signupData, setLoading, setUser);
   }
 
   return (
@@ -106,8 +113,15 @@ export const LoginModal = () => {
                 />
                 <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
               </div>
-              <button type="submit" className="btn btn-primary w-full">
-                Login
+              <button
+                type="submit"
+                className="btn btn-primary w-full"
+                onClick={() => setLoading(true)}>
+                {loading ? (
+                  <span class="loading loading-spinner text-accent"></span>
+                ) : (
+                  " Login"
+                )}
               </button>
               <p className="py-4">
                 Don&apos;t Have an Account?{" "}
@@ -120,7 +134,7 @@ export const LoginModal = () => {
             <>
               {/* Your Signup Form Here */}
               <h1 className="text-center font-bold my-2 text-2xl">
-                Signup to Create an Account
+                Create an Account
               </h1>
               <div className="mb-6">
                 {/* Name input */}
@@ -178,8 +192,15 @@ export const LoginModal = () => {
                 />
                 <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
               </div>
-              <button type="submit" className="btn btn-primary w-full">
-                Signup
+              <button
+                type="submit"
+                className="btn btn-primary w-full"
+                onClick={() => setLoading(true)}>
+                {loading ? (
+                  <span class="loading loading-spinner text-accent"></span>
+                ) : (
+                  "Signup"
+                )}
               </button>
               <p className="py-4">
                 Already Have an Account?{" "}

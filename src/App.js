@@ -1,5 +1,5 @@
 import "./App.css";
-import { Sidebar, Home, Signup } from "../src/Components";
+import { Sidebar, Home } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 function App() {
@@ -9,7 +9,6 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
     </section>
   );
