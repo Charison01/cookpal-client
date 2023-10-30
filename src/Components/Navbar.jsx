@@ -1,18 +1,43 @@
 import "./Navbar.css";
+import React, { useState } from "react";
 export default function Sidebar() {
+  const [collapsed, setCollapsed] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
+
+  const expandSidebar = () => {
+    setCollapsed(!collapsed);
+  };
+
+  const handleLinkClick = (href) => {
+    setActiveLink(href);
+  };
+
+  const handleSearchFocus = () => {
+    setCollapsed(false);
+  };
   return (
-    <nav className="sidebar">
+    <nav
+      className={`sidebar bg-base-200 shadow-lg ${
+        collapsed ? "collapsed" : ""
+      }`}>
       <div className="sidebar-top-wrapper">
         <div className="sidebar-top">
           <a href="#" className="logo__wrapper">
-            <img src="./logo.svg" alt="Logo" className="logo-small" />
-            <span className="hide">Cookpal</span>
+            <img
+              src="./logo.svg"
+              className={`${collapsed ? "hidden" : ""}`}
+              alt="cookpal-logo"
+              width={150}
+              height={150}
+            />
+            🥣
           </a>
         </div>
-        <div className="expand-btn">
+        <div className="expand-btn" onClick={expandSidebar}>
           <svg
-            width="16"
-            height="16"
+            onClick={expandSidebar}
+            width="60"
+            height="60"
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -43,13 +68,22 @@ export default function Sidebar() {
             strokeLinejoin="round"
           />
         </svg>
-        <input type="search" placeholder="Search for anything..." />
+        <input
+          className="text-black"
+          type="search"
+          placeholder="Search for recipes..."
+          onFocus={handleSearchFocus}
+        />
       </div>
       <div className="sidebar-links">
         <h2>Main</h2>
         <ul>
           <li>
-            <a href="#home" title="Home" className="tooltip">
+            <a
+              href="#home"
+              title="Home"
+              className={`tooltip ${activeLink === "#home" ? "active" : ""}`}
+              onClick={() => handleLinkClick("#home")}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-home"
@@ -71,153 +105,65 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#orders" title="Orders" className="tooltip">
+            <a href="#recipes" title="recipes" className="tooltip">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-box"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
                 fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
-                <path d="M12 12l8 -4.5"></path>
-                <path d="M12 12l0 9"></path>
-                <path d="M12 12l-8 -4.5"></path>
+                strokeLinejoin="round"
+                className="icon icon-tabler icon-tabler-map-check">
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
               </svg>
-              <span className="link hide">Orders</span>
-              <span className="tooltip__content">Orders</span>
+              <span className="link hide">Explore</span>
+              <span className="tooltip__content">Explore</span>
             </a>
           </li>
           <li>
-            <a href="#documentation" title="Documentation" className="tooltip">
+            <a href="#favorites" title="favorites" className="tooltip">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
                 fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"></path>
+                strokeLinejoin="round"
+                className="icon icon-tabler icon-tabler-map-check">
+                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
               </svg>
-              <span className="link hide">Documentation</span>
-              <span className="tooltip__content">Documentation</span>
+              <span className="link hide">Favorites</span>
+              <span className="tooltip__content">Favorites</span>
             </a>
           </li>
           <li>
-            <a href="#map-overview" title="Map Overview" className="tooltip">
+            <a href="#community" title="community" className="tooltip">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-map-check"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
                 fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M11 18l-2 -1l-6 3v-13l6 -3l6 3l6 -3v9"></path>
-                <path d="M9 4v13"></path>
-                <path d="M15 7v8"></path>
-                <path d="M15 19l2 2l4 -4"></path>
-              </svg>
-              <span className="link hide">Map Overview</span>
-              <span className="tooltip__content">Map Overview</span>
-            </a>
-          </li>
-          <li>
-            <a href="#statistics" title="Statistics" className="tooltip">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-chart-pie"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
+                stroke="currentColor"
                 strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
                 strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"></path>
-                <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"></path>
+                strokeLinejoin="round"
+                className="icon icon-tabler icon-tabler-map-check">
+                <path d="M14 19a6 6 0 0 0-12 0" />
+                <circle cx="8" cy="9" r="4" />
+                <path d="M22 19a6 6 0 0 0-6-6 4 4 0 1 0 0-8" />
               </svg>
-              <span className="link hide">Statistics</span>
-              <span className="tooltip__content">Statistics</span>
+              <span className="link hide">Community</span>
+              <span className="tooltip__content">Community</span>
             </a>
           </li>
-        </ul>
-      </div>
-      <div className="sidebar-links">
-        <h2>Communication</h2>
-        <ul>
-          <li>
-            <a href="#communication" title="Communication" className="tooltip">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-                <path d="M4 13h3l3 3h4l3 -3h3"></path>
-              </svg>
-              <span className="link hide">Communication</span>
-              <span className="tooltip__content">Communication</span>
-            </a>
-          </li>
-          <li>
-            <a href="#couriers" title="Couriers" className="tooltip">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-users"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
-                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
-              </svg>
-              <span className="link hide">Couriers</span>
-              <span className="tooltip__content">Couriers</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="sidebar__action__wrapper">
-        <div className="sidebar__action">
-          <div className="progress-bar">
-            <div className="progress-bar__value">60%</div>
-          </div>
-          <h2>Used Capacity</h2>
-          <p>You are already using 60% of your capacity.</p>
-          <button>Upgrade plan</button>
-        </div>
-      </div>
-      <div className="sidebar-links bottom-links">
-        <ul>
           <li>
             <a href="#settings" title="Settings" className="tooltip">
               <svg
@@ -228,8 +174,8 @@ export default function Sidebar() {
                 strokewidth="2"
                 stroke="currentColor"
                 fill="none"
-                strokelinecap="round"
-                strokelinejoin="round">
+                strokeLinecap="round"
+                strokeLinejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path>
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
@@ -266,14 +212,14 @@ export default function Sidebar() {
         <div className="avatar__wrapper">
           <img
             className="avatar"
-            src="assets/profile.png"
-            alt="Joe Doe Picture"
+            src="https://utfs.io/f/299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg"
+            alt="donvine"
           />
           <div className="online__status"></div>
         </div>
         <section className="avatar__name hide">
-          <div className="user-name">Joe Doe</div>
-          <div className="email">joe.doe@atheros.ai</div>
+          <div className="user-name">Donvine Mugendi</div>
+          <div className="email">donvine@example.com</div>
         </section>
         <a href="#logout" className="logout">
           <svg
