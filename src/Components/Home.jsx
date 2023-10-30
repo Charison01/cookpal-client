@@ -1,5 +1,5 @@
 import React from "react";
-
+import DefaultCarousel from "./Carousel";
 export default function Home() {
   return (
     <section className="px-2 flex-1">
@@ -50,6 +50,8 @@ export default function Home() {
           </svg>
         </div>
       </div>
+      {/* section for carousel */}
+      <DefaultCarousel />
     </section>
   );
 }
