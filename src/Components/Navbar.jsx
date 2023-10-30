@@ -76,7 +76,6 @@ export default function Sidebar() {
         />
       </div>
       <div className="sidebar-links">
-        <h2>Main</h2>
         <ul>
           <li>
             <a
@@ -105,7 +104,13 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#recipes" title="recipes" className="tooltip">
+            <a
+              href="#recipes"
+              title="recipes"
+              onClick={() => handleLinkClick("#recipes")}
+              className={`tooltip ${
+                activeLink === "#recipes" ? "active" : ""
+              }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -125,7 +130,13 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#favorites" title="favorites" className="tooltip">
+            <a
+              href="#favorites"
+              title="favorites"
+              onClick={() => handleLinkClick("#favorites")}
+              className={`tooltip ${
+                activeLink === "#favorites" ? "active" : ""
+              }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -144,7 +155,13 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#community" title="community" className="tooltip">
+            <a
+              href="#community"
+              title="community"
+              onClick={() => handleLinkClick("#community")}
+              className={`tooltip ${
+                activeLink === "#community" ? "active" : ""
+              }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -165,7 +182,13 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#settings" title="Settings" className="tooltip">
+            <a
+              href="#settings"
+              title="Settings"
+              onClick={() => handleLinkClick("#settings")}
+              className={`tooltip ${
+                activeLink === "#settings" ? "active" : ""
+              }`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -185,7 +208,11 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#help" title="Help" className="tooltip">
+            <a
+              href="#help"
+              title="Help"
+              onClick={() => handleLinkClick("#help")}
+              className={`tooltip ${activeLink === "#help" ? "active" : ""}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -213,7 +240,7 @@ export default function Sidebar() {
           <img
             className="avatar"
             src="https://utfs.io/f/299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg"
-            alt="donvine"
+            alt="user-icon"
           />
           <div className="online__status"></div>
         </div>
@@ -239,6 +266,31 @@ export default function Sidebar() {
             <path d="M18 15l3 -3"></path>
           </svg>
         </a>
+      </div>
+      <div className="my-10  text-black flex flex-col items-center justify-start px-5">
+        <div className="flex gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="50"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            class="">
+            <path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2" />
+            <rect width="18" height="18" x="3" y="4" rx="2" />
+            <circle cx="12" cy="10" r="2" />
+            <line x1="8" x2="8" y1="2" y2="4" />
+            <line x1="16" x2="16" y1="2" y2="4" />
+          </svg>
+          <h2>Get weekly recipes directly to your email</h2>
+        </div>
+        <button className="btn bg-green-500 text-white my-2 w-full ">
+          Subscribe Now
+        </button>
       </div>
     </nav>
   );
