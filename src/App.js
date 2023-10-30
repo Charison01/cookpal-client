@@ -4,13 +4,15 @@ import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 function App() {
   return (
-    <section className="relative">
-      <Sidebar />
+    <>
       <Toaster />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </section>
+      <section className="relative flex gap-5 lg:gap-10">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </section>
+    </>
   );
 }
 
