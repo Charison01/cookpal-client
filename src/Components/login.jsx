@@ -9,6 +9,7 @@ export const LoginModal = () => {
 
   const closeSignupModal = () => {
     setSignup(false);
+    setShowPassword(false);
   };
 
   return (
