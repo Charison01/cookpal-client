@@ -1,23 +1,64 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export const LoginModal = () => {
   const [signup, setSignup] = useState(false);
+
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const [signupData, setSignupData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  function handleLoginChange(event) {
+    const { name, value } = event.target;
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
+  function handleSignupChange(event) {
+    const { name, value } = event.target;
+    setSignupData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  }
   const [showPassword, setShowPassword] = useState(false);
   const openSignupModal = () => {
     setSignup(true);
+    setShowPassword(false);
   };
 
   const closeSignupModal = () => {
     setSignup(false);
     setShowPassword(false);
   };
+  //function to handle signup and sigin
+  function handleLogin(e) {
+    e.preventDefault();
+    toast("processing signin request...", {
+      icon: "⏳",
+    });
+  }
+  function handleSignup(e) {
+    e.preventDefault();
+    e.preventDefault();
+    toast("processing signup request...", {
+      icon: "⏳",
+    });
+  }
 
   return (
     <dialog id="my_modal_3" className="modal">
       <div className="modal-box text-gray-600">
-        <form method="dialogue">
+        <form method="dialogue" onSubmit={!signup ? handleLogin : handleSignup}>
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            type="button"
             onClick={() => document.getElementById("my_modal_3").close()}>
             ✕
           </button>
@@ -34,6 +75,8 @@ export const LoginModal = () => {
                   type="email"
                   name="email"
                   id="email"
+                  value={loginData.email}
+                  onChange={handleLoginChange}
                   placeholder="Enter your email address"
                   required
                   className="input input-bordered input-primary w-full"
@@ -47,6 +90,8 @@ export const LoginModal = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
+                  value={loginData.password}
+                  onChange={handleLoginChange}
                   placeholder="Enter your password"
                   required
                   className="input input-bordered input-secondary w-full"
@@ -86,6 +131,8 @@ export const LoginModal = () => {
                   type="text"
                   name="name"
                   id="name"
+                  value={signupData.name}
+                  onChange={handleSignupChange}
                   placeholder="Enter your name"
                   required
                   className="input input-bordered input-primary w-full"
@@ -99,6 +146,8 @@ export const LoginModal = () => {
                   type="email"
                   name="email"
                   id="email"
+                  value={signupData.email}
+                  onChange={handleSignupChange}
                   placeholder="Enter your email address"
                   required
                   className="input input-bordered input-primary w-full"
@@ -112,7 +161,10 @@ export const LoginModal = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
+                  value={signupData.password}
+                  onChange={handleSignupChange}
                   placeholder="Enter your password"
+                  minLength={8}
                   required
                   className="input input-bordered input-secondary w-full"
                 />
