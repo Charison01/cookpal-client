@@ -79,7 +79,7 @@ export default function Sidebar() {
         <ul>
           <li>
             <a
-              href="#home"
+              href="/"
               title="Home"
               className={`tooltip ${activeLink === "#home" ? "active" : ""}`}
               onClick={() => handleLinkClick("#home")}>
@@ -105,7 +105,7 @@ export default function Sidebar() {
           </li>
           <li>
             <a
-              href="#recipes"
+              href="/recipes"
               title="recipes"
               onClick={() => handleLinkClick("#recipes")}
               className={`tooltip ${
@@ -131,7 +131,7 @@ export default function Sidebar() {
           </li>
           <li>
             <a
-              href="#favorites"
+              href="/favorites"
               title="favorites"
               onClick={() => handleLinkClick("#favorites")}
               className={`tooltip ${
@@ -156,7 +156,7 @@ export default function Sidebar() {
           </li>
           <li>
             <a
-              href="#community"
+              href="/community"
               title="community"
               onClick={() => handleLinkClick("#community")}
               className={`tooltip ${
@@ -183,7 +183,7 @@ export default function Sidebar() {
           </li>
           <li>
             <a
-              href="#settings"
+              href="/settings"
               title="Settings"
               onClick={() => handleLinkClick("#settings")}
               className={`tooltip ${
@@ -209,7 +209,7 @@ export default function Sidebar() {
           </li>
           <li>
             <a
-              href="#help"
+              href="/help"
               title="Help"
               onClick={() => handleLinkClick("#help")}
               className={`tooltip ${activeLink === "#help" ? "active" : ""}`}>
@@ -245,6 +245,7 @@ export default function Sidebar() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className="login-svg"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -256,7 +257,25 @@ export default function Sidebar() {
               <line x1="15" x2="3" y1="12" y2="12" />
             </svg>
           ) : (
-            <button className="btn btn-primary w-full  mt-5">Login</button>
+            <button className="btn btn-primary w-full  mt-5 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                className="!text-white"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-log-in">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" x2="3" y1="12" y2="12" />
+              </svg>
+              Login
+            </button>
           )}
         </a>
       </div>
@@ -273,7 +292,7 @@ export default function Sidebar() {
           <div className="user-name">Donvine Mugendi</div>
           <div className="email">donvine@example.com</div>
         </section>
-        <a href="#logout" className="logout">
+        <a href="/logout" className="logout">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"
@@ -295,7 +314,7 @@ export default function Sidebar() {
       <div
         className={`my-10  text-black flex flex-col items-center justify-start px-5 ${
           collapsed ? "hidden" : ""
-        }`}>
+        } ${!user ? "hidden" : ""}`}>
         <div className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
