@@ -24,7 +24,7 @@ export default function Sidebar() {
       }`}>
       <div className="sidebar-top-wrapper">
         <div className="sidebar-top">
-          <a href="#" className="logo__wrapper">
+          <a href="/" className="logo__wrapper">
             <h2 className={` font-bold ${collapsed ? "hidden" : "text-2xl"}`}>
               C<span className="text-green-500 text-3xl">oo</span>kpal🥣
             </h2>
