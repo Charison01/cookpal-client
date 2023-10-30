@@ -218,15 +218,14 @@ html {
   font-size: 1.25rem;
   display: flex;
   gap: 28px;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   height: 56px;
   text-decoration: none;
   transition: background-color 0.2s ease-in-out;
 }
 
 .sidebar-links li a .link {
-  flex-grow: 1;
   overflow: hidden;
   white-space: nowrap;
   animation: fadeIn 0.2s ease-in-out;
