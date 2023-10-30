@@ -5,28 +5,27 @@ export default function Sidebar() {
   const { user } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
+  //code to set the navbar to collapsed on small screens
   useEffect(() => {
-    // Get the current URL path
+    const updateCollapseState = () => {
+      if (window.innerWidth < 680) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(false);
+      }
+    };
+
+    window.addEventListener("resize", updateCollapseState);
+    updateCollapseState();
+
+    return () => {
+      window.removeEventListener("resize", updateCollapseState);
+    };
+  }, []);
+
+  useEffect(() => {
     const currentPath = window.location.pathname;
-    console.log(currentPath);
-    // Define the links you want to match for active status
-    const linksToMatch = [
-      "/",
-      "/recipes",
-      "/favorites",
-      "/community",
-      "/settings",
-      "/help",
-    ];
-
-    // Find the link that matches the current path
-    const matchedLink = linksToMatch.find((link) =>
-      currentPath.startsWith(link)
-    );
-
-    if (matchedLink) {
-      setActiveLink(matchedLink);
-    }
+    setActiveLink(currentPath);
   }, []);
 
   const expandSidebar = () => {
@@ -208,7 +207,7 @@ export default function Sidebar() {
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                strokewidth="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
                 strokeLinecap="round"
@@ -249,7 +248,7 @@ export default function Sidebar() {
       </div>
       <div className="divider"></div>
       {/* hide sidebar profile when no user is logged in */}
-      <div className="text-black p-5">
+      <div className={!user ? "text-black p-5" : "hidden"}>
         <h2 className={collapsed ? "hidden" : ""}>Login to create recipes!</h2>
         <a href="/login" className="login">
           {collapsed ? (
@@ -336,8 +335,7 @@ export default function Sidebar() {
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
-            strokeLinejoin="round"
-            class="">
+            strokeLinejoin="round">
             <path d="M17 18a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2" />
             <rect width="18" height="18" x="3" y="4" rx="2" />
             <circle cx="12" cy="10" r="2" />

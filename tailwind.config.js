@@ -8,7 +8,12 @@ module.exports = {
     themes: ["light", "dark", "winter", "cupcake"],
   },
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xsm: { max: "480px" },
+        // @media (max-width:480px) {}
+      },
+    },
   },
   plugins: [require("flowbite/plugin"), require("daisyui")],
 };

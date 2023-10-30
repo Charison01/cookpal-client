@@ -139,7 +139,7 @@ html {
   justify-content: center;
 }
 .sidebar.collapsed {
-  width: 60px;
+  width: 80px;
 }
 
 .logo__wrapper {
@@ -355,7 +355,7 @@ html {
   color: #08e95b;
 }
 
-body.collapsed .logout {
+.sidebar.collapsed .logout {
   display: none;
 }
 
@@ -399,5 +399,10 @@ body.collapsed .logout {
   to {
     opacity: 1;
     width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .sidebar {
+    class: collapsed;
   }
 }
