@@ -1,12 +1,16 @@
 import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginModal } from "./login";
+import toast from "react-hot-toast";
+
+// beginning of function body
 export default function Sidebar() {
-  const { user } = useAppContext();
+  const { user, setUser } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
   //code to set the navbar to collapsed on small screens
   useEffect(() => {
     const updateCollapseState = () => {
@@ -37,6 +41,17 @@ export default function Sidebar() {
   const handleSearchFocus = () => {
     setCollapsed(false);
   };
+  //function to logout users
+  async function handleLogout() {
+    sessionStorage.removeItem("user_id");
+    const response = await fetch("https://cookpal.up.railway.app/logout", {
+      method: "DELETE",
+    });
+    setUser(response.json());
+    toast.success("logged out successfully");
+    navigate("/");
+    window.location.reload();
+  }
 
   return (
     <nav
@@ -297,19 +312,25 @@ export default function Sidebar() {
         </span>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
-        <div className="avatar__wrapper">
-          <img
-            className="avatar"
-            src="https://utfs.io/f/299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg"
-            alt="user-icon"
-          />
-          <div className="online__status"></div>
+        <div className={user ? "avatar__wrapper" : "hidden"}>
+          {user ? (
+            <img
+              className="avatar"
+              src={
+                user?.picture ||
+                (user?.name
+                  ? `https://ui-avatars.com/api/?name=${user?.name}`
+                  : null)
+              }
+              alt="user-icon"
+            />
+          ) : null}
         </div>
         <section className="avatar__name hide">
-          <div className="user-name">Donvine Mugendi</div>
-          <div className="email">donvine@example.com</div>
+          <div className="user-name">{user?.name}</div>
+          <div className="email">{user?.email}</div>
         </section>
-        <a href="/logout" className="logout">
+        <span onClick={handleLogout} className="logout">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"
@@ -326,7 +347,7 @@ export default function Sidebar() {
             <path d="M9 12h12l-3 -3"></path>
             <path d="M18 15l3 -3"></path>
           </svg>
-        </a>
+        </span>
       </div>
       <div
         className={`my-10  text-black flex flex-col items-center justify-start px-5 ${

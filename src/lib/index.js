@@ -13,10 +13,10 @@ export async function handleLoginRequest(
     const response = await Axios.post(`${api}/login`, loginData);
     const data = await response.data;
     setUser(data);
+    sessionStorage.setItem("user_id", data?.id);
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
-    sessionStorage.setItem("user_id", data?.user?.id);
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
@@ -38,7 +38,7 @@ export async function handleSignupRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Signup successful!");
-    sessionStorage.setItem("user_id", data?.user?.id);
+    sessionStorage.setItem("user_id", data?.id);
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
