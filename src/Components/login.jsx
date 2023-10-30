@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { handleLoginRequest, handleSignupRequest } from "../lib";
+import { ErrorList } from "./Errors";
 import toast from "react-hot-toast";
 import { useAppContext } from "../Context/Provider";
 export const LoginModal = () => {
   const { setUser } = useAppContext();
   const [signup, setSignup] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [errors, setErrors] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -35,12 +36,14 @@ export const LoginModal = () => {
     setSignup(true);
     setShowPassword(false);
     setLoading(false);
+    setErrors(false);
   };
 
   const closeSignupModal = () => {
     setSignup(false);
     setShowPassword(false);
     setLoading(false);
+    setErrors(false);
   };
   //function to handle signup and sigin
   function handleLogin(e) {
@@ -49,7 +52,7 @@ export const LoginModal = () => {
     toast("processing signin request...", {
       icon: "⏳",
     });
-    handleLoginRequest(loginData, setLoading, setUser);
+    handleLoginRequest(loginData, setLoading, setUser, setErrors);
   }
   function handleSignup(e) {
     e.preventDefault();
@@ -57,7 +60,7 @@ export const LoginModal = () => {
     toast("processing signup request...", {
       icon: "⏳",
     });
-    handleSignupRequest(signupData, setLoading, setUser);
+    handleSignupRequest(signupData, setLoading, setUser, setErrors);
   }
 
   return (
@@ -70,6 +73,7 @@ export const LoginModal = () => {
             onClick={() => {
               document.getElementById("my_modal_3").close();
               setLoading(false);
+              setErrors(null);
             }}>
             ✕
           </button>
@@ -119,14 +123,16 @@ export const LoginModal = () => {
               </div>
               <button type="submit" className="btn btn-primary w-full">
                 {loading ? (
-                  <span class="loading loading-spinner text-white"></span>
+                  <span className="loading loading-spinner text-white"></span>
                 ) : (
                   " Login"
                 )}
               </button>
               <p className="py-4">
                 Don&apos;t Have an Account?{" "}
-                <span className="link" onClick={openSignupModal}>
+                <span
+                  className="link hover:text-primary"
+                  onClick={openSignupModal}>
                   Signup
                 </span>
               </p>
@@ -195,19 +201,22 @@ export const LoginModal = () => {
               </div>
               <button type="submit" className="btn btn-primary w-full">
                 {loading ? (
-                  <span class="loading loading-spinner text-white"></span>
+                  <span className="loading loading-spinner text-white"></span>
                 ) : (
                   "Signup"
                 )}
               </button>
               <p className="py-4">
                 Already Have an Account?{" "}
-                <span className="link" onClick={closeSignupModal}>
+                <span
+                  className="link hover:text-primary"
+                  onClick={closeSignupModal}>
                   Login
                 </span>
               </p>
             </>
           )}
+          {errors && <ErrorList errors={errors} />}
         </form>
       </div>
     </dialog>

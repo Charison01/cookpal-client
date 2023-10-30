@@ -37,17 +37,6 @@ export default function Sidebar() {
   const handleSearchFocus = () => {
     setCollapsed(false);
   };
-  //function to toggle the login Modal
-
-  const openModal = () => {
-    setIsModalOpen(true);
-    setCollapsed(!collapsed);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setCollapsed(!collapsed);
-  };
 
   return (
     <nav
