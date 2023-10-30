@@ -1,6 +1,8 @@
 import "./Navbar.css";
+import { useAppContext } from "../Context/Provider";
 import React, { useState } from "react";
 export default function Sidebar() {
+  const { user } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("");
 
@@ -23,14 +25,12 @@ export default function Sidebar() {
       <div className="sidebar-top-wrapper">
         <div className="sidebar-top">
           <a href="#" className="logo__wrapper">
-            <img
-              src="./logo.svg"
-              className={`${collapsed ? "hidden" : ""}`}
-              alt="cookpal-logo"
-              width={150}
-              height={150}
-            />
-            🥣
+            <h2 className={` font-bold ${collapsed ? "hidden" : "text-2xl"}`}>
+              C<span className="text-green-500 text-3xl">oo</span>kpal🥣
+            </h2>
+            <h2 className={` font-bold ${collapsed ? "text-2xl" : "hidden"}`}>
+              🥣
+            </h2>
           </a>
         </div>
         <div className="expand-btn" onClick={expandSidebar}>
@@ -267,7 +267,10 @@ export default function Sidebar() {
           </svg>
         </a>
       </div>
-      <div className="my-10  text-black flex flex-col items-center justify-start px-5">
+      <div
+        className={`my-10  text-black flex flex-col items-center justify-start px-5 ${
+          collapsed ? "hidden" : ""
+        }`}>
         <div className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
