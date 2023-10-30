@@ -24,9 +24,11 @@
 
 body {
   font-family: "Work Sans", sans-serif;
+  background-color: #c7d2dc;
   font-size: 16px;
   padding: 16px;
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
 }
 
 html {
@@ -72,8 +74,7 @@ html {
 }
 
 .search__wrapper input {
-  background-color: var(--background);
-  height: 40px;
+  height: 45px;
   width: 100%;
   border-radius: 8px;
   padding: 0 8px;
@@ -340,13 +341,18 @@ html {
   animation: fadeIn 0.2s ease-in-out;
 }
 
-.logout {
+.logout,
+.login {
   animation: fadeIn 0.2s ease-in-out;
   margin-left: auto;
 }
 
 .logout svg {
   color: var(--logout);
+}
+
+.login svg {
+  color: #08e95b;
 }
 
 body.collapsed .logout {
@@ -376,7 +382,7 @@ body.collapsed .logout {
   height: 20px;
 }
 
-body.collapsed .expand-btn svg {
+.sidebar.collapsed .expand-btn svg {
   transform: rotate(-360deg);
 }
 

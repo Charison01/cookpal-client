@@ -69,7 +69,7 @@ export default function Sidebar() {
           />
         </svg>
         <input
-          className="text-black"
+          className="text-black bg-base-100 shadow-lg"
           type="search"
           placeholder="Search for recipes..."
           onFocus={handleSearchFocus}
@@ -235,7 +235,32 @@ export default function Sidebar() {
         </ul>
       </div>
       <div className="divider"></div>
-      <div className="sidebar__profile">
+      {/* hide sidebar profile when no user is logged in */}
+      <div className="text-black p-5">
+        <h2 className={collapsed ? "hidden" : ""}>Login to create recipes!</h2>
+        <a href="/login" className="login">
+          {collapsed ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-log-in">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" x2="3" y1="12" y2="12" />
+            </svg>
+          ) : (
+            <button className="btn btn-primary w-full  mt-5">Login</button>
+          )}
+        </a>
+      </div>
+      <div className={user ? "sidebar__profile" : "hidden"}>
         <div className="avatar__wrapper">
           <img
             className="avatar"
