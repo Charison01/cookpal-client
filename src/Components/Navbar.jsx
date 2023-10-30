@@ -1,10 +1,12 @@
 import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
 import React, { useState, useEffect } from "react";
+import { LoginModal } from "./login";
 export default function Sidebar() {
   const { user } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   //code to set the navbar to collapsed on small screens
   useEffect(() => {
     const updateCollapseState = () => {
@@ -35,6 +37,18 @@ export default function Sidebar() {
   const handleSearchFocus = () => {
     setCollapsed(false);
   };
+  //function to toggle the login Modal
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    setCollapsed(!collapsed);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCollapsed(!collapsed);
+  };
+
   return (
     <nav
       className={`sidebar bg-base-200 shadow-lg ${
@@ -250,7 +264,9 @@ export default function Sidebar() {
       {/* hide sidebar profile when no user is logged in */}
       <div className={!user ? "text-black p-5" : "hidden"}>
         <h2 className={collapsed ? "hidden" : ""}>Login to create recipes!</h2>
-        <a href="/login" className="login">
+        <span
+          className="login"
+          onClick={() => document.getElementById("my_modal_3").showModal()}>
           {collapsed ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -268,7 +284,9 @@ export default function Sidebar() {
               <line x1="15" x2="3" y1="12" y2="12" />
             </svg>
           ) : (
-            <button className="btn btn-primary w-full  mt-5 flex items-center">
+            <button
+              className="btn btn-primary w-full  mt-5 flex items-center"
+              onClick={() => document.getElementById("my_modal_3").showModal()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -287,7 +305,7 @@ export default function Sidebar() {
               Login
             </button>
           )}
-        </a>
+        </span>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
         <div className="avatar__wrapper">
@@ -348,6 +366,8 @@ export default function Sidebar() {
           Subscribe Now
         </button>
       </div>
+      {/* set the login modal as absolute */}
+      <LoginModal />
     </nav>
   );
 }
