@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Sidebar, Home } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { Community, Explore, Settings, Help } from "./Pages";
+import { Community, Explore, Settings, Help, Favorites } from "./Pages";
 function App() {
   //create data in parent component
   const [recipes, setRecipes] = useState([]);
@@ -55,6 +55,7 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="community" element={<Community />} />
           <Route path="help" element={<Help />} />
+          <Route path="favorites" element={<Favorites />} />
         </Routes>
       </section>
     </>

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { useAppContext } from "../Context/Provider";
-import toast from "react-hot-toast";
-import "./Settings.css";
+import { showLoginPopup } from "../lib";
+import { useNavigate } from "react-router-dom";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
+  const navigate = useNavigate();
   const [updateData, setUpdateData] = useState({
     name: "",
     picture: "",
   });
+  if (!user) {
+    showLoginPopup();
+    navigate("/");
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUpdateData((prev) => ({
