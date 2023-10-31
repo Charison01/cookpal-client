@@ -1,11 +1,18 @@
 import "./App.css";
-// import Sidebar from "../src/Components/Navbar";
-import {Settings} from "./Components/Settings";
+import { Sidebar, Home, Settings } from "../src/Components";
+import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
-      {/* <Sidebar /> */}
-      <Settings/>
+      <Toaster />
+      <section className="relative flex gap-5 lg:gap-10 w-full">
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/settings" element = {<Settings />} />
+        </Routes>
+      </section>
     </>
   );
 }

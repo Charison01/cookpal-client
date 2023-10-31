@@ -4,7 +4,12 @@ const AppContext = createContext("");
 export const useAppContext = () => useContext(AppContext);
 
 export default function ContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+
+  const defaultUser = {
+    name: "",
+    picture: ""
+  }
+  const [user, setUser] = useState(defaultUser);
 
   // useEffect(() => {
   //   //fetch /me
