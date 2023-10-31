@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Search, DefaultCarousel, StarRating, Recipecard } from "./index";
+import { DefaultCarousel, StarRating, Recipecard } from "./index";
 import { handleUpdateRating } from "../lib";
 export default function Home() {
-  //state to keep track of what user searches for
   const [recipes, setRecipes] = useState();
   useEffect(() => {
     try {
@@ -34,9 +33,11 @@ export default function Home() {
         <DefaultCarousel />
       </section>
       {/* section for recipe cards */}
-      <h2 className="text-center text-2xl font-bold text-gray-600">
-        Featured Recipes
-      </h2>
+      <div className="py-2 px-2  text-gray-600">
+        <h2 className="text-2xl lg:text-3xl font-bold">Featured Recipes</h2>
+        <p>Made by popular chefs</p>
+      </div>
+
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
         {recipes?.featured?.length > 0 &&
@@ -45,9 +46,11 @@ export default function Home() {
           ))}
       </section>
       {/* trending recipes cards */}
-      <h2 className="text-center text-2xl font-bold text-gray-600">
-        Trending Recipes
-      </h2>
+      <div className="py-2 px-2  text-gray-600">
+        <h2 className="text-2xl lg:text-3xl font-bold">Trending Recipes</h2>
+        <p>Most rated by the community</p>
+      </div>
+
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
         {recipes?.trending?.length > 0 &&
