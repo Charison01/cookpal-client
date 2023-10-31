@@ -72,28 +72,10 @@ html {
   right: 24px;
 }
 
-.sidebar.collapsed .search__wrapper svg {
-  top: 50%;
-  left: 50%;
-  right: auto;
-  transform: translate(-50%, -50%);
-  color: var(--text-link);
-  stroke: var(--text-link);
-}
-
 .search__wrapper input::-webkit-input-placeholder {
   color: var(--text-link);
   white-space: nowrap;
 }
-
-.sidebar.collapsed .search__wrapper input {
-  max-width: 40px;
-}
-
-.sidebar.collapsed .search__wrapper input::-webkit-input-placeholder {
-  color: transparent;
-}
-
 /*? sidebar top */
 
 .sidebar-top-wrapper {

@@ -45,3 +45,10 @@ export async function handleSignupRequest(
     setLoading(false);
   }
 }
+
+//function to update the rating of a recipe
+export function handleUpdateRating(pct, recipeId) {
+  const newRating = pct * 5;
+  console.log(newRating);
+  //post to /ratings and give the recipe id to update
+}

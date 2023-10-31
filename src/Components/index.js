@@ -1,4 +1,7 @@
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Sidebar from "./Navbar";
-export { Home, Navbar, Sidebar };
+import Search from "./Search";
+import DefaultCarousel from "./Carousel";
+import StarRating from "./StarRating";
+export { Home, Navbar, Sidebar, Search, DefaultCarousel, StarRating };
