@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, DefaultCarousel, StarRating } from "./index";
+import { Search, DefaultCarousel, StarRating, Recipecard } from "./index";
 import { handleUpdateRating } from "../lib";
 export default function Home() {
   //state to keep track of what user searches for
@@ -25,6 +25,10 @@ export default function Home() {
           <StarRating percentage={5 / 5} onClick={handleUpdateRating} />
         </div>
         <DefaultCarousel />
+      </section>
+      {/* section for recipe cards */}
+      <section>
+        <Recipecard />
       </section>
     </section>
   );
