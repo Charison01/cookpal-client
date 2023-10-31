@@ -1,4 +1,10 @@
+import React, { useState } from "react";
+
 export default function Recipecard({ recipe }) {
+  const [liked, setLiked] = useState(false);
+  const handleLiking = () => {
+    setLiked(!liked);
+  };
   return (
     <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
@@ -22,15 +28,17 @@ export default function Recipecard({ recipe }) {
         </div>
         {/* svg for like */}
         <div className="flex items-center gap-5">
-          <div className="btn btn-sm bg-gray-100 btn-circle p-1">
+          <div
+            className="btn btn-sm bg-gray-100 btn-circle p-1"
+            onClick={handleLiking}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="none"
+              fill={liked ? "red" : "none"}
               className="cursor-pointer"
-              stroke="currentColor"
+              stroke="red"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round">
