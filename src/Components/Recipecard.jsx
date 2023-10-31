@@ -1,9 +1,9 @@
 export default function Recipecard({ recipe }) {
   return (
-    <div className="h-[400px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
+    <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
         alt="recipe"
-        className="h-2/3 rounded-lg cursor-pointer"
+        className="h-3/5 rounded-lg cursor-pointer"
         src={recipe?.image}
       />
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
