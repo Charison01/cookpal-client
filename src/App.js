@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <section className="relative flex gap-5 lg:gap-10">
+      <section className="relative flex gap-5 lg:gap-10 w-full">
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />

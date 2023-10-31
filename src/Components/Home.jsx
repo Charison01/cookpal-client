@@ -6,7 +6,7 @@ export default function Home() {
   const [search, setSearch] = useState("");
 
   return (
-    <section className="px-2 flex-1">
+    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* container for search bar */}
       <Search
         search={search}
