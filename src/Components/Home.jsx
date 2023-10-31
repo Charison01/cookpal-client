@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Search, DefaultCarousel, StarRating, Recipecard } from "./index";
 import { handleUpdateRating } from "../lib";
-export default function Home() {
+export default function Home({ search, setSearch, recipes }) {
   //state to keep track of what user searches for
-  const [search, setSearch] = useState("");
 
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
@@ -32,16 +31,9 @@ export default function Home() {
       </h2>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
-        <Recipecard />
+        {recipes.length>0 && recipes.map((recipe) => (
+          <Recipecard key={recipe.id} recipe={recipe} />
+        ))}
       </section>
     </section>
   );

@@ -1,21 +1,24 @@
-export default function Recipecard() {
+export default function Recipecard({ recipe }) {
   return (
     <div className="h-96 xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
         alt="recipe"
         className="h-2/3 rounded-lg cursor-pointer"
-        src="https://assets.unileversolutions.com/recipes-v3/175482-default.jpg"
+        src={recipe?.image}
       />
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
-        <p className="text-2xl">Kimaru Salad</p>
+        <p className="text-2xl">{recipe?.title}</p>
         <p className="text-xl">
-          <span className="text-yellow-400">★</span>4.5
+          <span className="text-yellow-400">★</span>
+          {recipe?.average_ratings}
         </p>
       </div>
       <div className="font-normal flex items-center justify-between px-2">
         <div className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none">
-          <p className="text-red-500 font-bold text-xl ">⏲️ 40 Min</p>
+          <p className="text-red-500 font-bold text-xl ">
+            ⏲️ {recipe?.cooking_time} Min
+          </p>
         </div>
         {/* svg for like */}
         <div className="flex items-center gap-5">
