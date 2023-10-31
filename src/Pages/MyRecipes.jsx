@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Recipecard } from "../Components";
+import { Recipecard, NewRecipeForm } from "../Components";
 export default function MyRecipes() {
   const [myRecipes, setMyRecipes] = useState([]);
   const userId = sessionStorage.getItem("user_id");
@@ -30,7 +30,11 @@ export default function MyRecipes() {
       </h1>
       {/* section for creating new recipes */}
       <div className="py-4 px-2 flex items-center justify-center border bg-base-200">
-        <button className="btn btn-primary">Create New Recipe</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => document.getElementById("my_modal_4").showModal()}>
+          Create New Recipe
+        </button>
       </div>
       {/* section for rendering recipe cards */}
       <section className="py-2 px-2 recipecard-grid-container ">
@@ -45,6 +49,7 @@ export default function MyRecipes() {
           </h1>
         )}
       </section>
+      <NewRecipeForm />
     </section>
   );
 }
