@@ -38,9 +38,6 @@ export default function Sidebar() {
     setCollapsed(!collapsed);
   };
 
-  const handleSearchFocus = () => {
-    setCollapsed(false);
-  };
   //function to logout users
   async function handleLogout() {
     sessionStorage.removeItem("user_id");
@@ -87,29 +84,6 @@ export default function Sidebar() {
             />
           </svg>
         </div>
-      </div>
-
-      <div className="search__wrapper">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z"
-            stroke="#697089"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        <input
-          className="text-black bg-base-100 shadow-lg"
-          type="search"
-          placeholder="Search for recipes..."
-          onFocus={handleSearchFocus}
-        />
       </div>
       <div className="sidebar-links">
         <ul>
