@@ -1,10 +1,17 @@
 import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { LoginModal } from "./login";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+
+// beginning of function body
 export default function Sidebar() {
-  const { user } = useAppContext();
+  const { user, setUser } = useAppContext();
   const [collapsed, setCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
+  const navigate = useNavigate();
   //code to set the navbar to collapsed on small screens
   useEffect(() => {
     const updateCollapseState = () => {
@@ -32,9 +39,33 @@ export default function Sidebar() {
     setCollapsed(!collapsed);
   };
 
-  const handleSearchFocus = () => {
-    setCollapsed(false);
-  };
+  //function to logout users
+  async function handleLogout() {
+    sessionStorage.removeItem("user_id");
+    const response = await fetch("https://cookpal.up.railway.app/logout", {
+      method: "DELETE",
+    });
+    setUser(response.json());
+    toast.success("logged out successfully");
+    navigate("/");
+    window.location.reload();
+  }
+  //function to handle subscriptions
+  function handleSubscription() {
+    Swal.fire({
+      icon: "info",
+      text: "Kindly enter your email address to subscribe",
+      input: "email",
+      showCancelButton: true,
+      showCloseButton: true,
+      confirmButtonColor: "#1c51c1",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Subscribed!", "Thank you for subscribing!", "success");
+      }
+    });
+  }
+
   return (
     <nav
       className={`sidebar bg-base-200 shadow-lg ${
@@ -69,29 +100,6 @@ export default function Sidebar() {
             />
           </svg>
         </div>
-      </div>
-
-      <div className="search__wrapper">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z"
-            stroke="#697089"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        <input
-          className="text-black bg-base-100 shadow-lg"
-          type="search"
-          placeholder="Search for recipes..."
-          onFocus={handleSearchFocus}
-        />
       </div>
       <div className="sidebar-links">
         <ul>
@@ -145,6 +153,32 @@ export default function Sidebar() {
               <span className="tooltip__content">Explore</span>
             </a>
           </li>
+          {user ? (
+            <li>
+              <a
+                href="/my-recipes"
+                title="my-recipes"
+                className={`tooltip ${
+                  activeLink === "/my-recipes" ? "active" : ""
+                }`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                <span className="link hide">My Recipes</span>
+                <span className="tooltip__content">My Recipes</span>
+              </a>
+            </li>
+          ) : null}
           <li>
             <a
               href="/favorites"
@@ -195,6 +229,31 @@ export default function Sidebar() {
               <span className="tooltip__content">Community</span>
             </a>
           </li>
+
+          <li>
+            <a
+              href="/help"
+              title="Help"
+              className={`tooltip ${activeLink === "/help" ? "active" : ""}`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                <path d="M12 16v.01"></path>
+                <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
+              </svg>
+              <span className="link hide">Help</span>
+              <span className="tooltip__content">Help</span>
+            </a>
+          </li>
           <li>
             <a
               href="/settings"
@@ -220,60 +279,43 @@ export default function Sidebar() {
               <span className="tooltip__content">Settings</span>
             </a>
           </li>
-          <li>
-            <a
-              href="/help"
-              title="Help"
-              className={`tooltip ${activeLink === "/help" ? "active" : ""}`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-                <path d="M12 16v.01"></path>
-                <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
-              </svg>
-              <span className="link hide">Help</span>
-              <span className="tooltip__content">Help</span>
-            </a>
-          </li>
         </ul>
       </div>
       <div className="divider"></div>
       {/* hide sidebar profile when no user is logged in */}
       <div className={!user ? "text-black p-5" : "hidden"}>
         <h2 className={collapsed ? "hidden" : ""}>Login to create recipes!</h2>
-        <a href="/login" className="login">
+        <div
+          className="login"
+          onClick={() => document.getElementById("my_modal_3").showModal()}>
           {collapsed ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="login-svg"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-              <polyline points="10 17 15 12 10 7" />
-              <line x1="15" x2="3" y1="12" y2="12" />
-            </svg>
-          ) : (
-            <button className="btn btn-primary w-full  mt-5 flex items-center">
+            <span className="tooltip">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                className="!text-white"
+                viewBox="0 0 24 24"
+                className="login-svg cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" x2="3" y1="12" y2="12" />
+              </svg>
+              <span className="tooltip__content">Login</span>
+            </span>
+          ) : (
+            <button
+              className="btn btn-primary w-full  mt-5 flex items-center"
+              onClick={() => document.getElementById("my_modal_3").showModal()}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                className="!text-white r"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -287,22 +329,28 @@ export default function Sidebar() {
               Login
             </button>
           )}
-        </a>
+        </div>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
-        <div className="avatar__wrapper">
-          <img
-            className="avatar"
-            src="https://utfs.io/f/299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg"
-            alt="user-icon"
-          />
-          <div className="online__status"></div>
+        <div className={user ? "avatar__wrapper" : "hidden"}>
+          {user ? (
+            <img
+              className="avatar"
+              src={
+                user?.picture ||
+                (user?.name
+                  ? `https://ui-avatars.com/api/?name=${user?.name}`
+                  : null)
+              }
+              alt="user-icon"
+            />
+          ) : null}
         </div>
         <section className="avatar__name hide">
-          <div className="user-name">Donvine Mugendi</div>
-          <div className="email">donvine@example.com</div>
+          <div className="user-name">{user?.name}</div>
+          <div className="email">{user?.email}</div>
         </section>
-        <a href="/logout" className="logout">
+        <span onClick={handleLogout} className="logout">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"
@@ -319,7 +367,7 @@ export default function Sidebar() {
             <path d="M9 12h12l-3 -3"></path>
             <path d="M18 15l3 -3"></path>
           </svg>
-        </a>
+        </span>
       </div>
       <div
         className={`my-10  text-black flex flex-col items-center justify-start px-5 ${
@@ -344,10 +392,14 @@ export default function Sidebar() {
           </svg>
           <h2>Get weekly recipes directly to your email</h2>
         </div>
-        <button className="btn bg-green-500 text-white my-2 w-full ">
+        <button
+          className="btn bg-[--sidebar-primary] hover:bg-green-500 text-white my-2 w-full "
+          onClick={handleSubscription}>
           Subscribe Now
         </button>
       </div>
+      {/* set the login modal as absolute */}
+      <LoginModal />
     </nav>
   );
 }

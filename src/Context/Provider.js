@@ -1,36 +1,43 @@
 import { createContext, useContext, useState, useEffect } from "react";
+
 const AppContext = createContext("");
 
 export const useAppContext = () => useContext(AppContext);
 
 export default function ContextProvider({ children }) {
 
-  const defaultUser = {
-    name: "",
-    picture: ""
-  }
-  const [user, setUser] = useState(defaultUser);
+  // const defaultUser = {
+  //   name: "",
+  //   picture: ""
+  // }
+  // const [user, setUser] = useState(defaultUser);
 
   // useEffect(() => {
   //   //fetch /me
   // }, []);
+  const [user, setUser] = useState(null);
   useEffect(() => {
-    // fetch user data when component is mounted
-    fetch("https://cookpal.up.railway.app/me")
-    .then((response) => {
-      if(response.ok){
-        return response.json();
-      } else {
-        throw new Error("Failed to fetch user data");
+    if (typeof window !== "undefined") {
+      const userId = window.sessionStorage.getItem("user_id");
+      if (!user && userId) {
+        try {
+          (async () => {
+            const response = await fetch(
+              `https://cookpal.up.railway.app/users/${userId}`
+            );
+            if (response.ok) {
+              const data = await response.json();
+              setUser(data);
+            } else {
+              console.log("No logged in user found");
+            }
+          })();
+        } catch (error) {
+          console.error(error);
+        }
       }
-    })
-    .then((data) => {
-      setUser(data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  },[]);
+    }
+  }, [user]);
 
   const context = {
     user,

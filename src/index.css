@@ -2,3 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: #272727;
+  --text: white;
+  --white: #ffffff;
+  --sidebar-primary: #605dff;
+  --sidebar-primary-light: #5da8ff;
+  --sidebar-primary-hover: #605dff10;
+  --sidebar-background: #fcfcfd;
+  --background: #f1f3ff;
+  --text-link: #424662;
+  --headline: #7686bc;
+  --cta-background: #ebf3ff;
+  --cta-background-darker: #cfd5ff;
+  --cta-background-border: #cdd2f3;
+  --cta-text: #1c2035;
+  --neutral: #e6e8f0;
+  --expand-button: #4a516d;
+  --logout: #fa7575;
+  --text: #303651;
+  --text-lighter: #697089;
+}
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto+Slab:wght@900&family=Work+Sans:ital,wght@0,200;0,300;0,500;0,600;0,700;1,200&display=swap");
+
+body {
+  font-family: "Work Sans", sans-serif !important;
+  background-color: #d3dae0;
+  padding: 16px;
+  font-size: 16px;
+  height: fit-content;
+  min-height: 100%;
+}
+
+html {
+  height: 100%;
+}

@@ -1,38 +1,25 @@
-.App {
-  text-align: center;
+.star-rating {
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.star-rating .foreground {
+  color: gold;
+  position: absolute;
   display: flex;
-  flex-direction: column;
+  overflow: hidden;
+}
+
+.star-rating .background {
+  display: flex;
+}
+.recipecard-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  gap: 20px !important;
+  justify-content: space-between;
 }
