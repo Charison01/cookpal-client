@@ -22,7 +22,7 @@ export default function Search({ search, onSearchChange }) {
           className="text-black bg-base-100 shadow-lg w-full"
           type="search"
           value={search}
-          onChange={onSearchChange}
+          onChange={(e) => onSearchChange(e.target.value)}
           placeholder="What do you want to cook today?"
         />
       </div>

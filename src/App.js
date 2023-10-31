@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Sidebar, Home } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
+import Explore from "./Pages/Explore";
 function App() {
   //create data in parent component
   const [recipes, setRecipes] = useState([]);
@@ -36,6 +36,16 @@ function App() {
             path="/"
             element={
               <Home
+                search={search}
+                setSearch={setSearch}
+                recipes={recipesToRender}
+              />
+            }
+          />
+          <Route
+            path="recipes"
+            element={
+              <Explore
                 search={search}
                 setSearch={setSearch}
                 recipes={recipesToRender}
