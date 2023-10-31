@@ -90,6 +90,7 @@ export const LoginModal = () => {
                   type="email"
                   name="email"
                   id="email"
+                  autoComplete="on"
                   value={loginData.email}
                   onChange={handleLoginChange}
                   placeholder="Enter your email address"
@@ -105,6 +106,7 @@ export const LoginModal = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
+                  autoComplete="on"
                   value={loginData.password}
                   onChange={handleLoginChange}
                   placeholder="Enter your password"
