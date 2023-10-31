@@ -49,7 +49,7 @@ export default function MyRecipes() {
           </h1>
         )}
       </section>
-      <NewRecipeForm />
+      <NewRecipeForm setRecipes={setMyRecipes}/>
     </section>
   );
 }

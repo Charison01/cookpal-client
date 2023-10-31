@@ -1,20 +1,31 @@
 import React, { useState } from "react";
-
-function NewRecipeForm() {
+import { ErrorList } from "./Errors";
+function NewRecipeForm({ setRecipes }) {
+  const userId = sessionStorage.getItem("user_id");
   const [formData, setFormData] = useState({
+    user_id: userId,
     title: "",
     image: "",
     ingredients: [],
     instructions: "",
-    cooking_time: null,
-    servings: null,
+    cooking_time: 0,
+    servings: 0,
   });
   function handleChange(e) {
     const { name, value } = e.target;
+    let newValue = value;
+    if (name === "ingredients") {
+      newValue = value.split(",");
+    }
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formData);
   }
   return (
     <dialog id="my_modal_4" className="modal">
@@ -22,7 +33,7 @@ function NewRecipeForm() {
         <h1 className="text-xl font-bold text-center my-2">
           Fill this form to create a new recipe!
         </h1>
-        <form method="dialogue">
+        <form method="dialogue" onSubmit={handleSubmit}>
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
             type="button"
@@ -121,6 +132,7 @@ function NewRecipeForm() {
               name="instructions"
               id="instructions"
               onChange={handleChange}
+              minLength={50}
               value={formData.instructions}
               rows={3}
               placeholder="cooking instructions"

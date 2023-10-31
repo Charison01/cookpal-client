@@ -60,3 +60,27 @@ export function showLoginPopup() {
     console.error("Element with ID 'my_modal_3' not found.");
   }
 }
+//function to create a new recipe
+export async function createRecipe(
+  formData,
+  setLoading,
+  setErrors,
+  setRecipes
+) {
+  toast.success("processing request", {
+    icon: "⏳",
+  });
+  try {
+    const response = await Axios.post(`${api}/recipes`, formData);
+    const data = await response.data;
+    setRecipes((prev) => ({
+      ...prev,
+      data,
+    }));
+    setLoading(false);
+    document.getElementById("my_modal_4").close();
+  } catch (error) {
+    toast.error(error);
+    setErrors(error?.response?.data?.errors);
+  }
+}
