@@ -1,8 +1,6 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 export default function StarRating({ percentage, onClick }) {
-    const newRating = pct * 5;
-   
   const widthPct = `${percentage * 100}%`;
   const elementRef = useRef();
 

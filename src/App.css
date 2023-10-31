@@ -1,0 +1,18 @@
+.star-rating {
+  color: rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.star-rating .foreground {
+  color: gold;
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+}
+
+.star-rating .background {
+  display: flex;
+}

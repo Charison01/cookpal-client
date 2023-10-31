@@ -22,7 +22,7 @@ export default function Home() {
             Kelvin&apos;s Famous Salad With Cheese
           </h2>
           <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>
-          <StarRating percentage={rating / 5} onClick={handleUpdateRating} />
+          <StarRating percentage={5 / 5} onClick={handleUpdateRating} />
         </div>
         <DefaultCarousel />
       </section>
