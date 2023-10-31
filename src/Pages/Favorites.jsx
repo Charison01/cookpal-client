@@ -39,7 +39,7 @@ export default function Favorites() {
         {/* set the grid to auto-rows */}
         {favorites && favorites.length > 0 ? (
           favorites.map((recipe) => (
-            <Recipecard key={recipe.id} recipe={recipe} />
+            <Recipecard key={recipe.id} recipe={recipe} isLiked={true} />
           ))
         ) : (
           <div className="w-full rounded-lg bg-base-200 p-4">
