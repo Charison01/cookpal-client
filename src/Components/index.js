@@ -5,5 +5,15 @@ import Search from "./Search";
 import DefaultCarousel from "./Carousel";
 import StarRating from "./StarRating";
 import Recipecard from "./Recipecard";
+import NewRecipeForm from "./NewRecipeForm";
 import Settings from "./Settings";
-export { Home, Navbar, Sidebar, Search, DefaultCarousel, StarRating, Recipecard, Settings };
+export {
+  Home,
+  Navbar,
+  Sidebar,
+  Search,
+  DefaultCarousel,
+  StarRating,
+  Recipecard, Settings,
+  NewRecipeForm,
+};

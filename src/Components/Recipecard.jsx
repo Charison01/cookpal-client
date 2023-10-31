@@ -1,33 +1,77 @@
-export default function Recipecard() {
+import React, { useState } from "react";
+import Axios from "axios";
+import toast from "react-hot-toast";
+export default function Recipecard({ recipe }) {
+  const [liked, setLiked] = useState(false);
+  const userId = sessionStorage.getItem("user_id");
+
+  const handleLiking = async () => {
+    if (!userId) {
+      toast.error("Kindly login first to like a recipe!");
+      return;
+    }
+    setLiked(!liked);
+    if (liked) {
+      try {
+        const response = await Axios.post(
+          "https://cookpal.up.railway.app/bookmarks",
+          {
+            user_id: userId,
+            recipe_id: recipe.id,
+          }
+        );
+        const data = response.data;
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
+      try {
+        const response = await Axios.delete(
+          "https://cookpal.up.railway.app/bookmarks",
+          {
+            data: { user_id: userId, recipe_id: recipe.id },
+          }
+        );
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
   return (
-    <div className="h-96 xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
+    <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
         alt="recipe"
-        className="h-2/3 rounded-lg cursor-pointer"
-        src="https://assets.unileversolutions.com/recipes-v3/175482-default.jpg"
+        className="h-3/5 rounded-lg cursor-pointer"
+        src={recipe?.image}
       />
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
-        <p className="text-2xl">Kimaru Salad</p>
-        <p className="text-xl">
-          <span className="text-yellow-400">★</span>4.5
+        <p className="text-2xl capitalize">{recipe?.title}</p>
+        <p className="text-xl flex items-center gap-2">
+          <span className="text-[#FFD700]">★</span>
+          {recipe?.average_rating}
         </p>
       </div>
       <div className="font-normal flex items-center justify-between px-2">
         <div className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none">
-          <p className="text-red-500 font-bold text-xl ">⏲️ 40 Min</p>
+          <p className="text-red-500 font-bold text-xl ">
+            ⏲️ {recipe?.cooking_time} Min
+          </p>
         </div>
         {/* svg for like */}
         <div className="flex items-center gap-5">
-          <div className="btn btn-sm bg-gray-100 btn-circle p-1">
+          <div
+            className="btn btn-sm bg-gray-100 btn-circle p-1"
+            onClick={handleLiking}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="none"
+              fill={liked ? "red" : "none"}
               className="cursor-pointer"
-              stroke="currentColor"
+              stroke="red"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round">
