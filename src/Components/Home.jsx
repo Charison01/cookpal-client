@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Search, DefaultCarousel, StarRating, Recipecard } from "./index";
 import { handleUpdateRating } from "../lib";
 export default function Home({ search, setSearch, recipes }) {
@@ -31,9 +30,10 @@ export default function Home({ search, setSearch, recipes }) {
       </h2>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
-        {recipes.length>0 && recipes.map((recipe) => (
-          <Recipecard key={recipe.id} recipe={recipe} />
-        ))}
+        {recipes.length > 0 &&
+          recipes.map((recipe) => (
+            <Recipecard key={recipe.id} recipe={recipe} />
+          ))}
       </section>
     </section>
   );

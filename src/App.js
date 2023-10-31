@@ -22,6 +22,9 @@ function App() {
       console.error(error);
     }
   }, []);
+  const recipesToRender = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
@@ -32,7 +35,11 @@ function App() {
           <Route
             path="/"
             element={
-              <Home search={search} setSearch={setSearch} recipes={recipes} />
+              <Home
+                search={search}
+                setSearch={setSearch}
+                recipes={recipesToRender}
+              />
             }
           />
         </Routes>

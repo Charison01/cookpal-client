@@ -1,6 +1,6 @@
 export default function Recipecard({ recipe }) {
   return (
-    <div className="h-96 xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
+    <div className="h-[400px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
         alt="recipe"
         className="h-2/3 rounded-lg cursor-pointer"
@@ -11,7 +11,7 @@ export default function Recipecard({ recipe }) {
         <p className="text-2xl">{recipe?.title}</p>
         <p className="text-xl">
           <span className="text-yellow-400">★</span>
-          {recipe?.average_ratings}
+          {recipe?.average_rating}
         </p>
       </div>
       <div className="font-normal flex items-center justify-between px-2">
