@@ -94,6 +94,7 @@ function NewRecipeForm({ setRecipes }) {
                 type="number"
                 name="cooking_time"
                 id="cooking_time"
+                minLength={1}
                 value={formData.cooking_time}
                 onChange={handleChange}
                 placeholder="Cooking time in minutes"
@@ -109,6 +110,7 @@ function NewRecipeForm({ setRecipes }) {
                 type="number"
                 name="servings"
                 id="servings"
+                minLength={1}
                 value={formData.servings}
                 onChange={handleChange}
                 placeholder="People that can be served"

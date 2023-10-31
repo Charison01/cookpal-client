@@ -10,6 +10,7 @@ import {
   Help,
   Favorites,
   MyRecipes,
+  Recipedetails,
 } from "./Pages";
 function App() {
   //create data in parent component
@@ -64,6 +65,7 @@ function App() {
           <Route path="help" element={<Help />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="my-recipes" element={<MyRecipes />} />
+          <Route path="recipedetails/:id" element={<Recipedetails />} />
         </Routes>
       </section>
     </>
