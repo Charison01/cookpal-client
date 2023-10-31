@@ -27,10 +27,20 @@ export default function Home() {
         <DefaultCarousel />
       </section>
       {/* section for recipe cards */}
-      <section className="py-2 px-2">
-        <h2 className="text-center text-2xl font-bold text-gray-600">
-          Recommended For You
-        </h2>
+      <h2 className="text-center text-2xl font-bold text-gray-600">
+        Recommended For You
+      </h2>
+      <section className="py-2 px-2 recipecard-grid-container ">
+        {/* set the grid to auto-rows */}
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
+        <Recipecard />
         <Recipecard />
       </section>
     </section>

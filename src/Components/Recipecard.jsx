@@ -1,14 +1,14 @@
 export default function Recipecard() {
   return (
-    <div className="h-96 w-96 card border shadow-lg bg-base-100 my-3">
+    <div className="h-96 xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
         alt="recipe"
-        className="h-2/3 rounded-lg"
-        src="https://masalabasics.com/wp-content/uploads/2021/02/Ugali-300x298.jpg"
+        className="h-2/3 rounded-lg cursor-pointer"
+        src="https://assets.unileversolutions.com/recipes-v3/175482-default.jpg"
       />
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
-        <p className="text-2xl">Caesar Salad</p>
+        <p className="text-2xl">Kimaru Salad</p>
         <p className="text-xl">
           <span className="text-yellow-400">★</span>4.5
         </p>
