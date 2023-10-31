@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAppContext } from "../Context/Provider";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
 import { Recipecard } from "../Components";
@@ -7,7 +6,6 @@ import { Recipecard } from "../Components";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const userId = sessionStorage.getItem("user_id");
-  const { user } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {

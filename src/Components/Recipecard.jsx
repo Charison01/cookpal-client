@@ -5,26 +5,27 @@ import { showLoginPopup } from "../lib";
 export default function Recipecard({ recipe }) {
   const [liked, setLiked] = useState(false);
 
-  const handleLiking = async (id, newLiked) => {
-    const userId = sessionStorage.getItem("user_id");
-    if (!userId) {
+  const handleLiking = async (recipe_id, newLiked) => {
+    const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
+    if (!user_id) {
       toast.error("Kindly login first to like a recipe!");
       setTimeout(() => {
         showLoginPopup();
       }, 1000);
       return;
     }
-    console.log(id);
+    const data = {
+      user_id,
+      recipe_id,
+    };
+    console.log(data);
     if (newLiked === true) {
       try {
         const response = await Axios.post(
           "https://cookpal.up.railway.app/bookmarks",
-          {
-            user_id: userId,
-            recipe_id: id,
-          }
+          data
         );
-        const data = response.data;
+        toast.success("recipe bookmarked successfully");
       } catch (error) {
         console.error("Error:", error);
       }
@@ -32,9 +33,7 @@ export default function Recipecard({ recipe }) {
       try {
         const response = await Axios.delete(
           "https://cookpal.up.railway.app/bookmarks",
-          {
-            data: { user_id: userId, recipe_id: recipe.id },
-          }
+          data
         );
       } catch (error) {
         console.error("Error:", error);
