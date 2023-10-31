@@ -29,6 +29,9 @@ export default function MyRecipes() {
         My Recipes
       </h1>
       {/* section for creating new recipes */}
+      <div className="py-4 px-2 flex items-center justify-center border bg-base-200">
+        <button className="btn btn-primary">Create New Recipe</button>
+      </div>
       {/* section for rendering recipe cards */}
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
