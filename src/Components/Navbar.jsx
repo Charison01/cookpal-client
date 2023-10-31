@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginModal } from "./login";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 // beginning of function body
 export default function Sidebar() {
@@ -48,6 +49,21 @@ export default function Sidebar() {
     toast.success("logged out successfully");
     navigate("/");
     window.location.reload();
+  }
+  //function to handle subscriptions
+  function handleSubscription() {
+    Swal.fire({
+      icon: "info",
+      text: "Kindly enter your email address to subscribe",
+      input: "email",
+      showCancelButton: true,
+      showCloseButton: true,
+      confirmButtonColor: "#1c51c1",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Subscribed!", "Thank you for subscribing!", "success");
+      }
+    });
   }
 
   return (
@@ -376,7 +392,9 @@ export default function Sidebar() {
           </svg>
           <h2>Get weekly recipes directly to your email</h2>
         </div>
-        <button className="btn bg-green-500 text-white my-2 w-full ">
+        <button
+          className="btn bg-[--sidebar-primary] hover:bg-green-500 text-white my-2 w-full "
+          onClick={handleSubscription}>
           Subscribe Now
         </button>
       </div>
