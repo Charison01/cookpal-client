@@ -8,6 +8,10 @@ export default function Explore({ search, setSearch, recipes }) {
       {/* section for search bar */}
       <Search search={search} onSearchChange={setSearch} />
       {/* section for all recipes */}
+      <div className="py-2 px-2  text-gray-600">
+        <h2 className="text-2xl lg:text-3xl font-bold">Recommended for you</h2>
+        <p>Based on your preferences</p>
+      </div>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
         {recipes.length > 0 &&
