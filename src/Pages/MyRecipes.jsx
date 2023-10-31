@@ -13,7 +13,6 @@ export default function MyRecipes() {
           if (response.ok) {
             const data = await response.json();
             setMyRecipes(data);
-            console.log(data);
           }
         })();
       } catch (error) {
@@ -49,7 +48,7 @@ export default function MyRecipes() {
           </h1>
         )}
       </section>
-      <NewRecipeForm setRecipes={setMyRecipes}/>
+      <NewRecipeForm setRecipes={setMyRecipes} />
     </section>
   );
 }

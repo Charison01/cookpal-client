@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { ErrorList } from "./Errors";
+import { createRecipe } from "../lib";
 function NewRecipeForm({ setRecipes }) {
   const userId = sessionStorage.getItem("user_id");
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState(false);
   const [formData, setFormData] = useState({
     user_id: userId,
     title: "",
@@ -25,7 +28,8 @@ function NewRecipeForm({ setRecipes }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formData);
+    setLoading(true);
+    createRecipe(formData, setLoading, setErrors, setRecipes);
   }
   return (
     <dialog id="my_modal_4" className="modal">
@@ -140,9 +144,19 @@ function NewRecipeForm({ setRecipes }) {
               className="textarea textarea-bordered textarea-primary w-full"
             />
           </div>
-          <button type="submit" className="btn btn-primary w-full">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-primary w-full"
+            disabled={loading}>
+            {loading ? (
+              <span className="loading loading-spinner text-white">
+                Submitting....
+              </span>
+            ) : (
+              " Submit"
+            )}
           </button>
+          {errors && <ErrorList errors={errors} />}
         </form>
       </div>
     </dialog>
