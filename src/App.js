@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Sidebar, Home } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Explore from "./Pages/Explore";
+import { Community, Explore, Settings, Help } from "./Pages";
 function App() {
   //create data in parent component
   const [recipes, setRecipes] = useState([]);
