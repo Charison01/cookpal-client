@@ -1,30 +1,34 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
+import { showLoginPopup } from "../lib";
 export default function Recipecard({ recipe }) {
   const [liked, setLiked] = useState(false);
-  const userId = sessionStorage.getItem("user_id");
 
-  const handleLiking = async () => {
+  const handleLiking = async (id, newLiked) => {
+    const userId = sessionStorage.getItem("user_id");
     if (!userId) {
       toast.error("Kindly login first to like a recipe!");
+      setTimeout(() => {
+        showLoginPopup();
+      }, 1000);
       return;
     }
-    setLiked(!liked);
-    if (liked) {
+    console.log(id);
+    if (newLiked === true) {
       try {
         const response = await Axios.post(
           "https://cookpal.up.railway.app/bookmarks",
           {
             user_id: userId,
-            recipe_id: recipe.id,
+            recipe_id: id,
           }
         );
         const data = response.data;
       } catch (error) {
         console.error("Error:", error);
       }
-    } else {
+    } else if (newLiked === false) {
       try {
         const response = await Axios.delete(
           "https://cookpal.up.railway.app/bookmarks",
@@ -63,7 +67,13 @@ export default function Recipecard({ recipe }) {
         <div className="flex items-center gap-5">
           <div
             className="btn btn-sm bg-gray-100 btn-circle p-1"
-            onClick={handleLiking}>
+            onClick={() => {
+              setLiked((prevLiked) => {
+                const newLiked = !prevLiked;
+                handleLiking(recipe.id, newLiked);
+                return newLiked;
+              });
+            }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
