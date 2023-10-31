@@ -48,6 +48,6 @@ export async function handleSignupRequest(
 
 //function to update the rating of a recipe
 export function handleUpdateRating(pct, recipeId) {
-  const newRating = pct * 5;
+  // const newRating = pct * 5;
   //post to /ratings and give the recipe id to update
 }
