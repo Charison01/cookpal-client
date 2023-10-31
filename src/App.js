@@ -52,6 +52,9 @@ function App() {
               />
             }
           />
+          <Route path="settings" element={<Settings />} />
+          <Route path="community" element={<Community />} />
+          <Route path="help" element={<Help />} />
         </Routes>
       </section>
     </>
