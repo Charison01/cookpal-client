@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { ErrorList } from "./Errors";
 import { createRecipe } from "../lib";
+import toast from "react-hot-toast";
+
+//start of function body
+
 function NewRecipeForm({ setRecipes }) {
   const userId = sessionStorage.getItem("user_id");
   const [loading, setLoading] = useState(false);
@@ -30,8 +34,8 @@ function NewRecipeForm({ setRecipes }) {
     e.preventDefault();
     setLoading(true);
     toast.success("processing request", {
-        icon: "⏳",
-      });
+      icon: "⏳",
+    });
     createRecipe(formData, setLoading, setErrors, setRecipes);
   }
   return (
