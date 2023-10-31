@@ -1,9 +1,11 @@
 import "./App.css";
-import Sidebar from "../src/Components/Navbar";
+// import Sidebar from "../src/Components/Navbar";
+import {Settings} from "./Components/Settings";
 function App() {
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <Settings/>
     </>
   );
 }
