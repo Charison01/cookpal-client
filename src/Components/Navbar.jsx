@@ -269,25 +269,28 @@ export default function Sidebar() {
       {/* hide sidebar profile when no user is logged in */}
       <div className={!user ? "text-black p-5" : "hidden"}>
         <h2 className={collapsed ? "hidden" : ""}>Login to create recipes!</h2>
-        <span
+        <div
           className="login"
           onClick={() => document.getElementById("my_modal_3").showModal()}>
           {collapsed ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              className="login-svg"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round">
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-              <polyline points="10 17 15 12 10 7" />
-              <line x1="15" x2="3" y1="12" y2="12" />
-            </svg>
+            <span className="tooltip">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="login-svg cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" x2="3" y1="12" y2="12" />
+              </svg>
+              <span className="tooltip__content">Login</span>
+            </span>
           ) : (
             <button
               className="btn btn-primary w-full  mt-5 flex items-center"
@@ -296,7 +299,7 @@ export default function Sidebar() {
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                className="!text-white"
+                className="!text-white r"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -310,7 +313,7 @@ export default function Sidebar() {
               Login
             </button>
           )}
-        </span>
+        </div>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
         <div className={user ? "avatar__wrapper" : "hidden"}>

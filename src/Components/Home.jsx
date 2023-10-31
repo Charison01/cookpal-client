@@ -52,11 +52,11 @@ export default function Home() {
       </div>
       {/* section for carousel */}
       <div className="relative">
-        <div className="absolute top-20 left-16 z-50 py-5 bg-slate-300 bg-opacity-[65%] px-2 rounded-md xsm:hidden md:block max-w-[75%]">
+        <div className="absolute top-20 left-16 z-10 py-5 bg-slate-300 bg-opacity-[65%] px-2 rounded-md xsm:hidden md:block max-w-[75%]">
           <h1 className="bg-blend-screen text-3xl lg:text-4xl font-bold text-green-500">
             Trending Now
           </h1>
-          <h2 className="text-2xl lg:text-3xl font-bold text-gray-600">
+          <h2 className="text-2xl lg:text-3xl font-bold text-[var(--sidebar-primary)]">
             Kelvin&apos;s Famous Salad With Cheese
           </h2>
           <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>

@@ -2,3 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary-color: #272727;
+  --text: white;
+  --white: #ffffff;
+  --sidebar-primary: #605dff;
+  --sidebar-primary-light: #5da8ff;
+  --sidebar-primary-hover: #605dff10;
+  --sidebar-background: #fcfcfd;
+  --background: #f1f3ff;
+  --text-link: #424662;
+  --headline: #7686bc;
+  --cta-background: #ebf3ff;
+  --cta-background-darker: #cfd5ff;
+  --cta-background-border: #cdd2f3;
+  --cta-text: #1c2035;
+  --neutral: #e6e8f0;
+  --expand-button: #4a516d;
+  --logout: #fa7575;
+  --text: #303651;
+  --text-lighter: #697089;
+}
