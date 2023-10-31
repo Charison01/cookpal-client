@@ -9,8 +9,8 @@ export default function Recipecard({ recipe }) {
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
         <p className="text-2xl">{recipe?.title}</p>
-        <p className="text-xl">
-          <span className="text-yellow-400">★</span>
+        <p className="text-xl flex items-center gap-2">
+          <span className="text-[#FFD700]">★</span>
           {recipe?.average_rating}
         </p>
       </div>
