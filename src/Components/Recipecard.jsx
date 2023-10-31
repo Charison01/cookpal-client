@@ -1,10 +1,43 @@
 import React, { useState } from "react";
-
+import Axios from "axios";
+import toast from "react-hot-toast";
 export default function Recipecard({ recipe }) {
   const [liked, setLiked] = useState(false);
-  const handleLiking = () => {
+  const userId = sessionStorage.getItem("user_id");
+
+  const handleLiking = async () => {
+    if (!userId) {
+      toast.error("Kindly login first to like a recipe!");
+      return;
+    }
     setLiked(!liked);
+    if (liked) {
+      try {
+        const response = await Axios.post(
+          "https://cookpal.up.railway.app/bookmarks",
+          {
+            user_id: userId,
+            recipe_id: recipe.id,
+          }
+        );
+        const data = response.data;
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else {
+      try {
+        const response = await Axios.delete(
+          "https://cookpal.up.railway.app/bookmarks",
+          {
+            data: { user_id: userId, recipe_id: recipe.id },
+          }
+        );
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
   };
+
   return (
     <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5">
       <img
