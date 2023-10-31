@@ -67,9 +67,6 @@ export async function createRecipe(
   setErrors,
   setRecipes
 ) {
-  toast.success("processing request", {
-    icon: "⏳",
-  });
   try {
     const response = await Axios.post(`${api}/recipes`, formData);
     const data = await response.data;

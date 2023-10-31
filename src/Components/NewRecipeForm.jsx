@@ -29,6 +29,9 @@ function NewRecipeForm({ setRecipes }) {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
+    toast.success("processing request", {
+        icon: "⏳",
+      });
     createRecipe(formData, setLoading, setErrors, setRecipes);
   }
   return (
