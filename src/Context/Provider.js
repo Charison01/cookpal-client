@@ -6,15 +6,6 @@ export const useAppContext = () => useContext(AppContext);
 
 export default function ContextProvider({ children }) {
 
-  // const defaultUser = {
-  //   name: "",
-  //   picture: ""
-  // }
-  // const [user, setUser] = useState(defaultUser);
-
-  // useEffect(() => {
-  //   //fetch /me
-  // }, []);
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
