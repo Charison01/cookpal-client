@@ -103,7 +103,7 @@ function NewRecipeForm({ setRecipes }) {
             </div>
             <div className="mb-6">
               <label htmlFor="servings" className="block mb-2">
-                Cooking Time <span className="text-red-600 font-bold">*</span>
+                Servings <span className="text-red-600 font-bold">*</span>
               </label>
               <input
                 type="number"

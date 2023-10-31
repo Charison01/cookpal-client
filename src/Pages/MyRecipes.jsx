@@ -22,13 +22,13 @@ export default function MyRecipes() {
   }, [userId]);
 
   return (
-    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto bg-[url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-opacity-[65%]">
+    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       <h1 className="font-bold text-2xl lg:text-3xl text-gray-600 py-2 px-2">
         {" "}
         My Recipes
       </h1>
       {/* section for creating new recipes */}
-      <div className="py-4 px-2 flex items-center justify-center border bg-base-200">
+      <div className="py-4 px-2 flex items-center justify-center border rounded-lg bg-base-100">
         <button
           className="btn btn-primary"
           onClick={() => document.getElementById("my_modal_4").showModal()}>

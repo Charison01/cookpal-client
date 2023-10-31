@@ -77,6 +77,7 @@ export async function createRecipe(
     setLoading(false);
     document.getElementById("my_modal_4").close();
     toast.success("Recipes added successfully");
+    window.location.reload();
   } catch (error) {
     toast.error(error);
     setErrors(error?.response?.data?.errors);
