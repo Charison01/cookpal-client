@@ -29,7 +29,8 @@ export default function CommentForm({ recipe_id, user_id }) {
         toast(error);
       }
     } else {
-      toast.error("cannot create post without a user!");
+      window.location.reload();
+      toast.error("Kindly login to create a comment!");
     }
   }
   return (

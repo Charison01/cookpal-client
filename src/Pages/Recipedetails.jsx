@@ -127,7 +127,7 @@ export default function Recipedetails() {
         </div>
         {/* div for the details */}
 
-        <div className="w-fit lg:w-2/5">
+        <div className="px-2 w-fit lg:w-2/5">
           <div>
             <p className="leading-loose">
               If you&apos;re looking for a healthy and nutritious diet, then
