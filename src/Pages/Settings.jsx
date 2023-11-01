@@ -3,24 +3,44 @@ import { useAppContext } from "../Context/Provider";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Axios from "axios";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
   const navigate = useNavigate();
-  const [isloading, setIsLoading] = useState(true);
+  const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
 
-  if (!user) {
-    showLoginPopup();
-    navigate("/");
-  }
+  //check if there is a logged user
+
+    if (!user) {
+      showLoginPopup();
+      navigate("/");
+    }
+
+  //function to upload image
 
   async function uploadImage(e) {
     e.preventDefault();
-    setIsLoading(true);
+    setIsloading(true);
 
     try {
       let imageUrl;
-      if(profileImage !== "" && profileImage)
+      if (
+        (profileImage !== "" && profileImage.type === "image/png") ||
+        profileImage.type === "image/jpg" ||
+        profileImage.type === "image/jpeg"
+      ) {
+        const image = new FormData();
+        image.append("file", profileImage);
+        image.append("cloud_name", "dvgfo1dcc");
+        image.append("upload_preset", "ywp3b54h");
+        const response = await Axios.post(
+          "https://api.cloudinary.com/v1_1/dvgfo1dcc/image/upload",
+          image
+        );
+        const data = response.data;
+        imageUrl = data?.secure_url;
+      }
     } catch (error) {
       console.error(error);
       toast.error("Image upload failed");
@@ -64,8 +84,15 @@ export const Settings = () => {
             />
             <button
               className="btn btn-primary my-2"
-              disabled={profileImage === ""}>
-              Upload Image
+              disabled={profileImage === "" || isloading}>
+              {isloading ? (
+                <progress
+                  className="progress progress-success"
+                  value={0}
+                  max="100"></progress>
+              ) : (
+                "Upload Image"
+              )}
             </button>
           </form>
         </>
