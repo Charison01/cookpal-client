@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 export default function Recipedetails() {
   const userId = sessionStorage.getItem("user_id");
+  const [liked, setLiked] = useState(false);
   const [recipe, setRecipe] = useState();
   const [percentage, setPercentage] = useState(0);
   const location = useLocation();
@@ -65,6 +66,35 @@ export default function Recipedetails() {
       console.error("Element with ID 'my_modal_3' not found.");
     }
   }
+  //function to handle liking recipes
+  const handleLiking = async (newLiked) => {
+    const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
+    if (!user_id) {
+      toast.error("Kindly login first to like a recipe!");
+      setTimeout(() => {
+        showLoginPopup();
+      }, 1000);
+      return;
+    }
+    const data = {
+      user_id: user_id,
+      recipe_id: recipeId,
+    };
+    if (newLiked === true) {
+      try {
+        Axios.post("https://cookpal.up.railway.app/bookmarks", data);
+        toast.success("recipe bookmarked successfully");
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    } else if (newLiked === false) {
+      try {
+        Axios.delete("https://cookpal.up.railway.app/bookmarks", data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
 
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
@@ -147,13 +177,21 @@ export default function Recipedetails() {
             </span>
           </div>
           <div className="actions my-1">
-            <div className="flex items-center gap-2 font-bold">
+            <div
+              className="flex items-center gap-2 font-bold"
+              onClick={() => {
+                setLiked((prevLiked) => {
+                  const newLiked = !prevLiked;
+                  handleLiking(newLiked);
+                  return newLiked;
+                });
+              }}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
-                fill="none"
+                fill={liked ? "blue" : "none"}
                 className="cursor-pointer"
                 stroke="blue"
                 strokeWidth="2"
