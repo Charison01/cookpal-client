@@ -70,17 +70,41 @@ export const Settings = () => {
   }
 
   //function to update user name
-  function handleUpdateName() {
+  async function handleUpdateName() {
     Swal.fire({
-      icon: "info",
       text: "Enter a new name",
-      input: "string",
+      input: "text",
       inputValue: name,
       inputPlaceholder: "Enter a new name",
+      confirmButtonText: "Update",
     }).then((result) => {
       if (result.isConfirmed) {
-        setName(result.value);
-        console.log(name);
+        setName(result?.value);
+        let newName = result?.value;
+        try {
+          const response = Axios.patch(
+            `https://cookpal.up.railway.app/users/${user_id}`,
+            {
+              name: newName,
+            }
+          );
+
+          setUser((prev) => ({
+            ...prev,
+            name: newName,
+          }));
+          Swal.fire({
+            icon: "success",
+            text: "Name updated successfully",
+            showCloseButton: true,
+          });
+        } catch (error) {
+          Swal.fire({
+            icon: "error",
+            text: "request faled!",
+            showCloseButton: true,
+          });
+        }
       }
     });
   }
