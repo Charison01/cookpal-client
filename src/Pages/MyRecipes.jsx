@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Recipecard, NewRecipeForm } from "../Components";
+import { showLoginPopup } from "../lib";
 export default function MyRecipes() {
   const [myRecipes, setMyRecipes] = useState([]);
   const userId = sessionStorage.getItem("user_id");
+   //check if there is a logged user
+   if (!userId) {
+     showLoginPopup();
+   }
+   //fetch user recipes
   useEffect(() => {
     if (userId) {
       try {
