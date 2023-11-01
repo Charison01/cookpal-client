@@ -44,7 +44,7 @@ function NewRecipeForm({ setRecipes }) {
         </h1>
         <form method="dialogue" onSubmit={handleSubmit}>
           <button
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl"
             type="button"
             onClick={() => {
               document.getElementById("my_modal_4").close();
@@ -73,7 +73,7 @@ function NewRecipeForm({ setRecipes }) {
               Image Url <span className="text-red-600 font-bold">*</span>
             </label>
             <input
-              type="text"
+              type="url"
               name="image"
               id="image"
               value={formData.image}
