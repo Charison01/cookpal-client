@@ -55,6 +55,15 @@ export default function Recipedetails() {
       }
     }, 8000);
   }
+  //function to handle sharing
+  function handleSharing() {
+    const modal = document.getElementById("my_modal_5");
+    if (modal) {
+      modal.showModal();
+    } else {
+      console.error("Element with ID 'my_modal_3' not found.");
+    }
+  }
 
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
@@ -157,12 +166,7 @@ export default function Recipedetails() {
 
           <div
             className="flex items-center gap-2 font-bold cursor-pointer"
-            onClick={() => {
-              const modal = document.getElementById("my_modal_5");
-              if (modal) {
-                modal.showModal();
-              }
-            }}>
+            onClick={handleSharing}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
