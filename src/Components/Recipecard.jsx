@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
-import { showLoginPopup, deleteRecipe } from "../lib";
+import EditRecipeForm from "./EditRecipeForm";
+import { showLoginPopup, deleteRecipe, editRecipe } from "../lib";
 import { useNavigate } from "react-router-dom";
 
 export default function Recipecard({ recipe, isLiked }) {
   const [liked, setLiked] = useState(false);
+  const [shouldShowModal, setShouldShowModal] = useState(false);
   const navigate = useNavigate();
   const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
   //function to handle liking recipes
@@ -48,6 +50,17 @@ export default function Recipecard({ recipe, isLiked }) {
       }
     }
   };
+  //function to edit recipe
+  function updateRecipeDetails(run) {
+    if (run) {
+      const modal = document.getElementById("my_modal_6");
+      if (modal) {
+        modal.showModal();
+      } else {
+        console.error("Element with ID 'my_modal_6' not found.");
+      }
+    }
+  }
 
   return (
     <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5 relative">
@@ -64,11 +77,11 @@ export default function Recipecard({ recipe, isLiked }) {
               ? recipe?.user?.picture
               : `https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${recipe?.user?.name}`
           }
-          alt="user-picture"
+          alt={recipe?.user?.name}
           className="rounded-full h-10 w-10"
         />
       </div>
-      <p className="text-sm mt-2 text-gray-500 px-2 capitalize">
+      <p className="text-sm mt-2 text-gray-500 px-2 capitalize flex items-center gap-2">
         <small>by </small>
         {recipe?.user?.name}
       </p>
@@ -92,7 +105,12 @@ export default function Recipecard({ recipe, isLiked }) {
           {user_id && recipe?.user?.id === user_id ? (
             <>
               {/* svg for editing */}
-              <div className="btn btn-sm bg-gray-100 btn-circle p-1">
+              <div
+                className="btn btn-sm bg-gray-100 btn-circle p-1"
+                onClick={() => {
+                  setShouldShowModal(true);
+                  updateRecipeDetails(true);
+                }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -173,9 +191,11 @@ export default function Recipecard({ recipe, isLiked }) {
               </div>
             </>
           )}
-          {/* svg for comment like, change icon if recipe belongs to user */}
         </div>
       </div>
+      {shouldShowModal && (
+        <EditRecipeForm recipe={recipe} setShowModal={setShouldShowModal} />
+      )}
     </div>
   );
 }

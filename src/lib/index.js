@@ -110,6 +110,6 @@ export async function deleteRecipe(id) {
   }
 }
 //function to edit recipes
-export async function editRecipe() {
+export async function editRecipe(id, formData, setLoading) {
   return null;
 }
