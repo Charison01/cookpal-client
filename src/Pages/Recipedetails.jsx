@@ -253,7 +253,13 @@ export default function Recipedetails() {
                   <div className="chat chat-start">
                     <div className="chat-image avatar">
                       <div className="w-10 rounded-full">
-                        <img src="https://senditcourrier.vercel.app/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg&w=96&q=75" />
+                        <img
+                          src={
+                            comment?.user?.picture
+                              ? comment?.user?.picture
+                              : `https://ui-avatars.com/api/?name=${comment?.user?.name}"},`
+                          }
+                        />
                       </div>
                     </div>
                     <div className="chat-bubble chat-bubble-info">
