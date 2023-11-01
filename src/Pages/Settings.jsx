@@ -49,7 +49,6 @@ export const Settings = () => {
             { picture: imageUrl }
           );
           const responseData = await patchRequest.data;
-          console.log(responseData);
           toast.success("Image updated successfully");
         } catch (error) {
           console.error(error);
@@ -110,6 +109,17 @@ export const Settings = () => {
           value={5}
           max="100"></progress>
       )}
+      <div className="card border bg-white shadow-lg p-2">
+        <p className="mb-2 flex items-center justify-between">
+          <span>Name </span>
+          <button className="text-green-500 cursor-pointer hover:underline">Edit</button>
+        </p>
+        <p className="font-bold text-xl text-green-500 capitalize ">
+          {user?.name}
+        </p>
+        <p className="mb-2">Email</p>
+        <p className="font-bold text-xl text-green-500  ">{user?.email}</p>
+      </div>
     </div>
   );
 };
