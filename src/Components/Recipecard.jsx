@@ -8,7 +8,7 @@ export default function Recipecard({ recipe, isLiked }) {
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
   //function to handle liking recipes
-  const handleLiking = async (recipe_id, newLiked) => {
+  const handleLiking = async (recipe_id) => {
     const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
     if (!user_id) {
       setLiked(false);
@@ -18,30 +18,33 @@ export default function Recipecard({ recipe, isLiked }) {
       }, 1000);
       return;
     }
-    const data = {
+    const payload = {
       user_id,
       recipe_id,
     };
-    if (newLiked === true) {
+    if (liked) {
+      //only run when liked is true
+      console.log(liked);
       try {
-        const response = Axios.post(
+        const response = await Axios.post(
           "https://cookpal.up.railway.app/bookmarks",
-          data
+          payload
         );
         toast.success("recipe bookmarked successfully");
       } catch (error) {
-        toast.error(error);
+        toast.error("Failed to create bookmark");
         console.error("Error:", error);
       }
-    } else if (newLiked === false) {
+    } else {
+      console.log(liked);
       try {
-        const response = Axios.delete(
+        const response = await Axios.delete(
           "https://cookpal.up.railway.app/bookmarks",
-          data
+          payload
         );
       } catch (error) {
         console.error("Error:", error);
-        toast.error(error);
+        toast.error("Failed to delete bookmark");
       }
     }
   };
@@ -74,11 +77,12 @@ export default function Recipecard({ recipe, isLiked }) {
         <div className="flex items-center gap-5">
           <div
             className="btn btn-sm bg-gray-100 btn-circle p-1"
-            onClick={(e) => {
-              e.stopPropagation();
-              const newLiked = !liked;
-              handleLiking(recipe.id, newLiked);
-              setLiked(newLiked);
+            onClick={() => {
+              setLiked((prevLiked) => {
+                const newLiked = !prevLiked;
+                handleLiking(recipe?.id, newLiked);
+                return newLiked;
+              });
             }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

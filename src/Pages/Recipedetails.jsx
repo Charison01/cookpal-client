@@ -50,8 +50,7 @@ export default function Recipedetails() {
           "https://cookpal.up.railway.app/ratings",
           data
         );
-        const responseData = response.data;
-        console.log(responseData);
+        window.location.reload()
       } catch (error) {
         toast.error(error);
       }
