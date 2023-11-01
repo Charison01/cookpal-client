@@ -51,8 +51,8 @@ export default function Recipecard({ recipe, isLiked }) {
     }
   };
   //function to edit recipe
-  function updateRecipeDetails(run) {
-    if (run) {
+  function updateRecipeDetails() {
+    if (shouldShowModal) {
       const modal = document.getElementById("my_modal_6");
       if (modal) {
         modal.showModal();
@@ -109,7 +109,7 @@ export default function Recipecard({ recipe, isLiked }) {
                 className="btn btn-sm bg-gray-100 btn-circle p-1"
                 onClick={() => {
                   setShouldShowModal(true);
-                  updateRecipeDetails(true);
+                  updateRecipeDetails();
                 }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
