@@ -67,7 +67,7 @@ export default function Recipedetails() {
     }
   }
   //function to handle liking recipes
-  const handleLiking = async (newLiked) => {
+  const handleFavoriting = async (newLiked) => {
     const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
     if (!user_id) {
       toast.error("Kindly login first to like a recipe!");
@@ -182,7 +182,7 @@ export default function Recipedetails() {
               onClick={() => {
                 setLiked((prevLiked) => {
                   const newLiked = !prevLiked;
-                  handleLiking(newLiked);
+                  handleFavoriting(newLiked);
                   return newLiked;
                 });
               }}>

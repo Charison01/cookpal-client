@@ -17,6 +17,7 @@ export async function handleLoginRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
+    window.location.reload();
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);

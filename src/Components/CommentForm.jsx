@@ -18,18 +18,12 @@ export default function CommentForm({ recipe_id, user_id }) {
         body,
       };
       try {
-        const response = Axios.post(
-          "https://cookpal.up.railway.app/comments",
-          data
-        );
-        const responseData = response.data;
-        console.log(responseData);
+        Axios.post("https://cookpal.up.railway.app/comments", data);
         window.location.reload();
       } catch (error) {
         toast(error);
       }
     } else {
-      window.location.reload();
       toast.error("Kindly login to create a comment!");
     }
   }
@@ -37,6 +31,7 @@ export default function CommentForm({ recipe_id, user_id }) {
     <form className="my-2" onSubmit={handleSubmit}>
       <textarea
         name="comment"
+        required
         className="textarea textarea-bordered textarea-primary w-full text-[15px]"
         placeholder="Start the discussion...."
       />

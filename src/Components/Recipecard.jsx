@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 export default function Recipecard({ recipe, isLiked }) {
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
-  //function to handle liking receipes
+  //function to handle liking recipes
   const handleLiking = async (recipe_id, newLiked) => {
     const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
     if (!user_id) {
+      setLiked(false);
       toast.error("Kindly login first to like a recipe!");
       setTimeout(() => {
         showLoginPopup();
@@ -21,19 +22,26 @@ export default function Recipecard({ recipe, isLiked }) {
       user_id,
       recipe_id,
     };
-    console.log(data);
     if (newLiked === true) {
       try {
-        Axios.post("https://cookpal.up.railway.app/bookmarks", data);
+        const response = Axios.post(
+          "https://cookpal.up.railway.app/bookmarks",
+          data
+        );
         toast.success("recipe bookmarked successfully");
       } catch (error) {
+        toast.error(error);
         console.error("Error:", error);
       }
     } else if (newLiked === false) {
       try {
-        Axios.delete("https://cookpal.up.railway.app/bookmarks", data);
+        const response = Axios.delete(
+          "https://cookpal.up.railway.app/bookmarks",
+          data
+        );
       } catch (error) {
         console.error("Error:", error);
+        toast.error(error);
       }
     }
   };
@@ -66,12 +74,11 @@ export default function Recipecard({ recipe, isLiked }) {
         <div className="flex items-center gap-5">
           <div
             className="btn btn-sm bg-gray-100 btn-circle p-1"
-            onClick={() => {
-              setLiked((prevLiked) => {
-                const newLiked = !prevLiked;
-                handleLiking(recipe.id, newLiked);
-                return newLiked;
-              });
+            onClick={(e) => {
+              e.stopPropagation();
+              const newLiked = !liked;
+              handleLiking(recipe.id, newLiked);
+              setLiked(newLiked);
             }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
