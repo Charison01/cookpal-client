@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { StarRating } from "../Components";
+import { showLoginPopup } from "../lib";
 import Axios from "axios";
 import toast from "react-hot-toast";
 
@@ -30,6 +31,7 @@ export default function Recipedetails() {
     const userId = sessionStorage.getItem("user_id");
     if (!userId) {
       toast.error("Kindly login to rate a recipe");
+      showLoginPopup();
       return;
     }
     const newRating = pct * 5;
@@ -95,7 +97,7 @@ export default function Recipedetails() {
               yet healthy dish!
             </p>
           </div>
-          <div className="flex items-center font-bold gap-2">
+          <div className="flex items-center font-bold gap-2 my-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -111,9 +113,9 @@ export default function Recipedetails() {
               <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
-            <span> Serves {recipe?.servings}</span>
+            <span> Serves {recipe?.servings} people</span>
           </div>
-          <div className="flex items-center font-bold gap-2">
+          <div className="flex items-center font-bold gap-2 my-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -134,7 +136,7 @@ export default function Recipedetails() {
               Takes {recipe?.cooking_time} minutes to prepare and cook
             </span>
           </div>
-          <div className="actions">
+          <div className="actions my-1">
             <div className="flex items-center gap-2 font-bold">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,6 +154,27 @@ export default function Recipedetails() {
               <p>Favorite Recipe</p>
             </div>
           </div>
+
+          <div className="flex items-center gap-2 font-bold cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="blue"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" x2="15.42" y1="13.51" y2="17.49" />
+              <line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />
+            </svg>
+            <p>Share Recipe</p>
+          </div>
+
           <StarRating onClick={handleRating} percentage={percentage} />
         </div>
       </div>
