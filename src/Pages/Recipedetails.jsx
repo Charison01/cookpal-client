@@ -25,7 +25,7 @@ export default function Recipedetails() {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [recipeId]);
   //function to handleRating
   async function handleRating(pct) {
     const userId = sessionStorage.getItem("user_id");

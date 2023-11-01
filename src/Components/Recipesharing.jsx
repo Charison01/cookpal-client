@@ -2,7 +2,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const RecipeSharing = ({ recipe }) => {
-  const recipeUrl = `http://localhost:3000/recipedetails/${recipe}`;
+  const recipeUrl = `https://cookingpal.vercel.app/recipedetails/${recipe}`;
 
   // Function to open the share dialog for Facebook
   const shareOnFacebook = () => {

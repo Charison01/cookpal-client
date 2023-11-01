@@ -24,20 +24,14 @@ export default function Recipecard({ recipe, isLiked }) {
     console.log(data);
     if (newLiked === true) {
       try {
-        const response = await Axios.post(
-          "https://cookpal.up.railway.app/bookmarks",
-          data
-        );
+        Axios.post("https://cookpal.up.railway.app/bookmarks", data);
         toast.success("recipe bookmarked successfully");
       } catch (error) {
         console.error("Error:", error);
       }
     } else if (newLiked === false) {
       try {
-        const response = await Axios.delete(
-          "https://cookpal.up.railway.app/bookmarks",
-          data
-        );
+        Axios.delete("https://cookpal.up.railway.app/bookmarks", data);
       } catch (error) {
         console.error("Error:", error);
       }
