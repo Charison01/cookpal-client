@@ -50,7 +50,7 @@ export default function Recipedetails() {
           "https://cookpal.up.railway.app/ratings",
           data
         );
-        window.location.reload()
+        window.location.reload();
       } catch (error) {
         toast.error(error);
       }
@@ -294,7 +294,7 @@ export default function Recipedetails() {
                           src={
                             comment?.user?.picture
                               ? comment?.user?.picture
-                              : `https://ui-avatars.com/api/?name=${comment?.user?.name}"},`
+                              : `https://ui-avatars.com/api/?background=random&name=${comment?.user?.name}"},`
                           }
                         />
                       </div>
