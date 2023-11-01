@@ -346,10 +346,15 @@ export default function Sidebar() {
         </div>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
-        <div className={user ? "avatar__wrapper" : "hidden"}>
+        <div
+          className={
+            user
+              ? "h-10 w-10 rounded-full ring-2 ring-offset-2 ring-blue-500 my-1"
+              : "hidden"
+          }>
           {user ? (
             <img
-              className="avatar"
+              className="rounded-full h-10 w-10"
               src={
                 user?.picture ||
                 (user?.name
