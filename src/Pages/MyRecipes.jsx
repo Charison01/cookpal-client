@@ -3,12 +3,14 @@ import { Recipecard, NewRecipeForm } from "../Components";
 import { showLoginPopup } from "../lib";
 export default function MyRecipes() {
   const [myRecipes, setMyRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userId = sessionStorage.getItem("user_id");
-   //check if there is a logged user
-   if (!userId) {
-     showLoginPopup();
-   }
-   //fetch user recipes
+
+  //check if there is a logged user
+  if (!userId) {
+    showLoginPopup();
+  }
+  //fetch user recipes
   useEffect(() => {
     if (userId) {
       try {
@@ -19,10 +21,12 @@ export default function MyRecipes() {
           if (response.ok) {
             const data = await response.json();
             setMyRecipes(data);
+            setLoading(false);
           }
         })();
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     }
   }, [userId]);
@@ -41,6 +45,9 @@ export default function MyRecipes() {
           Create New Recipe
         </button>
       </div>
+      {loading && (
+        <progress className="progress progress-primary w-full mx-4"></progress>
+      )}
       {/* section for rendering recipe cards */}
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
@@ -49,7 +56,7 @@ export default function MyRecipes() {
             <Recipecard key={recipe.id} recipe={recipe} />
           ))
         ) : (
-          <h1 className="font-bold alert-info">
+          <h1 className={`font-bold alert-info ${loading ? "hidden" : ""}`}>
             You have no Recipes. Get Creating!
           </h1>
         )}
