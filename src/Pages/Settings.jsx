@@ -4,6 +4,7 @@ import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Axios from "axios";
+import Swal from "sweetalert2";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
   const navigate = useNavigate();
@@ -66,6 +67,22 @@ export const Settings = () => {
       picture: URL.createObjectURL(e.target.files[0]),
     }));
   }
+
+  //function to update user name
+  function handleUpdateName() {
+    let name;
+    Swal.fire({
+      icon: "info",
+      text: "Enter a new name",
+      input: "text",
+      inputValue: name,
+      inputPlaceholder: "Enter a new name",
+    }).then((result)=>{
+if(result.isConfirmed){
+  console.log(name)
+}
+    });
+  }
   return (
     <div className="bg-[url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       <h2 className="text-2xl text-center lg:text-3xl font-bold py-2 px-2">
@@ -112,7 +129,11 @@ export const Settings = () => {
       <div className="card border bg-white shadow-lg p-2">
         <p className="mb-2 flex items-center justify-between">
           <span>Name </span>
-          <button className="text-green-500 cursor-pointer hover:underline">Edit</button>
+          <button
+            className="text-green-500 cursor-pointer hover:underline"
+            onClick={handleUpdateName}>
+            Edit
+          </button>
         </p>
         <p className="font-bold text-xl text-green-500 capitalize ">
           {user?.name}
