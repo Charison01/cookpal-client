@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useAppContext } from "../Context/Provider";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +9,14 @@ export const Settings = () => {
   const navigate = useNavigate();
   const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
+  const fileInputRef = useRef(null);
 
   //check if there is a logged user
-
-    if (!user) {
-      showLoginPopup();
-      navigate("/");
-    }
+  const user_id = sessionStorage.getItem("user_id");
+  if (!user_id) {
+    showLoginPopup();
+    navigate("/");
+  }
 
   //function to upload image
 
@@ -40,6 +41,19 @@ export const Settings = () => {
         );
         const data = response.data;
         imageUrl = data?.secure_url;
+        setIsloading(false);
+        fileInputRef.current.value = null;
+        try {
+          const patchRequest = await Axios.patch(
+            `https://cookpal.up.railway.app/users/${user_id}`,
+            { picture: imageUrl }
+          );
+          const responseData = await patchRequest.data;
+          console.log(responseData);
+          toast.success("Image updated successfully");
+        } catch (error) {
+          console.error(error);
+        }
       }
     } catch (error) {
       console.error(error);
@@ -78,6 +92,7 @@ export const Settings = () => {
               type="file"
               id="picture"
               accept="image/*"
+              ref={fileInputRef}
               name="picture"
               className="file-input file-input-bordered file-input-primary"
               onChange={handleImageChange}
@@ -85,14 +100,7 @@ export const Settings = () => {
             <button
               className="btn btn-primary my-2"
               disabled={profileImage === "" || isloading}>
-              {isloading ? (
-                <progress
-                  className="progress progress-success"
-                  value={0}
-                  max="100"></progress>
-              ) : (
-                "Upload Image"
-              )}
+              {isloading ? "Uploading...." : "Upload Image"}
             </button>
           </form>
         </>
