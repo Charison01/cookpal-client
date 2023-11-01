@@ -353,16 +353,18 @@ export default function Sidebar() {
               : "hidden"
           }>
           {user ? (
-            <img
-              className="rounded-full h-10 w-10"
-              src={
-                user?.picture ||
-                (user?.name
-                  ? `https://ui-avatars.com/api/?name=${user?.name}`
-                  : null)
-              }
-              alt="user-icon"
-            />
+            <a href="/settings">
+              <img
+                className="rounded-full h-10 w-10"
+                src={
+                  user?.picture ||
+                  (user?.name
+                    ? `https://ui-avatars.com/api/?name=${user?.name}`
+                    : null)
+                }
+                alt="user-icon"
+              />
+            </a>
           ) : null}
         </div>
         <section className="avatar__name hide">

@@ -125,25 +125,41 @@ export const Settings = () => {
               />
             </div>
           </div>
-          <h1 className="text-center font-bold">Update Profile Picture</h1>
-          <form
-            className="flex flex-col items-center justify-center py-2"
-            onSubmit={uploadImage}>
-            <input
-              type="file"
-              id="picture"
-              accept="image/*"
-              ref={fileInputRef}
-              name="picture"
-              className="file-input file-input-bordered file-input-primary"
-              onChange={handleImageChange}
-            />
-            <button
-              className="btn btn-primary my-2"
-              disabled={profileImage === "" || isloading}>
-              {isloading ? "Uploading...." : "Upload Image"}
-            </button>
-          </form>
+          <div className="card border bg-white shadow-lg p-2 md:w-2/3 lg:w-1/2 md:mx-auto bg-opacity-[80%]">
+            <p className="mb-2 flex items-center justify-between">
+              <span>Name </span>
+              <button
+                className="text-green-500 cursor-pointer hover:underline"
+                onClick={handleUpdateName}>
+                Edit
+              </button>
+            </p>
+            <p className="font-bold text-xl text-green-500 capitalize ">
+              {user?.name}
+            </p>
+            <p className="mb-2">Email</p>
+            <p className="font-bold text-xl text-green-500  ">{user?.email}</p>
+            <h1 className="font-bold my-2">Update Profile Picture</h1>
+            <form className="py-2 my-2" onSubmit={uploadImage}>
+              <input
+                type="file"
+                id="picture"
+                accept="image/*"
+                ref={fileInputRef}
+                name="picture"
+                className="file-input file-input-bordered file-input-primary w-full my-2"
+                onChange={handleImageChange}
+              />
+              <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
+                <button
+                  className="btn btn-primary my-2 w-40"
+                  disabled={profileImage === "" || isloading ||!fileInputRef.current.value}>
+                  {isloading ? "Uploading...." : "Upload Image"}
+                </button>
+                <input type="reset" className="btn btn-neutral w-40" disabled={!fileInputRef.current.value}/>
+              </div>
+            </form>
+          </div>
         </>
       ) : (
         <progress
@@ -151,21 +167,6 @@ export const Settings = () => {
           value={5}
           max="100"></progress>
       )}
-      <div className="card border bg-white shadow-lg p-2">
-        <p className="mb-2 flex items-center justify-between">
-          <span>Name </span>
-          <button
-            className="text-green-500 cursor-pointer hover:underline"
-            onClick={handleUpdateName}>
-            Edit
-          </button>
-        </p>
-        <p className="font-bold text-xl text-green-500 capitalize ">
-          {user?.name}
-        </p>
-        <p className="mb-2">Email</p>
-        <p className="font-bold text-xl text-green-500  ">{user?.email}</p>
-      </div>
     </div>
   );
 };
