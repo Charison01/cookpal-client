@@ -36,7 +36,7 @@ export default function CommentForm({ recipe_id, user_id }) {
     <form className="my-2" onSubmit={handleSubmit}>
       <textarea
         name="comment"
-        className="textarea textarea-bordered textarea-primary w-full text-xl"
+        className="textarea textarea-bordered textarea-primary w-full text-[15px]"
         placeholder="Start the discussion...."
       />
       <button

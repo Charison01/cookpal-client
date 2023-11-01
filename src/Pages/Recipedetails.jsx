@@ -196,13 +196,13 @@ export default function Recipedetails() {
       <section className="bg-white p-2 my-2 rounded-md">
         <h1 className="font-bold text-gray-600 py-2 text-2xl">Ingredients</h1>
 
-        <ul className="list-[square] list-inside   text-[18px]">
+        <ul className="list-[square] list-inside   text-[15px]">
           {recipe?.ingredients?.map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
         </ul>
         <h1 className="font-bold text-gray-600 py-2 text-2xl">Instructions</h1>
-        <ul className="list-decimal list-inside text-[18px]">
+        <ul className="list-decimal list-inside text-[15px]">
           {recipe?.instructions
             .split(".")
             .filter((instruction) => instruction.trim() !== "")
