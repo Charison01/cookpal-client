@@ -369,7 +369,10 @@ export default function Sidebar() {
           <div className="user-name">{user?.name}</div>
           <div className="email">{user?.email}</div>
         </section>
-        <span onClick={handleLogout} className="logout cursor-pointer">
+        <span
+          onClick={handleLogout}
+          className="logout cursor-pointer"
+          title="sign out">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"

@@ -86,7 +86,7 @@ export default function Recipecard({ recipe, isLiked }) {
         {recipe?.user?.name}
       </p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
-        <p className="text-2xl capitalize">{recipe?.title}</p>
+        <p className="text-xl capitalize">{recipe?.title}</p>
         <p className="text-xl flex items-center gap-2">
           <span className="text-[#FFD700]">★</span>
           {recipe?.average_rating}
