@@ -5,8 +5,7 @@ import { showLoginPopup } from "../lib";
 import Axios from "axios";
 import toast from "react-hot-toast";
 
-
-export default function Recipedetails({ user }) {
+export default function Recipedetails() {
   const userId = sessionStorage.getItem("user_id");
   const [recipe, setRecipe] = useState();
   const [percentage, setPercentage] = useState(0);
@@ -240,21 +239,31 @@ export default function Recipedetails({ user }) {
         </div>
         {/* div for rendering input area */}
 
-        <CommentForm />
+        <CommentForm recipe_id={recipeId} user_id={userId} />
         {/* div for rendering comments */}
         <div>
-          {recipe?.comments?.length > 1 &&
-            recipe?.comments.map((comment) => {
-              <div key={comment.id} className="flex items-between gap-2">
-                <div className="avatar w-12 bg-green-200">A</div>
-                <div>
-                  <p>Anonymous</p>
+          {recipe?.comments?.length > 0 &&
+            recipe?.comments.map((comment) => (
+              <div key={comment.id} className="my-2">
+                <div className="flex items-center gap-4 font-bold">
+                  <p className="capitalize">{comment?.user?.name}</p>
+                  <p>{comment.created_at_date}</p>
                 </div>
                 <div>
-                  <p>{comment?.body}</p>
+                  <div className="chat chat-start">
+                    <div className="chat-image avatar">
+                      <div className="w-10 rounded-full">
+                        <img src="https://senditcourrier.vercel.app/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F299cfb3c-a557-4483-817a-fb3ed3bb98ea-wvvx2k.jpg&w=96&q=75" />
+                      </div>
+                    </div>
+                    <div className="chat-bubble chat-bubble-info">
+                      {" "}
+                      {comment?.body}
+                    </div>
+                  </div>
                 </div>
-              </div>;
-            })}
+              </div>
+            ))}
         </div>
       </section>
     </section>
