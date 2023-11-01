@@ -6,6 +6,7 @@ import DefaultCarousel from "./Carousel";
 import StarRating from "./StarRating";
 import Recipecard from "./Recipecard";
 import NewRecipeForm from "./NewRecipeForm";
+import ShareModal from "./Sharemodal";
 export {
   Home,
   Navbar,
@@ -15,4 +16,5 @@ export {
   StarRating,
   Recipecard,
   NewRecipeForm,
+  ShareModal,
 };

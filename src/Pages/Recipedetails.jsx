@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { StarRating } from "../Components";
+import { StarRating, ShareModal } from "../Components";
 import { showLoginPopup } from "../lib";
 import Axios from "axios";
 import toast from "react-hot-toast";
@@ -155,7 +155,14 @@ export default function Recipedetails() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 font-bold cursor-pointer">
+          <div
+            className="flex items-center gap-2 font-bold cursor-pointer"
+            onClick={() => {
+              const modal = document.getElementById("my_modal_5");
+              if (modal) {
+                modal.showModal();
+              }
+            }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -178,6 +185,8 @@ export default function Recipedetails() {
           <StarRating onClick={handleRating} percentage={percentage} />
         </div>
       </div>
+      {/* no idea what i am doing */}
+      <ShareModal recipeId={recipeId} />
     </section>
   );
 }
