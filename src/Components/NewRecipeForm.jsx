@@ -76,6 +76,8 @@ function NewRecipeForm({ setRecipes }) {
               type="url"
               name="image"
               id="image"
+              pattern="https://.*"
+              title="Url must match a url pattern"
               value={formData.image}
               onChange={handleChange}
               placeholder="Paste an image url for your recipe"
