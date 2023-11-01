@@ -94,6 +94,8 @@ export async function deleteRecipe(id) {
       text: "Are you sure you want to delete this recipe?",
       showCloseButton: true,
       confirmButtonText: "Delete",
+      showCancelButton: true,
+      cancelButtonText: "Nevermind",
       confirmButtonColor: "#FF0000",
       cancelButtonColor: "#0056f1",
     }).then((result) => {
