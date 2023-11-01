@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DefaultCarousel, StarRating, Recipecard } from "./index";
-import { handleUpdateRating } from "../lib";
+import { DefaultCarousel, Recipecard } from "./index";
 export default function Home() {
   const [recipes, setRecipes] = useState();
   const [loading, setLoading] = useState(true);
@@ -31,7 +30,7 @@ export default function Home() {
             Kelvin&apos;s Famous Salad With Cheese
           </h2>
           <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>
-          <StarRating percentage={5 / 5} onClick={handleUpdateRating} />
+          <p>⭐⭐⭐⭐⭐</p>
         </div>
         <DefaultCarousel />
       </section>

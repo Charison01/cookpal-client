@@ -48,11 +48,7 @@ export async function handleSignupRequest(
   }
 }
 
-//function to update the rating of a recipe
-export function handleUpdateRating(pct, recipeId) {
-  // const newRating = pct * 5;
-  //post to /ratings and give the recipe id to update
-}
+
 //function to show login popup if the user is not logged in
 export function showLoginPopup() {
   const modal = document.getElementById("my_modal_3");
