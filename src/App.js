@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Sidebar, Home } from "../src/Components";
+import { Sidebar, Home, Footer } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import {
@@ -68,6 +68,8 @@ function App() {
           <Route path="recipedetails/:id" element={<Recipedetails />} />
         </Routes>
       </section>
+      <hr className="mt-2 border-white" />
+      <Footer />
     </>
   );
 }
