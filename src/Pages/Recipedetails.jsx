@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { StarRating } from "../Components";
+import Axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Recipedetails() {
   const [recipe, setRecipe] = useState();
+  const [percentage, setPercentage] = useState(0);
   const location = useLocation();
   const recipeId = location.pathname.split("/")[2];
   useEffect(() => {
@@ -14,18 +18,47 @@ export default function Recipedetails() {
         if (response.ok) {
           const data = await response.json();
           setRecipe(data);
+          setPercentage(data.average_rating / 5);
         }
       })();
     } catch (error) {
       console.error(error);
     }
   }, []);
+  //function to handleRating
+  async function handleRating(pct) {
+    const userId = sessionStorage.getItem("user_id");
+    if (!userId) {
+      toast.error("Kindly login to rate a recipe");
+      return;
+    }
+    const newRating = pct * 5;
+    setPercentage(newRating);
+    const data = {
+      value: newRating,
+      user_id: userId,
+      recipe_id: recipeId,
+    };
+
+    setTimeout(async () => {
+      try {
+        const response = await Axios.post(
+          "https://cookpal.up.railway.app/ratings",
+          data
+        );
+        const responseData = response.data;
+        console.log(responseData);
+      } catch (error) {
+        toast.error(error);
+      }
+    }, 8000);
+  }
 
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* div for card title */}
       <div>
-        <h1 className="font-bold text-2xl text-green-600 -tracking-wide">
+        <h1 className="font-bold text-2xl text-green-600 -tracking-wide capitalize">
           {recipe?.title}
         </h1>
         <div className="flex items-center font-bold gap-2">
@@ -110,7 +143,7 @@ export default function Recipedetails() {
                 viewBox="0 0 24 24"
                 fill="none"
                 className="cursor-pointer"
-                stroke="red"
+                stroke="blue"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round">
@@ -119,6 +152,7 @@ export default function Recipedetails() {
               <p>Favorite Recipe</p>
             </div>
           </div>
+          <StarRating onClick={handleRating} percentage={percentage} />
         </div>
       </div>
     </section>

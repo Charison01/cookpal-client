@@ -1,20 +1,17 @@
 .star-rating {
   color: rgba(0, 0, 0, 0.1);
-  font-size: 1.5rem;
+  font-size: 2rem;
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
 
 .star-rating .foreground {
-  color: gold;
-  position: absolute;
-  display: flex;
-  overflow: hidden;
+  @apply text-orange-400 absolute flex overflow-hidden;
 }
 
 .star-rating .background {
-  display: flex;
+  @apply flex;
 }
 .recipecard-grid-container {
   display: grid;
