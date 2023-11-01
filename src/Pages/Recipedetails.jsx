@@ -189,8 +189,27 @@ export default function Recipedetails() {
           <StarRating onClick={handleRating} percentage={percentage} />
         </div>
       </div>
-      {/* no idea what i am doing */}
+      {/*modal for sharing*/}
       <ShareModal recipeId={recipeId} />
+      {/* section for recipe ingredients and instructions */}
+      <section>
+        <h1 className="font-bold text-gray-600 py-2 text-2xl">Ingredients</h1>
+
+        <ul className="list-[square] list-inside   text-[18px]">
+          {recipe?.ingredients?.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <h1 className="font-bold text-gray-600 py-2 text-2xl">Instructions</h1>
+        <ul className="list-decimal list-inside text-[18px]">
+          {recipe?.instructions
+            .split(".")
+            .filter((instruction) => instruction.trim() !== "")
+            .map((instruction, index) => (
+              <li key={index}>{instruction}</li>
+            ))}
+        </ul>
+      </section>
     </section>
   );
 }

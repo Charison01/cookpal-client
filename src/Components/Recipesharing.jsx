@@ -19,7 +19,7 @@ const RecipeSharing = ({ recipe }) => {
   // Function to share on WhatsApp
   const shareOnWhatsApp = () => {
     const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(
-      `${recipe.title}: ${recipeUrl}`
+      `See this lovely recipe i found on cookpal: ${recipeUrl}`
     )}`;
     window.open(whatsappUrl);
   };
