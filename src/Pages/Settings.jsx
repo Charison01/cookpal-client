@@ -11,6 +11,7 @@ export const Settings = () => {
   const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const fileInputRef = useRef(null);
+  const [name, setName] = useState("");
 
   //check if there is a logged user
   const user_id = sessionStorage.getItem("user_id");
@@ -70,17 +71,17 @@ export const Settings = () => {
 
   //function to update user name
   function handleUpdateName() {
-    let name;
     Swal.fire({
       icon: "info",
       text: "Enter a new name",
-      input: "text",
+      input: "string",
       inputValue: name,
       inputPlaceholder: "Enter a new name",
-    }).then((result)=>{
-if(result.isConfirmed){
-  console.log(name)
-}
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setName(result.value);
+        console.log(name);
+      }
     });
   }
   return (
