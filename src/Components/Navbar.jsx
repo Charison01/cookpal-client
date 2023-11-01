@@ -40,15 +40,27 @@ export default function Sidebar() {
   };
 
   //function to logout users
-  async function handleLogout() {
-    sessionStorage.removeItem("user_id");
-    const response = await fetch("https://cookpal.up.railway.app/logout", {
-      method: "DELETE",
+  function handleLogout() {
+    Swal.fire({
+      icon: "warning",
+      text: "Are you sure you want to logout",
+      showCloseButton: true,
+      confirmButtonText: "Logout",
+      confirmButtonColor: "#0056f1",
+      showCancelButton: true,
+      cancelButtonColor: "#00FF00",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.removeItem("user_id");
+        fetch("https://cookpal.up.railway.app/logout", {
+          method: "DELETE",
+        });
+        setUser(null);
+        toast.success("logged out successfully");
+        navigate("/");
+        window.location.reload();
+      }
     });
-    setUser(response.json());
-    toast.success("logged out successfully");
-    navigate("/");
-    window.location.reload();
   }
   //function to handle subscriptions
   function handleSubscription() {
@@ -58,7 +70,9 @@ export default function Sidebar() {
       input: "email",
       showCancelButton: true,
       showCloseButton: true,
-      confirmButtonColor: "#1c51c1",
+      confirmButtonColor: "#0056f1",
+      confirmButtonText: "Subscribe",
+      cancelButtonColor: "#FF0000",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Subscribed!", "Thank you for subscribing!", "success");
@@ -350,7 +364,7 @@ export default function Sidebar() {
           <div className="user-name">{user?.name}</div>
           <div className="email">{user?.email}</div>
         </section>
-        <span onClick={handleLogout} className="logout">
+        <span onClick={handleLogout} className="logout cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"

@@ -1,39 +1,50 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
-export default function Recipecard({ recipe }) {
-  const [liked, setLiked] = useState(false);
-  const userId = sessionStorage.getItem("user_id");
+import { showLoginPopup } from "../lib";
+import { useNavigate } from "react-router-dom";
 
-  const handleLiking = async () => {
-    if (!userId) {
+export default function Recipecard({ recipe, isLiked }) {
+  const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
+  //function to handle liking recipes
+  const handleLiking = async (recipe_id) => {
+    const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
+    if (!user_id) {
+      setLiked(false);
       toast.error("Kindly login first to like a recipe!");
+      setTimeout(() => {
+        showLoginPopup();
+      }, 1000);
       return;
     }
-    setLiked(!liked);
+    const payload = {
+      user_id,
+      recipe_id,
+    };
     if (liked) {
+      //only run when liked is true
+      console.log(liked);
       try {
         const response = await Axios.post(
           "https://cookpal.up.railway.app/bookmarks",
-          {
-            user_id: userId,
-            recipe_id: recipe.id,
-          }
+          payload
         );
-        const data = response.data;
+        toast.success("recipe bookmarked successfully");
       } catch (error) {
+        toast.error("Failed to create bookmark");
         console.error("Error:", error);
       }
     } else {
+      console.log(liked);
       try {
         const response = await Axios.delete(
           "https://cookpal.up.railway.app/bookmarks",
-          {
-            data: { user_id: userId, recipe_id: recipe.id },
-          }
+          payload
         );
       } catch (error) {
         console.error("Error:", error);
+        toast.error("Failed to delete bookmark");
       }
     }
   };
@@ -44,6 +55,7 @@ export default function Recipecard({ recipe }) {
         alt="recipe"
         className="h-3/5 rounded-lg cursor-pointer"
         src={recipe?.image}
+        onClick={() => navigate(`/recipedetails/${recipe.id}`)}
       />
       <p className="text-sm mt-2 text-gray-500 px-2">Diary free</p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
@@ -54,7 +66,9 @@ export default function Recipecard({ recipe }) {
         </p>
       </div>
       <div className="font-normal flex items-center justify-between px-2">
-        <div className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none">
+        <div
+          className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none"
+          onClick={() => navigate(`/recipedetails/${recipe.id}`)}>
           <p className="text-red-500 font-bold text-xl ">
             ⏲️ {recipe?.cooking_time} Min
           </p>
@@ -63,13 +77,19 @@ export default function Recipecard({ recipe }) {
         <div className="flex items-center gap-5">
           <div
             className="btn btn-sm bg-gray-100 btn-circle p-1"
-            onClick={handleLiking}>
+            onClick={() => {
+              setLiked((prevLiked) => {
+                const newLiked = !prevLiked;
+                handleLiking(recipe?.id, newLiked);
+                return newLiked;
+              });
+            }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill={liked ? "red" : "none"}
+              fill={liked || isLiked ? "red" : "none"}
               className="cursor-pointer"
               stroke="red"
               strokeWidth="2"
@@ -79,7 +99,9 @@ export default function Recipecard({ recipe }) {
             </svg>
           </div>
           {/* svg for comment like */}
-          <div className="btn btn-sm bg-gray-100 btn-circle p-1">
+          <div
+            className="btn btn-sm bg-gray-100 btn-circle p-1"
+            onClick={() => navigate(`/recipedetails/${recipe.id}`)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

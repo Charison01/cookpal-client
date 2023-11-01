@@ -4,5 +4,13 @@ import Help from "./Help";
 import Community from "./Community";
 import Favorites from "./Favorites";
 import MyRecipes from "./MyRecipes";
-
-export { Explore, Settings, Help, Community, Favorites, MyRecipes };
+import Recipedetails from "./Recipedetails";
+export {
+  Explore,
+  Settings,
+  Help,
+  Community,
+  Favorites,
+  MyRecipes,
+  Recipedetails,
+};

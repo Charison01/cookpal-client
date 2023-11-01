@@ -94,6 +94,7 @@ function NewRecipeForm({ setRecipes }) {
                 type="number"
                 name="cooking_time"
                 id="cooking_time"
+                minLength={1}
                 value={formData.cooking_time}
                 onChange={handleChange}
                 placeholder="Cooking time in minutes"
@@ -103,12 +104,13 @@ function NewRecipeForm({ setRecipes }) {
             </div>
             <div className="mb-6">
               <label htmlFor="servings" className="block mb-2">
-                Cooking Time <span className="text-red-600 font-bold">*</span>
+                Servings <span className="text-red-600 font-bold">*</span>
               </label>
               <input
                 type="number"
                 name="servings"
                 id="servings"
+                minLength={1}
                 value={formData.servings}
                 onChange={handleChange}
                 placeholder="People that can be served"

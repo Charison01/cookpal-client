@@ -17,6 +17,7 @@ export async function handleLoginRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
+    window.location.reload();
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
@@ -77,6 +78,7 @@ export async function createRecipe(
     setLoading(false);
     document.getElementById("my_modal_4").close();
     toast.success("Recipes added successfully");
+    window.location.reload();
   } catch (error) {
     toast.error(error);
     setErrors(error?.response?.data?.errors);

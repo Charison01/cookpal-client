@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useAppContext } from "../Context/Provider";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
 import { Recipecard } from "../Components";
@@ -7,7 +6,6 @@ import { Recipecard } from "../Components";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const userId = sessionStorage.getItem("user_id");
-  const { user } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export default function Favorites() {
         console.error(error);
       }
     }
-  }, [userId]);
+  }, [userId, navigate]);
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       <h1 className="text-2xl lg:text-3xl font-bold text-gray-600">
@@ -41,7 +39,7 @@ export default function Favorites() {
         {/* set the grid to auto-rows */}
         {favorites && favorites.length > 0 ? (
           favorites.map((recipe) => (
-            <Recipecard key={recipe.id} recipe={recipe} />
+            <Recipecard key={recipe.id} recipe={recipe} isLiked={true} />
           ))
         ) : (
           <div className="w-full rounded-lg bg-base-200 p-4">

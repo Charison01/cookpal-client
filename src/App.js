@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Sidebar, Home } from "../src/Components";
+import { Sidebar, Home, Footer } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import {
@@ -10,6 +10,7 @@ import {
   Help,
   Favorites,
   MyRecipes,
+  Recipedetails,
 } from "./Pages";
 function App() {
   //create data in parent component
@@ -64,8 +65,11 @@ function App() {
           <Route path="help" element={<Help />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="my-recipes" element={<MyRecipes />} />
+          <Route path="recipedetails/:id" element={<Recipedetails />} />
         </Routes>
       </section>
+      <hr className="mt-2 border-white" />
+      <Footer />
     </>
   );
 }

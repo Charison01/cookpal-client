@@ -47,6 +47,7 @@ export const Settings = () => {
           <input
             type="file"
             id="picture"
+            accept="image/*"
             name="picture"
             className="file-input file-input-bordered file-input-primary w-full"
             value={updateData.picture}
