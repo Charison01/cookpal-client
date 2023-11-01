@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { StarRating, ShareModal } from "../Components";
+import { StarRating, ShareModal, CommentForm } from "../Components";
 import { showLoginPopup } from "../lib";
 import Axios from "axios";
 import toast from "react-hot-toast";
 
-export default function Recipedetails() {
+
+export default function Recipedetails({ user }) {
+  const userId = sessionStorage.getItem("user_id");
   const [recipe, setRecipe] = useState();
   const [percentage, setPercentage] = useState(0);
   const location = useLocation();
@@ -86,12 +88,12 @@ export default function Recipedetails() {
         </div>
       </div>
       {/* first div to show recipe image and details as flex */}
-      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-5 ">
+      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-5 bg-base-100 rounded-md mb-3">
         <div className="h-[350px]">
           <img
             src={recipe?.image}
             alt="recipe"
-            className="mb-5 lg:mb-0 h-full flex-1"
+            className="mb-5 lg:mb-0 h-full flex-1 rounded-l-md"
           />
         </div>
         {/* div for the details */}
@@ -192,7 +194,7 @@ export default function Recipedetails() {
       {/*modal for sharing*/}
       <ShareModal recipeId={recipeId} />
       {/* section for recipe ingredients and instructions */}
-      <section>
+      <section className="bg-white p-2 my-2 rounded-md">
         <h1 className="font-bold text-gray-600 py-2 text-2xl">Ingredients</h1>
 
         <ul className="list-[square] list-inside   text-[18px]">
@@ -209,6 +211,51 @@ export default function Recipedetails() {
               <li key={index}>{instruction}</li>
             ))}
         </ul>
+      </section>
+      {/* section for comments */}
+      <section className="bg-white p-2 my-2 rounded-md">
+        <h1 className="font-bold text-gray-600 py-2 text-2xl">
+          {recipe?.comments.length < 1
+            ? "Be the First to Comment"
+            : "Add to the Discussion"}
+        </h1>
+        <p>
+          Before you comment please read our{" "}
+          <a
+            href="https://realfood.tesco.com/curatedlist/tesco-real-food-community-rules.html"
+            className="link link-primary">
+            community guidelines
+          </a>
+        </p>
+        <div className="divider"></div>
+        <div className="flex items-center justify-between">
+          <p className="font-bold text-[16px]">
+            {recipe?.comments?.length} Comments
+          </p>
+          {!userId && (
+            <button className="text-[16px] pl-2" onClick={showLoginPopup}>
+              Login↗️
+            </button>
+          )}
+        </div>
+        {/* div for rendering input area */}
+
+        <CommentForm />
+        {/* div for rendering comments */}
+        <div>
+          {recipe?.comments?.length > 1 &&
+            recipe?.comments.map((comment) => {
+              <div key={comment.id} className="flex items-between gap-2">
+                <div className="avatar w-12 bg-green-200">A</div>
+                <div>
+                  <p>Anonymous</p>
+                </div>
+                <div>
+                  <p>{comment?.body}</p>
+                </div>
+              </div>;
+            })}
+        </div>
       </section>
     </section>
   );

@@ -7,6 +7,7 @@ import StarRating from "./StarRating";
 import Recipecard from "./Recipecard";
 import NewRecipeForm from "./NewRecipeForm";
 import ShareModal from "./Sharemodal";
+import CommentForm from "./CommentForm";
 export {
   Home,
   Navbar,
@@ -17,4 +18,5 @@ export {
   Recipecard,
   NewRecipeForm,
   ShareModal,
+  CommentForm,
 };

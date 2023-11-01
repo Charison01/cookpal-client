@@ -5,7 +5,7 @@ export default function ShareModal({ recipeId }) {
     <dialog id="my_modal_5" className="modal">
       <div className="modal-box">
         <button
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          className="text-xl border-none outline-none absolute right-2 top-2"
           type="button"
           onClick={() => {
             document.getElementById("my_modal_5").close();
