@@ -8,15 +8,14 @@ import toast from "react-hot-toast";
 function NewRecipeForm({ setRecipes }) {
   const userId = sessionStorage.getItem("user_id");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState(false);
   const [formData, setFormData] = useState({
     user_id: userId,
     title: "",
     image: "",
     ingredients: [],
     instructions: "",
-    cooking_time: 0,
-    servings: 0,
+    cooking_time: "",
+    servings: "",
   });
   function handleChange(e) {
     const { name, value } = e.target;
@@ -36,7 +35,7 @@ function NewRecipeForm({ setRecipes }) {
     toast.success("processing request", {
       icon: "⏳",
     });
-    createRecipe(formData, setLoading, setErrors, setRecipes);
+    createRecipe(formData, setLoading, setRecipes);
   }
   return (
     <dialog id="my_modal_4" className="modal">
@@ -156,7 +155,7 @@ function NewRecipeForm({ setRecipes }) {
           <button
             type="submit"
             className="btn btn-primary w-full"
-            disabled={loading}>
+            disabled={loading || formData.instructions.length < 50}>
             {loading ? (
               <span className="loading loading-spinner text-white">
                 Submitting....
@@ -165,7 +164,6 @@ function NewRecipeForm({ setRecipes }) {
               " Submit"
             )}
           </button>
-          {errors && <ErrorList errors={errors} />}
         </form>
       </div>
     </dialog>
