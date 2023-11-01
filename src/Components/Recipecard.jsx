@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
 import EditRecipeForm from "./EditRecipeForm";
-import { showLoginPopup, deleteRecipe, editRecipe } from "../lib";
+import { showLoginPopup, deleteRecipe } from "../lib";
 import { useNavigate } from "react-router-dom";
 
 export default function Recipecard({ recipe, isLiked }) {
@@ -63,7 +63,7 @@ export default function Recipecard({ recipe, isLiked }) {
   }
 
   return (
-    <div className="h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5 relative">
+    <div className="h-[350px] lg:h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5 relative">
       <img
         alt="recipe"
         className="h-3/5 rounded-lg cursor-pointer"

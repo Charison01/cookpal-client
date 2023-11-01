@@ -111,5 +111,17 @@ export async function deleteRecipe(id) {
 }
 //function to edit recipes
 export async function editRecipe(id, formData, setLoading) {
-  return null;
+  if (id) {
+    try {
+      const response = await Axios.patch(`${api}/recipes/${id}`, formData);
+      toast.success("Recipe details updated successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred while updating the recipe");
+    } finally {
+      setLoading(false);
+      document.getElementById("my_modal_6").close();
+      window.location.reload();
+    }
+  }
 }

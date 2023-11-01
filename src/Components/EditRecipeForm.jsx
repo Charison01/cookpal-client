@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 function EditRecipeForm({ recipe, setShowModal }) {
   const [loading, setLoading] = useState(false);
+  const [editedFields, setEditedFields] = useState({});
   const [formData, setFormData] = useState({
     title: recipe?.title ?? "",
     image: recipe?.image ?? "",
@@ -24,6 +25,9 @@ function EditRecipeForm({ recipe, setShowModal }) {
       ...prev,
       [name]: newValue,
     }));
+    if (name in recipe && recipe[name] !== newValue) {
+      setEditedFields({ ...editedFields, [name]: newValue });
+    }
   }
 
   function handleSubmit(e) {
@@ -33,7 +37,7 @@ function EditRecipeForm({ recipe, setShowModal }) {
     toast.success("processing request", {
       icon: "⏳",
     });
-    editRecipe(id, formData, setLoading);
+    editRecipe(id, editedFields, setLoading);
   }
   return (
     <dialog id="my_modal_6" className="modal">
