@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
-import { showLoginPopup } from "../lib";
+import { showLoginPopup, deleteRecipe } from "../lib";
 import { useNavigate } from "react-router-dom";
 
 export default function Recipecard({ recipe, isLiked }) {
@@ -91,6 +91,7 @@ export default function Recipecard({ recipe, isLiked }) {
         <div className="flex items-center gap-5">
           {user_id && recipe?.user?.id === user_id ? (
             <>
+              {/* svg for editing */}
               <div className="btn btn-sm bg-gray-100 btn-circle p-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +107,10 @@ export default function Recipecard({ recipe, isLiked }) {
                   <path d="m15 5 4 4" />
                 </svg>
               </div>
-              <div className="btn btn-sm bg-gray-100 btn-circle p-1">
+              {/* svg for deleting recipe */}
+              <div
+                className="btn btn-sm bg-gray-100 btn-circle p-1"
+                onClick={() => deleteRecipe(recipe?.id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"

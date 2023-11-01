@@ -1,6 +1,7 @@
 //helper functions
 import Axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 const api = "https://cookpal.up.railway.app/";
 //function for logging in user
 export async function handleLoginRequest(
@@ -82,5 +83,29 @@ export async function createRecipe(
   } catch (error) {
     toast.error(error);
     setErrors(error?.response?.data?.errors);
+  }
+}
+
+//function to delete a recipe
+export async function deleteRecipe(id) {
+  if (id) {
+    Swal.fire({
+      icon: "warning",
+      text: "Are you sure you want to delete this recipe?",
+      showCloseButton: true,
+      confirmButtonText: "Delete",
+      confirmButtonColor: "#FF0000",
+      cancelButtonColor: "#0056f1",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const response = Axios.delete(`${api}/recipes/${id}`);
+        toast.success("recipe deleted successfully");
+        window.location.reload();
+      }
+    });
+    try {
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
