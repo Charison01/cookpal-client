@@ -16,6 +16,7 @@ function App() {
   //create data in parent component
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -24,10 +25,12 @@ function App() {
         if (response.ok) {
           const data = await response.json();
           setRecipes(data);
+          setLoading(false);
         }
       })();
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   }, []);
   const recipesToRender = recipes.filter((recipe) =>
@@ -57,6 +60,7 @@ function App() {
                 search={search}
                 setSearch={setSearch}
                 recipes={recipesToRender}
+                loading={loading}
               />
             }
           />
