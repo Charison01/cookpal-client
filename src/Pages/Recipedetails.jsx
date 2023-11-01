@@ -9,7 +9,6 @@ export default function Recipedetails() {
   const userId = sessionStorage.getItem("user_id");
   const [liked, setLiked] = useState(false);
   const [recipe, setRecipe] = useState();
-  const [percentage, setPercentage] = useState(0);
   const location = useLocation();
   const recipeId = location.pathname.split("/")[2];
   useEffect(() => {
@@ -21,41 +20,13 @@ export default function Recipedetails() {
         if (response.ok) {
           const data = await response.json();
           setRecipe(data);
-          setPercentage(data.average_rating / 5);
         }
       })();
     } catch (error) {
       console.error(error);
     }
   }, [recipeId]);
-  //function to handleRating
-  async function handleRating(pct) {
-    const userId = sessionStorage.getItem("user_id");
-    if (!userId) {
-      toast.error("Kindly login to rate a recipe");
-      showLoginPopup();
-      return;
-    }
-    const newRating = pct * 5;
-    setPercentage(newRating);
-    const data = {
-      value: newRating,
-      user_id: userId,
-      recipe_id: recipeId,
-    };
 
-    setTimeout(async () => {
-      try {
-        const response = await Axios.post(
-          "https://cookpal.up.railway.app/ratings",
-          data
-        );
-        window.location.reload();
-      } catch (error) {
-        toast.error(error);
-      }
-    }, 8000);
-  }
   //function to handle sharing
   function handleSharing() {
     const modal = document.getElementById("my_modal_5");
@@ -224,7 +195,7 @@ export default function Recipedetails() {
             <p>Share Recipe</p>
           </div>
 
-          <StarRating onClick={handleRating} percentage={percentage} />
+          <StarRating recipeRating={recipe?.average_rating} id={recipe?.id} />
         </div>
       </div>
       {/*modal for sharing*/}
@@ -257,9 +228,7 @@ export default function Recipedetails() {
         </h1>
         <p>
           Before you comment please read our{" "}
-          <a
-            href="https://realfood.tesco.com/curatedlist/tesco-real-food-community-rules.html"
-            className="link link-primary">
+          <a href="/community" target="_blank" className="link link-primary">
             community guidelines
           </a>
         </p>
