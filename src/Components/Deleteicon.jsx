@@ -1,8 +1,48 @@
 import React from "react";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import Axios from "axios";
 
-export default function Deleteicon() {
+export default function Deleteicon({ id }) {
+  const user_id = sessionStorage.getItem("user_id");
+  const handleClick = () => {
+    if (id && user_id) {
+      Swal.fire({
+        icon: "warning",
+        text: "Are you sure you want to unfavorite this recipe?",
+        showCloseButton: true,
+        confirmButtonText: "Remove",
+        showCancelButton: true,
+        cancelButtonText: "Nevermind",
+        confirmButtonColor: "#FF0000",
+        cancelButtonColor: "#0056f1",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          removeFavorite();
+        }
+      });
+    }
+  };
+  async function removeFavorite() {
+    const user_id = sessionStorage.getItem("user_id");
+    const payload = {
+      user_id: user_id,
+      recipe_id: id,
+    };
+    try {
+      await Axios.delete("https://cookpal.up.railway.app/bookmarks", payload);
+      toast.success("Recipe removed from favorites!");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to remove favorite");
+    }
+  }
+
   return (
-    <button className="bg-gray-200 btn-sm btn-circle flex items-center justify-center absolute top-0 right-0 ">
+    <button
+      className="bg-gray-200 btn-sm btn-circle flex items-center justify-center absolute top-1 right-1 "
+      onClick={handleClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"

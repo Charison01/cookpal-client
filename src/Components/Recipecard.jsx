@@ -187,7 +187,7 @@ export default function Recipecard({ recipe, isLiked, deleteIcon }) {
         <EditRecipeForm recipe={recipe} setShowModal={setShouldShowModal} />
       )}
       {/* remove from favorites icon */}
-      {deleteIcon && <Deleteicon/>}
+      {deleteIcon && <Deleteicon id={recipe?.id} />}
     </div>
   );
 }
