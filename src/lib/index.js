@@ -1,7 +1,8 @@
 //helper functions
 import Axios from "axios";
 import toast from "react-hot-toast";
-const api = "https://cookpal.up.railway.app/";
+import Swal from "sweetalert2";
+const api = "https://cookpal.up.railway.app";
 //function for logging in user
 export async function handleLoginRequest(
   loginData,
@@ -47,11 +48,7 @@ export async function handleSignupRequest(
   }
 }
 
-//function to update the rating of a recipe
-export function handleUpdateRating(pct, recipeId) {
-  // const newRating = pct * 5;
-  //post to /ratings and give the recipe id to update
-}
+
 //function to show login popup if the user is not logged in
 export function showLoginPopup() {
   const modal = document.getElementById("my_modal_3");
@@ -62,12 +59,7 @@ export function showLoginPopup() {
   }
 }
 //function to create a new recipe
-export async function createRecipe(
-  formData,
-  setLoading,
-  setErrors,
-  setRecipes
-) {
+export async function createRecipe(formData, setLoading, setRecipes) {
   try {
     const response = await Axios.post(`${api}/recipes`, formData);
     const data = await response.data;
@@ -80,7 +72,52 @@ export async function createRecipe(
     toast.success("Recipes added successfully");
     window.location.reload();
   } catch (error) {
-    toast.error(error);
-    setErrors(error?.response?.data?.errors);
+    toast.error("Request failed!");
+  }
+}
+
+//function to delete a recipe
+export async function deleteRecipe(id) {
+  if (id) {
+    try {
+      await Swal.fire({
+        icon: "warning",
+        text: "Are you sure you want to delete this recipe?",
+        showCloseButton: true,
+        confirmButtonText: "Delete",
+        showCancelButton: true,
+        cancelButtonText: "Nevermind",
+        confirmButtonColor: "#FF0000",
+        cancelButtonColor: "#0056f1",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const response = await Axios.delete(`${api}/recipes/${id}`);
+          const data = response.data;
+          console.log(data);
+          toast.success("recipe deleted successfully");
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while deleting the recipe.");
+    } finally {
+      window.location.reload();
+    }
+  }
+}
+//function to edit recipes
+export async function editRecipe(id, formData, setLoading) {
+  if (id) {
+    try {
+      const response = await Axios.patch(`${api}/recipes/${id}`, formData);
+      toast.success("Recipe details updated successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error("An error occurred while updating the recipe");
+    } finally {
+      setLoading(false);
+      document.getElementById("my_modal_6").close();
+      window.location.reload();
+    }
   }
 }

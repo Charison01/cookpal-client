@@ -9,7 +9,7 @@ import NewRecipeForm from "./NewRecipeForm";
 import ShareModal from "./Sharemodal";
 import CommentForm from "./CommentForm";
 import Footer from "./Footer";
-import Settings from "./Settings";
+
 export {
   Home,
   Navbar,

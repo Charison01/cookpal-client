@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { DefaultCarousel, StarRating, Recipecard } from "./index";
-import { handleUpdateRating } from "../lib";
+import { DefaultCarousel, Recipecard } from "./index";
 export default function Home() {
   const [recipes, setRecipes] = useState();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     try {
       (async () => {
@@ -10,10 +10,12 @@ export default function Home() {
         if (response.ok) {
           const data = await response.json();
           setRecipes(data);
+          setLoading(false);
         }
       })();
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   }, []);
   return (
@@ -28,7 +30,7 @@ export default function Home() {
             Kelvin&apos;s Famous Salad With Cheese
           </h2>
           <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>
-          <StarRating percentage={5 / 5} onClick={handleUpdateRating} />
+          <p>⭐⭐⭐⭐⭐</p>
         </div>
         <DefaultCarousel />
       </section>
@@ -36,6 +38,9 @@ export default function Home() {
       <div className="py-2 px-2  text-gray-600">
         <h2 className="text-2xl lg:text-3xl font-bold">Featured Recipes</h2>
         <p>Made by popular chefs</p>
+        {loading && (
+          <progress className="progress progress-primary w-full"></progress>
+        )}
       </div>
 
       <section className="py-2 px-2 recipecard-grid-container ">
@@ -49,6 +54,9 @@ export default function Home() {
       <div className="py-2 px-2  text-gray-600">
         <h2 className="text-2xl lg:text-3xl font-bold">Trending Recipes</h2>
         <p>Most rated by the community</p>
+        {loading && (
+          <progress className="progress progress-primary w-full"></progress>
+        )}
       </div>
 
       <section className="py-2 px-2 recipecard-grid-container ">

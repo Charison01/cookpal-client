@@ -1,53 +1,57 @@
 import React, { useState } from "react";
-import { createRecipe } from "../lib";
+import { editRecipe } from "../lib";
 import toast from "react-hot-toast";
 
 //start of function body
 
-function NewRecipeForm({ setRecipes }) {
-  const userId = sessionStorage.getItem("user_id");
+function EditRecipeForm({ recipe, setShowModal }) {
   const [loading, setLoading] = useState(false);
+  const [editedFields, setEditedFields] = useState({});
   const [formData, setFormData] = useState({
-    user_id: userId,
-    title: "",
-    image: "",
-    ingredients: [],
-    instructions: "",
-    cooking_time: "",
-    servings: "",
+    title: recipe?.title ?? "",
+    image: recipe?.image ?? "",
+    ingredients: recipe?.ingredients.join(", ") ?? [],
+    instructions: recipe?.instructions ?? "",
+    cooking_time: recipe?.cooking_time ?? "",
+    servings: recipe?.servings ?? "",
   });
   function handleChange(e) {
     const { name, value } = e.target;
     let newValue = value;
     if (name === "ingredients") {
-      newValue = value.split(",");
+      newValue = value.split(",").map((ingredient) => ingredient.trim());
     }
     setFormData((prev) => ({
       ...prev,
       [name]: newValue,
     }));
+    if (name in recipe && recipe[name] !== newValue) {
+      setEditedFields({ ...editedFields, [name]: newValue });
+    }
   }
 
   function handleSubmit(e) {
+    const id = recipe?.id;
     e.preventDefault();
     setLoading(true);
     toast.success("processing request", {
       icon: "⏳",
     });
-    createRecipe(formData, setLoading, setRecipes);
+    editRecipe(id, editedFields, setLoading);
   }
   return (
-    <dialog id="my_modal_4" className="modal">
+    <dialog id="my_modal_6" className="modal">
       <div className="modal-box text-gray-600">
         <h1 className="text-xl font-bold text-center my-2">
-          Fill this form to create a new recipe!
+          Edit only the Relevant
         </h1>
         <form method="dialogue" onSubmit={handleSubmit}>
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl"
             type="button"
             onClick={() => {
-              document.getElementById("my_modal_4").close();
+              document.getElementById("my_modal_6").close();
+              setShowModal(false);
             }}>
             ✕
           </button>
@@ -171,4 +175,4 @@ function NewRecipeForm({ setRecipes }) {
   );
 }
 
-export default NewRecipeForm;
+export default EditRecipeForm;

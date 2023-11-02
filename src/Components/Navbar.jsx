@@ -346,25 +346,35 @@ export default function Sidebar() {
         </div>
       </div>
       <div className={user ? "sidebar__profile" : "hidden"}>
-        <div className={user ? "avatar__wrapper" : "hidden"}>
+        <div
+          className={
+            user
+              ? "h-10 w-10 rounded-full ring-2 ring-offset-2 ring-blue-500 my-1"
+              : "hidden"
+          }>
           {user ? (
-            <img
-              className="avatar"
-              src={
-                user?.picture ||
-                (user?.name
-                  ? `https://ui-avatars.com/api/?name=${user?.name}`
-                  : null)
-              }
-              alt="user-icon"
-            />
+            <a href="/settings">
+              <img
+                className="rounded-full h-10 w-10"
+                src={
+                  user?.picture ||
+                  (user?.name
+                    ? `https://ui-avatars.com/api/?name=${user?.name}`
+                    : null)
+                }
+                alt="user-icon"
+              />
+            </a>
           ) : null}
         </div>
         <section className="avatar__name hide">
           <div className="user-name">{user?.name}</div>
           <div className="email">{user?.email}</div>
         </section>
-        <span onClick={handleLogout} className="logout cursor-pointer">
+        <span
+          onClick={handleLogout}
+          className="logout cursor-pointer"
+          title="sign out">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-logout"

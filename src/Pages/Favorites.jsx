@@ -6,6 +6,7 @@ import { Recipecard } from "../Components";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const userId = sessionStorage.getItem("user_id");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,11 +22,13 @@ export default function Favorites() {
           );
           if (response.ok) {
             const data = await response.json();
+            setLoading(false);
             setFavorites(data);
           }
         })();
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     }
   }, [userId, navigate]);
@@ -35,6 +38,9 @@ export default function Favorites() {
         Here are your favorite recipes
       </h1>
       {/* section for rendering recipe cards */}
+      {loading && (
+        <progress className="progress progress-primary w-full mx-4"></progress>
+      )}
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
         {favorites && favorites.length > 0 ? (
