@@ -5,8 +5,18 @@
 }
 
 .sidebar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 860px;
+  height: 100%;
+  padding: 16px 0px;
+  border-radius: 16px;
+  max-width: 18rem;
+  display: flex;
+  color: var(--white);
+  flex-direction: column;
   transition: max-width 0.1s ease-in-out;
-  @apply xsm:w-full flex flex-col sticky top-0 left-0 h-[100%] min-h-[860px] md:max-w-[228px] text-white py-4 rounded-2xl;
 }
 
 .sidebar.collapsed .sidebar {

@@ -153,10 +153,10 @@ export const Settings = () => {
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
                   className="btn btn-primary my-2 w-40"
-                  disabled={profileImage === "" || isloading ||!fileInputRef.current.value}>
+                  disabled={profileImage === "" || isloading ||!fileInputRef?.current?.value}>
                   {isloading ? "Uploading...." : "Upload Image"}
                 </button>
-                <input type="reset" className="btn btn-neutral w-40" disabled={!fileInputRef.current.value}/>
+                <input type="reset" className="btn btn-neutral w-40" disabled={!fileInputRef?.current?.value}/>
               </div>
             </form>
           </div>

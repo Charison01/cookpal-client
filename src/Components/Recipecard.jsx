@@ -11,7 +11,7 @@ export default function Recipecard({ recipe, isLiked }) {
   const navigate = useNavigate();
   const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
   //function to handle liking recipes
-  const handleLiking = async (recipe_id) => {
+  const handleLiking = async (recipe_id, newLiked) => {
     if (!user_id) {
       setLiked(false);
       toast.error("Kindly login first to like a recipe!");
@@ -21,32 +21,21 @@ export default function Recipecard({ recipe, isLiked }) {
       return;
     }
     const payload = {
-      user_id,
-      recipe_id,
+      user_id: user_id,
+      recipe_id: recipe_id
     };
-    if (liked) {
-      //only run when liked is true
-      console.log(liked);
+    if (newLiked === true) {
       try {
-        const response = await Axios.post(
-          "https://cookpal.up.railway.app/bookmarks",
-          payload
-        );
+        Axios.post("https://cookpal.up.railway.app/bookmarks", payload);
         toast.success("recipe bookmarked successfully");
       } catch (error) {
-        toast.error("Failed to create bookmark");
         console.error("Error:", error);
       }
-    } else {
-      console.log(liked);
+    } else if (newLiked === false) {
       try {
-        const response = await Axios.delete(
-          "https://cookpal.up.railway.app/bookmarks",
-          payload
-        );
+        Axios.delete("https://cookpal.up.railway.app/bookmarks", payload);
       } catch (error) {
         console.error("Error:", error);
-        toast.error("Failed to delete bookmark");
       }
     }
   };
