@@ -64,7 +64,7 @@ export const LoginModal = () => {
   }
 
   return (
-    <dialog id="my_modal_3" className="modal">
+    <dialog id="my_modal_3" className="modal ">
       <div className="modal-box text-gray-600">
         <form method="dialogue" onSubmit={!signup ? handleLogin : handleSignup}>
           <button
