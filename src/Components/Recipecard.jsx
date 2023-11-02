@@ -6,7 +6,12 @@ import { showLoginPopup, deleteRecipe } from "../lib";
 import Deleteicon from "./Deleteicon";
 import { useNavigate } from "react-router-dom";
 
-export default function Recipecard({ recipe, isLiked, deleteIcon }) {
+export default function Recipecard({
+  recipe,
+  isLiked,
+  deleteIcon,
+  setFavorites,
+}) {
   const [liked, setLiked] = useState(false);
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const navigate = useNavigate();
@@ -187,7 +192,7 @@ export default function Recipecard({ recipe, isLiked, deleteIcon }) {
         <EditRecipeForm recipe={recipe} setShowModal={setShouldShowModal} />
       )}
       {/* remove from favorites icon */}
-      {deleteIcon && <Deleteicon id={recipe?.id} />}
+      {deleteIcon && <Deleteicon id={recipe?.id} setFavorites={setFavorites} />}
     </div>
   );
 }

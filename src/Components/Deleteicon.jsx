@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import Axios from "axios";
 
-export default function Deleteicon({ id }) {
-  const user_id = sessionStorage.getItem("user_id");
+export default function Deleteicon({ id, setFavorites }) {
+  const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
   const handleClick = () => {
     if (id && user_id) {
       Swal.fire({
@@ -23,20 +23,38 @@ export default function Deleteicon({ id }) {
       });
     }
   };
-  async function removeFavorite() {
+  function removeFavorite() {
     const user_id = sessionStorage.getItem("user_id");
     const payload = {
       user_id: user_id,
       recipe_id: id,
     };
-    try {
-      await Axios.delete("https://cookpal.up.railway.app/bookmarks", payload);
-      toast.success("Recipe removed from favorites!");
-      window.location.reload();
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Failed to remove favorite");
-    }
+
+    fetch("https://cookpal.up.railway.app/bookmarks", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => {
+        if (response.status === 204) {
+          // Successful deletion
+          toast.success("Recipe removed from favorites!");
+          setFavorites((currentFavorites) =>
+            currentFavorites.filter((favorite) => favorite.id !== id)
+          );
+        } else {
+          return response.json().then((data) => {
+            console.error("Error:", data);
+            toast.error("Failed to remove favorite");
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Failed to remove favorite");
+      });
   }
 
   return (

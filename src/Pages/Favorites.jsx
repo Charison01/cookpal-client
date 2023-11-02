@@ -44,13 +44,14 @@ export default function Favorites() {
       )}
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
-        {favorites && favorites.length > 0 ? (
+        {favorites && Array.isArray(favorites) && favorites.length > 0 ? (
           favorites.map((recipe) => (
             <Recipecard
               key={recipe.id}
               recipe={recipe}
               isLiked={true}
               deleteIcon={true}
+              setFavorites={setFavorites}
             />
           ))
         ) : (
