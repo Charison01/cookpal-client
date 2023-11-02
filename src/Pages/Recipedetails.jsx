@@ -254,6 +254,7 @@ export default function Recipedetails() {
                     <div className="chat-image avatar">
                       <div className="w-10 rounded-full">
                         <img
+                        alt={comment?.user?.name}
                           src={
                             comment?.user?.picture
                               ? comment?.user?.picture
