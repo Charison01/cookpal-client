@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
-import { Recipecard } from "../Components";
+import { Recipecard} from "../Components";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -37,6 +37,7 @@ export default function Favorites() {
       <h1 className="text-2xl lg:text-3xl font-bold text-gray-600">
         Here are your favorite recipes
       </h1>
+
       {/* section for rendering recipe cards */}
       {loading && (
         <progress className="progress progress-primary w-full mx-4"></progress>
@@ -45,7 +46,12 @@ export default function Favorites() {
         {/* set the grid to auto-rows */}
         {favorites && favorites.length > 0 ? (
           favorites.map((recipe) => (
-            <Recipecard key={recipe.id} recipe={recipe} isLiked={true} />
+            <Recipecard
+              key={recipe.id}
+              recipe={recipe}
+              isLiked={true}
+              deleteIcon={true}
+            />
           ))
         ) : (
           <div className="w-full rounded-lg bg-base-200 p-4">

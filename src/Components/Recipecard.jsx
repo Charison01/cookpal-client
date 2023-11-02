@@ -3,9 +3,10 @@ import Axios from "axios";
 import toast from "react-hot-toast";
 import EditRecipeForm from "./EditRecipeForm";
 import { showLoginPopup, deleteRecipe } from "../lib";
+import Deleteicon from "./Deleteicon";
 import { useNavigate } from "react-router-dom";
 
-export default function Recipecard({ recipe, isLiked }) {
+export default function Recipecard({ recipe, isLiked, deleteIcon }) {
   const [liked, setLiked] = useState(false);
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function Recipecard({ recipe, isLiked }) {
     }
     const payload = {
       user_id: user_id,
-      recipe_id: recipe_id
+      recipe_id: recipe_id,
     };
     if (newLiked === true) {
       try {
@@ -185,6 +186,8 @@ export default function Recipecard({ recipe, isLiked }) {
       {shouldShowModal && (
         <EditRecipeForm recipe={recipe} setShowModal={setShouldShowModal} />
       )}
+      {/* remove from favorites icon */}
+      {deleteIcon && <Deleteicon/>}
     </div>
   );
 }
