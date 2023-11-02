@@ -63,14 +63,14 @@ export default function Recipecard({ recipe, isLiked }) {
   }
 
   return (
-    <div className="h-[350px] lg:h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-3 mr-5 relative">
+    <div className="xsm:h-fit xsm:pb-2 h-[350px] lg:h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-2 md:my-3 md:mr-5 relative">
       <img
         alt="recipe"
         className="h-3/5 rounded-lg cursor-pointer"
         src={recipe?.image}
         onClick={() => navigate(`/recipedetails/${recipe.id}`)}
       />
-      <div className="rounded-full h-10 w-10 ring-2 ring-offset-2 ring-blue-500 absolute top-1/2 left-1/2 mt-5">
+      <div className="rounded-full h-10 w-10 ring-2 ring-offset-2 ring-blue-500 absolute top-1/2 left-1/2 md:mt-5">
         <img
           src={
             recipe?.user?.picture
@@ -96,7 +96,7 @@ export default function Recipecard({ recipe, isLiked }) {
         <div
           className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none"
           onClick={() => navigate(`/recipedetails/${recipe.id}`)}>
-          <p className="text-red-500 font-bold text-xl ">
+          <p className="text-red-500 font-bold md:text-xl ">
             ⏲️ {recipe?.cooking_time} Min
           </p>
         </div>

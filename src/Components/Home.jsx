@@ -19,9 +19,9 @@ export default function Home() {
     }
   }, []);
   return (
-    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
+    <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section id="carousel" className="relative">
+      <section id="carousel" className="relative hidden md:block">
         <div className="absolute top-20 left-16 z-10 py-5 bg-slate-300 bg-opacity-[65%] px-2 rounded-md xsm:hidden md:block max-w-[75%]">
           <h1 className="bg-blend-screen text-3xl lg:text-4xl  text-red-700">
             Trending Now
@@ -54,9 +54,6 @@ export default function Home() {
       <div className="py-2 px-2  text-gray-600">
         <h2 className="text-2xl lg:text-3xl font-bold">Trending Recipes</h2>
         <p>Most rated by the community</p>
-        {loading && (
-          <progress className="progress progress-primary w-full"></progress>
-        )}
       </div>
 
       <section className="py-2 px-2 recipecard-grid-container ">

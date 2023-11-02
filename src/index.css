@@ -32,8 +32,23 @@ body {
   font-size: 16px;
   height: fit-content;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 html {
   height: 100%;
+}
+.recipecard-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: center;
+  gap: 20px !important;
+  justify-content: space-between;
+}
+@media (max-width: 480px) {
+  .recipecard-grid-container {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
 }

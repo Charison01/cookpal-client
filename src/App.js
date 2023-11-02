@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import { useState, useEffect } from "react";
 import { Sidebar, Home, Footer } from "../src/Components";
 import { Route, Routes } from "react-router-dom";
