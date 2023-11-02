@@ -43,7 +43,7 @@ export default function Recipedetails() {
       toast.error("Kindly login first to like a recipe!");
       setTimeout(() => {
         showLoginPopup();
-      }, 1000);
+      }, 2000);
       return;
     }
     const data = {

@@ -20,15 +20,9 @@ export default function StarRating({ recipeRating, id }) {
     setShowButton(true);
   };
 
-  //check whether the user has logged in
-  const userId = sessionStorage.getItem("user_id");
-  if (!userId) {
-    toast.error("Kindly login to rate a recipe");
-    showLoginPopup();
-    return;
-  }
   //function to update rating if there is a user
   const handleRateClick = async () => {
+    const userId = sessionStorage.getItem("user_id");
     if (userId && id) {
       toast.success("Processing request...", {
         icon: "⏳",
@@ -52,6 +46,10 @@ export default function StarRating({ recipeRating, id }) {
           toast.error("An error occurred while rating the recipe.");
         }
       }
+    } else {
+      toast.error("Kindly login to rate a recipe");
+      showLoginPopup();
+      return;
     }
   };
 
@@ -61,15 +59,14 @@ export default function StarRating({ recipeRating, id }) {
         <label
           key={index}
           className={`star-rating ${index < active ? "active" : ""}`}>
-          <input
-            type="radio"
-            name="rating"
-            className={`rating-4 mask mask-star ${
-              index < active || index === active - 1 ? "bg-yellow-400" : ""
+          <p
+            className={`text-3xl ${
+              index < active || index === active - 1 ? "text-yellow-400" : ""
             }`}
-            checked={index === active - 1}
-            onChange={() => handleStarClick(index + 1)}
-          />
+            onClick={() => handleStarClick(index + 1)}>
+            {" "}
+            ★
+          </p>
         </label>
       ))}
       {showButton && (
