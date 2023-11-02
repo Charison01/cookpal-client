@@ -86,7 +86,7 @@ export default function Recipedetails() {
           <img
             src={recipe?.image}
             alt="recipe"
-            className="md:mb-5 lg:mb-0 h-full flex-1 rounded-l-md"
+            className="md:mb-5 lg:mb-0 h-full flex-1 md:rounded-l-md"
           />
         </div>
         {/* div for the details */}
@@ -222,8 +222,8 @@ export default function Recipedetails() {
         </h1>
         <p>
           Before you comment please read our{" "}
-          <a href="/community" target="_blank" className="link link-primary">
-            community guidelines
+          <a href="/community" className="link link-primary">
+            community guidelines.
           </a>
         </p>
         <div className="divider"></div>
