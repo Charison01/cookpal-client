@@ -86,7 +86,7 @@ export default function Recipedetails() {
           <img
             src={recipe?.image}
             alt="recipe"
-            className="mb-5 lg:mb-0 h-full flex-1 rounded-l-md"
+            className="md:mb-5 lg:mb-0 h-full flex-1 rounded-l-md"
           />
         </div>
         {/* div for the details */}

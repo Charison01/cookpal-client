@@ -84,25 +84,27 @@ export default function Sidebar() {
     <>
       <button
         type="button"
-        className={`absolute top-0 right-4 z-10 bg-slate-200 rounded-full p-2 sm:hidden ${
+        className={`fixed top-4 right-2 z-10 bg-slate-200 rounded-full p-2 sm:hidden ${
           !collapsed ? "hidden" : ""
         }`}
         onClick={() => setCollapsed(!collapsed)}>
         <svg
+          xmlns="http://www.w3.org/2000/svg"
           onClick={expandSidebar}
-          width="20"
-          height="20"
-          viewBox="0 0 16 16"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M6.00979 2.72L10.3565 7.06667C10.8698 7.58 10.8698 8.42 10.3565 8.93333L6.00979 13.28"
-            stroke="#4A516D"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+          stroke="#4A516D"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round">
+          <line x1="8" x2="21" y1="6" y2="6" />
+          <line x1="8" x2="21" y1="12" y2="12" />
+          <line x1="8" x2="21" y1="18" y2="18" />
+          <line x1="3" x2="3.01" y1="6" y2="6" />
+          <line x1="3" x2="3.01" y1="12" y2="12" />
+          <line x1="3" x2="3.01" y1="18" y2="18" />
         </svg>
       </button>
       <nav
