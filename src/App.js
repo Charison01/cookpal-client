@@ -43,16 +43,7 @@ function App() {
       <section className="relative flex gap-5 lg:gap-10 w-full">
         <Sidebar />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                search={search}
-                setSearch={setSearch}
-                recipes={recipesToRender}
-              />
-            }
-          />
+          <Route path="/" element={<Home />} />
           <Route
             path="recipes"
             element={
@@ -69,7 +60,7 @@ function App() {
           <Route path="help" element={<Help />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="my-recipes" element={<MyRecipes />} />
-          <Route path="recipedetails/:id" element={<Recipedetails />} />
+          <Route path="recipe/:id" element={<Recipedetails />} />
         </Routes>
       </section>
       <hr className="mt-2 border-white" />

@@ -64,7 +64,7 @@ export default function Recipecard({
         alt="recipe"
         className="h-3/5 rounded-lg cursor-pointer"
         src={recipe?.image}
-        onClick={() => navigate(`/recipedetails/${recipe.id}`)}
+        onClick={() => navigate(`/recipe/${recipe.id}`)}
       />
       <div className="rounded-full h-10 w-10 ring-2 ring-offset-2 ring-blue-500 absolute top-1/2 left-1/2 md:mt-5">
         <img
@@ -91,7 +91,7 @@ export default function Recipecard({
       <div className="font-normal flex items-center justify-between px-2">
         <div
           className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none"
-          onClick={() => navigate(`/recipedetails/${recipe.id}`)}>
+          onClick={() => navigate(`/recipe/${recipe.id}/#comments`)}>
           <p className="text-red-500 font-bold md:text-xl ">
             ⏲️ {recipe?.cooking_time} Min
           </p>
@@ -170,7 +170,7 @@ export default function Recipecard({
               </div>
               <div
                 className="btn btn-sm bg-gray-100 btn-circle p-1"
-                onClick={() => navigate(`/recipedetails/${recipe.id}`)}>
+                onClick={() => navigate(`/recipe/${recipe.id}`)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

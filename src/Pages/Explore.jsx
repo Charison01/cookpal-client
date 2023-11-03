@@ -17,10 +17,15 @@ export default function Explore({ search, setSearch, recipes, loading }) {
       </div>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
-        {recipes.length > 0 &&
+        {recipes.length > 0 ? (
           recipes.map((recipe) => (
             <Recipecard key={recipe.id} recipe={recipe} />
-          ))}
+          ))
+        ) : (
+          search !== '' && recipes.length === 0 ? (
+            <p className="font-bold my-2 text-red-500"> Oh No!, I am afraid no recipes match your search.</p>
+          ) : null
+        )}
       </section>
     </section>
   );

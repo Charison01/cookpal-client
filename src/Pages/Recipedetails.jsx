@@ -215,7 +215,7 @@ export default function Recipedetails() {
         </ul>
       </section>
       {/* section for comments */}
-      <section className="bg-white p-2 my-2 rounded-md">
+      <section id="comments" className="bg-white p-2 my-2 rounded-md">
         <h1 className="font-bold text-gray-600 py-2 text-2xl">
           {recipe?.comments.length < 1
             ? "Be the First to Comment"
@@ -240,7 +240,11 @@ export default function Recipedetails() {
         </div>
         {/* div for rendering input area */}
 
-        <CommentForm recipe_id={recipeId} user_id={userId} setRecipe={setRecipe}/>
+        <CommentForm
+          recipe_id={recipeId}
+          user_id={userId}
+          setRecipe={setRecipe}
+        />
         {/* div for rendering comments */}
         <div>
           {recipe?.comments?.length > 0 &&
@@ -255,7 +259,7 @@ export default function Recipedetails() {
                     <div className="chat-image avatar">
                       <div className="w-10 rounded-full">
                         <img
-                        alt={comment?.user?.name}
+                          alt={comment?.user?.name}
                           src={
                             comment?.user?.picture
                               ? comment?.user?.picture
