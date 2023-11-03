@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { StarRating, ShareModal, CommentForm } from "../Components";
 import { showLoginPopup } from "../lib";
+import { useAppContext } from "../Context/Provider";
 import Axios from "axios";
 import toast from "react-hot-toast";
 
 export default function Recipedetails() {
-  const userId = sessionStorage.getItem("user_id");
+  const { getAuthStatus } = useAppContext();
+  const { isAuthenticated, userId } = getAuthStatus();
   const [liked, setLiked] = useState(false);
   const [recipe, setRecipe] = useState();
   const location = useLocation();
@@ -38,8 +40,7 @@ export default function Recipedetails() {
   }
   //function to handle liking recipes
   const handleFavoriting = async (newLiked) => {
-    const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
-    if (!user_id) {
+    if (!isAuthenticated) {
       toast.error("Kindly login first to like a recipe!");
       setTimeout(() => {
         showLoginPopup();
@@ -47,7 +48,7 @@ export default function Recipedetails() {
       return;
     }
     const data = {
-      user_id: user_id,
+      user_id: userId,
       recipe_id: recipeId,
     };
     if (newLiked === true) {
