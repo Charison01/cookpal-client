@@ -61,7 +61,7 @@ export const Settings = () => {
   }
   function handleImageChange(e) {
     const maxAllowedSize = 5 * 1024 * 1024;
-    if (e.target.file[0].size > maxAllowedSize) {
+    if (e.target.files[0].size > maxAllowedSize) {
       toast.error("Image is too big, max allowed size is 5MB");
       fileInputRef.current.value = null;
       return false;
@@ -153,6 +153,7 @@ export const Settings = () => {
                 className="file-input file-input-bordered file-input-primary w-full my-2"
                 onChange={handleImageChange}
               />
+              <p><span className="text-red-500 font-bold">*</span>Max size 5MB</p>
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
                   className="btn btn-primary my-2 w-40"
