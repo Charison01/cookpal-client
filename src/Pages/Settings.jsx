@@ -76,6 +76,8 @@ export const Settings = () => {
       input: "text",
       inputValue: name,
       inputPlaceholder: "Enter a new name",
+      showCancelButton: true,
+      showCloseButton: true,
       confirmButtonText: "Update",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -101,7 +103,7 @@ export const Settings = () => {
         } catch (error) {
           Swal.fire({
             icon: "error",
-            text: "request faled!",
+            text: "request failed!",
             showCloseButton: true,
           });
         }
@@ -147,16 +149,25 @@ export const Settings = () => {
                 accept="image/*"
                 ref={fileInputRef}
                 name="picture"
+                maxFileSize='4MB'
                 className="file-input file-input-bordered file-input-primary w-full my-2"
                 onChange={handleImageChange}
               />
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
                   className="btn btn-primary my-2 w-40"
-                  disabled={profileImage === "" || isloading ||!fileInputRef?.current?.value}>
+                  disabled={
+                    profileImage === "" ||
+                    isloading ||
+                    !fileInputRef?.current?.value
+                  }>
                   {isloading ? "Uploading...." : "Upload Image"}
                 </button>
-                <input type="reset" className="btn btn-neutral w-40" disabled={!fileInputRef?.current?.value}/>
+                <input
+                  type="reset"
+                  className="btn btn-neutral w-40"
+                  disabled={!fileInputRef?.current?.value}
+                />
               </div>
             </form>
           </div>

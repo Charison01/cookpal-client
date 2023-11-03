@@ -18,7 +18,9 @@
   flex-direction: column;
   transition: max-width 0.1s ease-in-out;
 }
-
+.sidebar {
+  @apply xsm:max-w-full
+}
 .sidebar.collapsed .sidebar {
   max-width: 80px;
   display: flex;
