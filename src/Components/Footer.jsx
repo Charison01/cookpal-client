@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function () {
+export default function Footer () {
   return (
     <div className="flex items-center justify-between my-2">
       <p className=" md:text-2xl"> &copy; 2023 Cookpal</p>

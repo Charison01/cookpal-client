@@ -51,7 +51,7 @@ export default function Sidebar() {
       cancelButtonColor: "#00FF00",
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.removeItem("user_id");
+        localStorage.removeItem("_react_auth_token_");
         fetch("https://cookpal.up.railway.app/logout", {
           method: "DELETE",
         });

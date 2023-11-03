@@ -2,16 +2,22 @@
 import Axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { AES } from "crypto-js";
+
 const api = "https://cookpal.up.railway.app";
-import { AES } from 'crypto-js';
-
-
 
 //function to encrypt user id before login
-
+const SECRETKEY = process.env.REACT_APP_SECRET_KEY
 const encryptUserId = (userId, secretKey) => {
   return AES.encrypt(userId.toString(), secretKey).toString();
 };
+
+//function to decrypt user id
+export const decryptUserId = (encryptedUserId, secretKey) => {
+  const bytes = AES.decrypt(encryptedUserId, secretKey);
+  return bytes.toString(CryptoJS.enc.Utf8);
+};
+
 //function for logging in user
 export async function handleLoginRequest(
   loginData,
@@ -23,7 +29,7 @@ export async function handleLoginRequest(
     const response = await Axios.post(`${api}/login`, loginData);
     const data = await response.data;
     setUser(data);
-    sessionStorage.setItem("user_session", data?.id);
+    localStorage.setItem("_react_auth_token_", encryptUserId(data?.id, SECRETKEY));
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
@@ -49,7 +55,7 @@ export async function handleSignupRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Signup successful!");
-    sessionStorage.setItem("user_id", data?.id);
+    localStorage.setItem("_react_auth_token_", encryptUserId(data?.id, SECRETKEY));
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
