@@ -46,11 +46,9 @@ export const Settings = () => {
         setIsloading(false);
         fileInputRef.current.value = null;
         try {
-          const patchRequest = await Axios.patch(
-            `https://cookpal.up.railway.app/users/${user_id}`,
-            { picture: imageUrl }
-          );
-          const responseData = await patchRequest.data;
+          await Axios.patch(`https://cookpal.up.railway.app/users/${user_id}`, {
+            picture: imageUrl,
+          });
           toast.success("Image updated successfully");
         } catch (error) {
           console.error(error);
@@ -122,7 +120,7 @@ export const Settings = () => {
             <div className="rounded-full h-36 w-36 ring-2 ring-offset-2 ring-blue-500">
               <img
                 src={user?.picture}
-                alt="user-picture"
+                alt={user?.name}
                 className="rounded-full h-36 w-36"
               />
             </div>
@@ -149,7 +147,7 @@ export const Settings = () => {
                 accept="image/*"
                 ref={fileInputRef}
                 name="picture"
-                maxFileSize='4MB'
+                maxFileSize="4MB"
                 className="file-input file-input-bordered file-input-primary w-full my-2"
                 onChange={handleImageChange}
               />
@@ -173,10 +171,7 @@ export const Settings = () => {
           </div>
         </>
       ) : (
-        <progress
-          className="progress progress-primary w-56"
-          value={5}
-          max="100"></progress>
+        <progress className="progress progress-primary w-56"></progress>
       )}
     </div>
   );
