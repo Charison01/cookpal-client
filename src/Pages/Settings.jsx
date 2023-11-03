@@ -60,6 +60,12 @@ export const Settings = () => {
     }
   }
   function handleImageChange(e) {
+    const maxAllowedSize = 5 * 1024 * 1024;
+    if (e.target.file[0].size > maxAllowedSize) {
+      toast.error("Image is too big, max allowed size is 5MB");
+      fileInputRef.current.value = null;
+      return false;
+    }
     setProfileImage(e.target.files[0]);
     setUser((prev) => ({
       ...prev,
@@ -144,7 +150,6 @@ export const Settings = () => {
                 accept="image/*"
                 ref={fileInputRef}
                 name="picture"
-                maxFileSize="4MB"
                 className="file-input file-input-bordered file-input-primary w-full my-2"
                 onChange={handleImageChange}
               />
