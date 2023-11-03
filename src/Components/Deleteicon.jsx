@@ -1,7 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-import Axios from "axios";
+
 
 export default function Deleteicon({ id, setFavorites }) {
   const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
