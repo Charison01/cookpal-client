@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { showLoginPopup } from "../lib";
 import { useNavigate } from "react-router-dom";
-import { Recipecard} from "../Components";
-
+import { Recipecard } from "../Components";
+import { useAppContext } from "../Context/Provider";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
-  const userId = sessionStorage.getItem("user_id");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { getAuthStatus } = useAppContext();
+  const { isAuthenticated, userId } = getAuthStatus();
+
+  if (!isAuthenticated) {
+    showLoginPopup();
+    navigate("/");
+  }
 
   useEffect(() => {
-    if (!userId) {
-      showLoginPopup();
-      navigate("/");
-    }
     if (userId) {
       try {
         (async () => {
