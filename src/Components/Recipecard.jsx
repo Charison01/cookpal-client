@@ -57,7 +57,13 @@ export default function Recipecard({
       }
     }
   }
-
+  //function to scroll to comments section
+  const scrollToComments = () => {
+    const commentsSection = document.getElementById("comments");
+    if (commentsSection) {
+      commentsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className="xsm:h-fit xsm:pb-2 h-[350px] lg:h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-2 md:my-3 md:mr-5 relative">
       <img
@@ -91,7 +97,7 @@ export default function Recipecard({
       <div className="font-normal flex items-center justify-between px-2">
         <div
           className="btn  bg-slate-200 btn-sm normal-case rounded-full border-none"
-          onClick={() => navigate(`/recipe/${recipe.id}/#comments`)}>
+          onClick={() => navigate(`/recipe/${recipe.id}`)}>
           <p className="text-red-500 font-bold md:text-xl ">
             ⏲️ {recipe?.cooking_time} Min
           </p>
@@ -170,7 +176,10 @@ export default function Recipecard({
               </div>
               <div
                 className="btn btn-sm bg-gray-100 btn-circle p-1"
-                onClick={() => navigate(`/recipe/${recipe.id}`)}>
+                onClick={() => {
+                  navigate(`/recipe/${recipe.id}`);
+                  setTimeout(scrollToComments, 1000);
+                }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
