@@ -25,8 +25,7 @@ export default function StarRating({ recipeRating, id }) {
 
   //function to update rating if there is a user
   const handleRateClick = async () => {
-    const userId = sessionStorage.getItem("user_id");
-    if (userId && id) {
+    if (isAuthenticated && id) {
       toast.success("Processing request...", {
         icon: "⏳",
       });
