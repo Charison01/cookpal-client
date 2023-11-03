@@ -82,12 +82,9 @@ export const Settings = () => {
         setName(result?.value);
         let newName = result?.value;
         try {
-          const response = Axios.patch(
-            `https://cookpal.up.railway.app/users/${user_id}`,
-            {
-              name: newName,
-            }
-          );
+          Axios.patch(`https://cookpal.up.railway.app/users/${user_id}`, {
+            name: newName,
+          });
 
           setUser((prev) => ({
             ...prev,
