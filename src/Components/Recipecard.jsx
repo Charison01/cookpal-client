@@ -5,7 +5,7 @@ import EditRecipeForm from "./EditRecipeForm";
 import { showLoginPopup, deleteRecipe } from "../lib";
 import Deleteicon from "./Deleteicon";
 import { useNavigate } from "react-router-dom";
-
+import { useAppContext } from "../Context/Provider";
 export default function Recipecard({
   recipe,
   isLiked,
@@ -15,10 +15,11 @@ export default function Recipecard({
   const [liked, setLiked] = useState(false);
   const [shouldShowModal, setShouldShowModal] = useState(false);
   const navigate = useNavigate();
-  const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
+  const { getAuthStatus } = useAppContext();
+  const { isAuthenticated, userId } = getAuthStatus();
   //function to handle liking recipes
   const handleLiking = async (recipe_id, newLiked) => {
-    if (!user_id) {
+    if (!isAuthenticated) {
       setLiked(false);
       toast.error("Kindly login first to like a recipe!");
       setTimeout(() => {
@@ -27,7 +28,7 @@ export default function Recipecard({
       return;
     }
     const payload = {
-      user_id: user_id,
+      user_id: userId,
       recipe_id: recipe_id,
     };
     if (newLiked === true) {
@@ -97,7 +98,7 @@ export default function Recipecard({
         </div>
         {/* svg for like */}
         <div className="flex items-center gap-5">
-          {user_id && recipe?.user?.id === user_id ? (
+          {isAuthenticated && recipe?.user?.id === userId ? (
             <>
               {/* svg for editing */}
               <div

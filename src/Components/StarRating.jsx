@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Axios from "axios";
 import { showLoginPopup } from "../lib";
+import { useAppContext } from "../Context/Provider";
 
 //beginning of function block
 
 export default function StarRating({ recipeRating, id }) {
   const [active, setActive] = useState(0);
+  const { getAuthStatus } = useAppContext();
+  const { isAuthenticated, userId } = getAuthStatus();
   const [showButton, setShowButton] = useState(false);
   useEffect(() => {
     if (recipeRating) {
