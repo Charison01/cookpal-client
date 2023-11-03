@@ -38,8 +38,7 @@ export default function StarRating({ recipeRating, id }) {
 
       try {
         await Axios.post("https://cookpal.up.railway.app/ratings", data);
-        toast.success("Recipe rated successfully!");
-        window.location.reload();
+        toast.success("Thank you for rating!");
       } catch (error) {
         if (error.response && error.response.status === 422) {
           toast.error("You cannot rate the recipe more than once!");
