@@ -7,10 +7,13 @@ export const useAppContext = () => useContext(AppContext);
 
 export default function ContextProvider({ children }) {
   const [user, setUser] = useState(null);
+  let userId;
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token_session = window.localStorage.getItem("_react_auth_token_");
-      const userId = decryptUserId(token_session, SECRETKEY);
+      if (token_session) {
+        userId = decryptUserId(token_session, SECRETKEY);
+      }
       if (!user && userId) {
         try {
           (async () => {
@@ -30,10 +33,17 @@ export default function ContextProvider({ children }) {
       }
     }
   }, [user]);
+  const getAuthStatus = () => {
+    return {
+      isAuthenticated: !!user, 
+      userId: userId || null,
+    };
+  };
 
   const context = {
     user,
     setUser,
+    getAuthStatus
   };
 
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
