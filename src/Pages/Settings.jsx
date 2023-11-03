@@ -8,12 +8,14 @@ import Swal from "sweetalert2";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
   const { getAuthStatus } = useAppContext();
-  const { isAuthenticated} = getAuthStatus();
+  const { isAuthenticated } = getAuthStatus();
   const navigate = useNavigate();
   const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const fileInputRef = useRef(null);
   const [name, setName] = useState("");
+
+  const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESETS;
 
   //check if there is a logged user
   if (!isAuthenticated) {
@@ -37,7 +39,7 @@ export const Settings = () => {
         const image = new FormData();
         image.append("file", profileImage);
         image.append("cloud_name", "dvgfo1dcc");
-        image.append("upload_preset", "ywp3b54h");
+        image.append("upload_preset", UPLOAD_PRESET);
         const response = await Axios.post(
           "https://api.cloudinary.com/v1_1/dvgfo1dcc/image/upload",
           image
@@ -47,9 +49,12 @@ export const Settings = () => {
         setIsloading(false);
         fileInputRef.current.value = null;
         try {
-          await Axios.patch(`https://cookpal.up.railway.app/users/${user?.id}`, {
-            picture: imageUrl,
-          });
+          await Axios.patch(
+            `https://cookpal.up.railway.app/users/${user?.id}`,
+            {
+              picture: imageUrl,
+            }
+          );
           toast.success("Image updated successfully");
         } catch (error) {
           console.error(error);
@@ -154,7 +159,9 @@ export const Settings = () => {
                 className="file-input file-input-bordered file-input-primary w-full my-2"
                 onChange={handleImageChange}
               />
-              <p><span className="text-red-500 font-bold">*</span>Max size 5MB</p>
+              <p>
+                <span className="text-red-500 font-bold">*</span>Max size 5MB
+              </p>
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
                   className="btn btn-primary my-2 w-40"
