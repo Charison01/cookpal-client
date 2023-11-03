@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { createRecipe } from "../lib";
 import toast from "react-hot-toast";
-
+import { useAppContext } from "../Context/Provider";
 //start of function body
 
 function NewRecipeForm({ setRecipes }) {
-  const userId = sessionStorage.getItem("user_id");
+  const { getAuthStatus } = useAppContext();
+  const { userId } = getAuthStatus();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     user_id: userId,
