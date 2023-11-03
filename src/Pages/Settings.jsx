@@ -7,6 +7,8 @@ import Axios from "axios";
 import Swal from "sweetalert2";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
+  const { getAuthStatus } = useAppContext();
+  const { isAuthenticated} = getAuthStatus();
   const navigate = useNavigate();
   const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
@@ -14,8 +16,7 @@ export const Settings = () => {
   const [name, setName] = useState("");
 
   //check if there is a logged user
-  const user_id = sessionStorage.getItem("user_id");
-  if (!user_id) {
+  if (!isAuthenticated) {
     showLoginPopup();
     navigate("/");
   }
@@ -46,7 +47,7 @@ export const Settings = () => {
         setIsloading(false);
         fileInputRef.current.value = null;
         try {
-          await Axios.patch(`https://cookpal.up.railway.app/users/${user_id}`, {
+          await Axios.patch(`https://cookpal.up.railway.app/users/${user?.id}`, {
             picture: imageUrl,
           });
           toast.success("Image updated successfully");
@@ -88,7 +89,7 @@ export const Settings = () => {
         setName(result?.value);
         let newName = result?.value;
         try {
-          Axios.patch(`https://cookpal.up.railway.app/users/${user_id}`, {
+          Axios.patch(`https://cookpal.up.railway.app/users/${user?.id}`, {
             name: newName,
           });
 

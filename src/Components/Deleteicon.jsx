@@ -1,12 +1,13 @@
 import React from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
-
+import { useAppContext } from "../Context/Provider";
 
 export default function Deleteicon({ id, setFavorites }) {
-  const user_id = parseInt(sessionStorage.getItem("user_id"), 10);
+  const { getAuthStatus } = useAppContext();
+  const { userId } = getAuthStatus();
   const handleClick = () => {
-    if (id && user_id) {
+    if (id && userId) {
       Swal.fire({
         icon: "warning",
         text: "Are you sure you want to unfavorite this recipe?",
@@ -24,9 +25,8 @@ export default function Deleteicon({ id, setFavorites }) {
     }
   };
   function removeFavorite() {
-    const user_id = sessionStorage.getItem("user_id");
     const payload = {
-      user_id: user_id,
+      user_id: userId,
       recipe_id: id,
     };
 
