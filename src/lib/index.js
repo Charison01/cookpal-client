@@ -3,6 +3,15 @@ import Axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 const api = "https://cookpal.up.railway.app";
+import { AES } from 'crypto-js';
+
+
+
+//function to encrypt user id before login
+
+const encryptUserId = (userId, secretKey) => {
+  return AES.encrypt(userId.toString(), secretKey).toString();
+};
 //function for logging in user
 export async function handleLoginRequest(
   loginData,
@@ -14,7 +23,7 @@ export async function handleLoginRequest(
     const response = await Axios.post(`${api}/login`, loginData);
     const data = await response.data;
     setUser(data);
-    sessionStorage.setItem("user_id", data?.id);
+    sessionStorage.setItem("user_session", data?.id);
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
@@ -47,7 +56,6 @@ export async function handleSignupRequest(
     setLoading(false);
   }
 }
-
 
 //function to show login popup if the user is not logged in
 export function showLoginPopup() {
