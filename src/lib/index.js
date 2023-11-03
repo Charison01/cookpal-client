@@ -136,7 +136,7 @@ export async function deleteRecipe(id) {
 export async function editRecipe(id, formData, setLoading) {
   if (id) {
     try {
-      const response = await Axios.patch(`${api}/recipes/${id}`, formData);
+      await Axios.patch(`${api}/recipes/${id}`, formData);
       toast.success("Recipe details updated successfully");
     } catch (error) {
       console.log(error);
