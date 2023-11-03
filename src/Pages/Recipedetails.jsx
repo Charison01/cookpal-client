@@ -232,7 +232,7 @@ export default function Recipedetails() {
           <p className="font-bold text-[16px]">
             {recipe?.comments?.length} Comments
           </p>
-          {!userId && (
+          {!isAuthenticated && (
             <button className="text-[16px] pl-2" onClick={showLoginPopup}>
               Login↗️
             </button>
