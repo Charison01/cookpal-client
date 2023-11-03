@@ -240,7 +240,7 @@ export default function Recipedetails() {
         </div>
         {/* div for rendering input area */}
 
-        <CommentForm recipe_id={recipeId} user_id={userId} />
+        <CommentForm recipe_id={recipeId} user_id={userId} setRecipe={setRecipe}/>
         {/* div for rendering comments */}
         <div>
           {recipe?.comments?.length > 0 &&

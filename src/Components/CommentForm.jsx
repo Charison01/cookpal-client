@@ -1,13 +1,13 @@
 import Axios from "axios";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { showLoginPopup } from "../lib";
 
-export default function CommentForm({ recipe_id, user_id }) {
-  const [body, setBody]= useState("")
+export default function CommentForm({ recipe_id, user_id, setRecipe }) {
+  const [body, setBody] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(body===""){
+    if (body === "") {
       return false;
     }
     postComment();
@@ -21,9 +21,17 @@ export default function CommentForm({ recipe_id, user_id }) {
         body,
       };
       try {
-        Axios.post("https://cookpal.up.railway.app/comments", data);
+        const response = await Axios.post(
+          "https://cookpal.up.railway.app/comments",
+          data
+        );
+        const responseData = await response.data;
+        setRecipe((prevRecipe) => ({
+          ...prevRecipe,
+          comments: [...prevRecipe.comments, responseData],
+        }));
         toast.success("comment added successfully");
-        window.location.reload();
+        setBody("");
       } catch (error) {
         toast(error);
       }
@@ -36,7 +44,7 @@ export default function CommentForm({ recipe_id, user_id }) {
       <textarea
         name="comment"
         value={body}
-        onChange={setBody}
+        onChange={(e) => setBody(e.target.value)}
         required
         className="textarea textarea-bordered textarea-primary w-full text-[15px]"
         placeholder="Start the discussion...."
@@ -44,7 +52,7 @@ export default function CommentForm({ recipe_id, user_id }) {
       <button
         className="btn btn-primary self-center my-2"
         type="submit"
-        disabled={body===""}
+        disabled={body === ""}
         onClick={() => {
           if (!user_id) {
             showLoginPopup();
