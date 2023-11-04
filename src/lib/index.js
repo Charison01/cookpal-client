@@ -100,6 +100,7 @@ export async function createRecipe(formData, setLoading, setRecipes) {
     window.location.reload();
   } catch (error) {
     toast.error("Request failed!");
+    setLoading(false)
   }
 }
 
