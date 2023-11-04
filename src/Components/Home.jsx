@@ -32,7 +32,6 @@ export default function Home() {
           <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>
           <p>⭐⭐⭐⭐⭐</p>
         </div>
-        <DefaultCarousel />
       </section>
       {/* section for recipe cards */}
       <div className="py-2 px-2  text-gray-600">
