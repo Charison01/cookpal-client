@@ -19,7 +19,7 @@
   transition: max-width 0.1s ease-in-out;
 }
 .sidebar {
-  @apply xsm:max-w-full
+  @apply xsm:!w-full z-50;
 }
 .sidebar.collapsed .sidebar {
   max-width: 80px;
