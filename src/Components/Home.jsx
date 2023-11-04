@@ -21,15 +21,15 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section className=" mb-2 border bg-[url('https://mb.com.ph/media/food_tour_featured_image_e39d09e26e/food_tour_featured_image_e39d09e26e.jpg')] rounded-lg bg-cover bg-center ">
-        <div className="bg-white bg-opacity-[75%] flex flex-col items-center justify-center py-2">
+      <section className=" mb-2 bg-[url('https://mb.com.ph/media/food_tour_featured_image_e39d09e26e/food_tour_featured_image_e39d09e26e.jpg')] rounded-lg bg-cover bg-center ">
+        <div className="bg-orange-200 bg-opacity-[75%] flex flex-col items-center justify-center p-2">
           <h1 className="font-bold text-3xl lg:text-4xl pb-2 tracking-wide ">
             Say{" "}
             <span className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
               GoodBye!
             </span>
           </h1>
-          <h2 className="font-bold text-3xl lg:text-4xl my-2 ">
+          <h2 className="font-bold text-3xl lg:text-4xl my-2 text-center ">
             {" "}
             to Mealtime indecision with{" "}
             <span>
@@ -46,7 +46,7 @@ export default function Home() {
             that are easier to cook without the need of expensive cookware!
           </p>
           <a href="/recipes">
-            <button className="btn btn-secondary">Explore Recipes</button>
+            <button className="btn btn-secondary my-2">Explore Recipes</button>
           </a>
         </div>
       </section>

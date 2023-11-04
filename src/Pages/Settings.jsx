@@ -14,7 +14,6 @@ export const Settings = () => {
   const [profileImage, setProfileImage] = useState("");
   const fileInputRef = useRef(null);
   const [name, setName] = useState("");
-
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESETS;
 
   //check if there is a logged user
@@ -58,6 +57,7 @@ export const Settings = () => {
           toast.success("Image updated successfully");
         } catch (error) {
           console.error(error);
+          setIsloading(false);
         }
       }
     } catch (error) {
@@ -77,6 +77,7 @@ export const Settings = () => {
       ...prev,
       picture: URL.createObjectURL(e.target.files[0]),
     }));
+    console.log(URL.createObjectURL(e.target.files[0]));
   }
 
   //function to update user name
@@ -164,13 +165,19 @@ export const Settings = () => {
               </p>
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
-                  className="btn btn-primary my-2 w-40"
+                  className={`btn btn-primary my-2 w-40 ${
+                    isloading ? "bg-green-500" : ""
+                  }`}
                   disabled={
                     profileImage === "" ||
                     isloading ||
                     !fileInputRef?.current?.value
                   }>
-                  {isloading ? "Uploading...." : "Upload Image"}
+                  {isloading ? (
+                    <span className="loading loading-spinner loading-lg text-green-500"></span>
+                  ) : (
+                    "Upload Image"
+                  )}
                 </button>
                 <input
                   type="reset"
