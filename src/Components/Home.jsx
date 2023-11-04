@@ -21,17 +21,29 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section id="carousel" className="relative hidden md:block">
-        <div className="absolute top-20 left-16 z-10 py-5 bg-slate-300 bg-opacity-[65%] px-2 rounded-md xsm:hidden md:block max-w-[75%]">
-          <h1 className="bg-blend-screen text-3xl lg:text-4xl  text-red-700">
-            Trending Now
-          </h1>
-          <h2 className="text-2xl lg:text-3xl font-bold text-green-500">
-            Kelvin&apos;s Famous Salad With Cheese
-          </h2>
-          <p className="text-xl lg:text-2xl ">By Kelvin Kimaru</p>
-          <p>⭐⭐⭐⭐⭐</p>
-        </div>
+      <section className="flex flex-col items-center justify-center mb-2 py-2 border bg-[url('https://heavenlyoliveoils.com/wp-content/uploads/2020/04/Recipes_Salad_SonomaSalad_@2x-scaled.jpg')] rounded-lg">
+        <h1 className="font-bold text-3xl lg:text-4xl pb-2 tracking-wide">
+          Say{" "}
+          <span className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+            GoodBye!
+          </span>
+        </h1>
+        <h2 className="font-bold text-3xl lg:text-4xl py-2">
+          {" "}
+          to Mealtime indecision with{" "}
+          <span>
+            C<span className="text-green-500 text-4xl lg:text-5xl">oo</span>
+            kpal🥣
+          </span>
+        </h2>
+        <p className="py-2 leading-loose text-2xl text-center">
+          <span>
+            C<span className="text-green-500">oo</span>
+            kpal🥣
+          </span>{" "}
+          gives you access to healthy and affordable and customized recipes that
+          are easier to cook without the need of expensive cookware!
+        </p>
       </section>
       {/* section for recipe cards */}
       <div className="py-2 px-2  text-gray-600">
