@@ -165,9 +165,7 @@ export const Settings = () => {
               </p>
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
-                  className={`btn btn-primary my-2 w-40 ${
-                    isloading ? "bg-green-500" : ""
-                  }`}
+                  className="btn btn-primary my-2 w-40" 
                   disabled={
                     profileImage === "" ||
                     isloading ||
