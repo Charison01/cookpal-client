@@ -84,7 +84,7 @@ export default function Sidebar() {
     <>
       <button
         type="button"
-        className={`fixed top-4 right-2 z-10 bg-slate-200 rounded-full p-2 sm:hidden ${
+        className={`fixed top-4 right-2 z-10 bg-slate-200 rounded-full p-2 md:hidden ${
           !collapsed ? "hidden" : ""
         }`}
         onClick={() => setCollapsed(!collapsed)}>
