@@ -9,7 +9,6 @@ function NewRecipeForm({ setRecipes }) {
   const { userId } = getAuthStatus();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    user_id: userId,
     title: "",
     image: "",
     ingredients: [],
@@ -35,7 +34,13 @@ function NewRecipeForm({ setRecipes }) {
     toast.success("processing request", {
       icon: "⏳",
     });
-    createRecipe(formData, setLoading, setRecipes);
+    if(userId){
+      const payload={
+        ...formData,
+user_id:userId,
+      }
+       createRecipe(payload, setLoading, setRecipes);
+    }
   }
   return (
     <dialog id="my_modal_4" className="modal">
