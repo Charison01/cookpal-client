@@ -1,28 +1,25 @@
+import { useState } from "react";
 import Axios from "axios";
 import toast from "react-hot-toast";
 import { showLoginPopup } from "../lib";
 
-export default function CommentForm({
-  recipe_id,
-  user_id,
-  setRecipe,
-  comment,
-  setComment,
-}) {
+export default function CommentForm({ recipe_id, user_id, setRecipe }) {
+  const [body, setBody] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (comment === "") {
+    if (body === "") {
       return false;
     }
     postComment();
     event.target.reset();
   };
-  async function postComment() {
+  async function postComment(e) {
     if (user_id) {
       const data = {
         user_id,
         recipe_id,
-        body: comment,
+        body,
       };
       try {
         const response = await Axios.post(
@@ -35,7 +32,7 @@ export default function CommentForm({
           comments: [...prevRecipe.comments, responseData],
         }));
         toast.success("comment added successfully");
-        setComment("");
+        setBody("");
       } catch (error) {
         toast(error);
       }
@@ -47,8 +44,8 @@ export default function CommentForm({
     <form className="my-2" onSubmit={handleSubmit}>
       <textarea
         name="comment"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
         required
         className="textarea textarea-bordered textarea-primary w-full text-[15px]"
         placeholder="Start the discussion...."
@@ -56,7 +53,7 @@ export default function CommentForm({
       <button
         className="btn btn-primary self-center my-2"
         type="submit"
-        disabled={comment === "" || !user_id}
+        disabled={body === "" || !user_id}
         onClick={() => {
           if (!user_id) {
             showLoginPopup();
