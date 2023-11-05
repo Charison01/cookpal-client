@@ -82,16 +82,15 @@ export default function Recipedetails() {
         </div>
       </div>
       {/* first div to show recipe image and details as flex */}
-      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-5  mb-3 bg-white">
+      <div className="flex flex-col lg:flex-row items-center gap-5 mb-3 bg-white">
         <div
-          className="h-[200px] md:h-[380px] w-full lg:w-3/5 bg-cover bg-center"
-          style={{ backgroundImage: `url('${recipe?.image}')` }}>
-        </div>
+          className="h-[250px] md:h-[380px] w-full lg:w-3/5 bg-cover bg-center"
+          style={{ backgroundImage: `url('${recipe?.image}')` }}></div>
         {/* div for the details */}
 
         <div className="px-2 w-fit lg:w-2/5">
           <div>
-            <p className="leading-loose">
+            <p className="leading-loose hidden md:block">
               If you&apos;re looking for a healthy and nutritious diet, then
               this hearty {recipe?.title} looks fabulous placed on the table for
               everyone to dive into. This dish will leave you looking for more.
@@ -265,10 +264,14 @@ export default function Recipedetails() {
                         />
                       </div>
                     </div>
-                    <div className="chat-bubble chat-bubble-info">
+                    <div className="chat-bubble bg-slate-200 text-black">
                       {" "}
                       {comment?.body}
                     </div>
+                  </div>
+                  <div className="float-right">
+                    <button className="btn btn-sm btn-circle">Delete</button>
+                    <button className="btn btn-sm btn-circle">Edit</button>
                   </div>
                 </div>
               </div>
