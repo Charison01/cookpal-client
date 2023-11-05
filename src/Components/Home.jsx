@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DefaultCarousel, Recipecard } from "./index";
+import { Recipecard } from "./index";
 export default function Home() {
   const [recipes, setRecipes] = useState();
   const [loading, setLoading] = useState(true);
@@ -21,8 +21,8 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section className=" mb-2 bg-[url('https://mb.com.ph/media/food_tour_featured_image_e39d09e26e/food_tour_featured_image_e39d09e26e.jpg')] rounded-lg bg-cover bg-center ">
-        <div className="bg-orange-200 bg-opacity-[75%] flex flex-col items-center justify-center p-2">
+      <section className=" mb-2 ">
+        <div className="bg-white bg-opacity-[75%] flex flex-col items-center justify-center p-2">
           <h1 className="font-bold text-3xl lg:text-4xl pb-2 tracking-wide ">
             Say{" "}
             <span className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
@@ -38,12 +38,8 @@ export default function Home() {
             </span>
           </h2>
           <p className="py-2 leading-loose text-2xl text-center ">
-            <span>
-              C<span className="text-green-500">oo</span>
-              kpal🥣
-            </span>{" "}
-            gives you access to healthy and affordable and customized recipes
-            that are easier to cook without the need of expensive cookware!
+            explore hundreds of healthy and affordable recipes that are easier
+            to cook without the need of expensive cookware!
           </p>
           <a href="/recipes">
             <button className="btn btn-secondary my-2">Explore Recipes</button>

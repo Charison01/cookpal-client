@@ -11,6 +11,7 @@ export default function Recipedetails() {
   const { isAuthenticated, userId } = getAuthStatus();
   const [liked, setLiked] = useState(false);
   const [recipe, setRecipe] = useState();
+  const [comment, setComment]=useState("")
   const location = useLocation();
   const recipeId = location.pathname.split("/")[2];
   useEffect(() => {
@@ -82,6 +83,14 @@ export default function Recipedetails() {
       }
     }
   }
+  //function to edit comment
+  function editComment(comment){
+    setComment(comment?.body)
+    setRecipe((prev) => ({
+      ...prev,
+      comments: prev.comments.filter((prevcomment) => prevcomment.id !== comment.id),
+    }));
+  }
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* div for card title */}
@@ -90,7 +99,7 @@ export default function Recipedetails() {
           {recipe?.title}
         </h1>
         <div className="flex items-center font-bold gap-2">
-          <span className="text-3xl text-yellow-400">★</span>
+          <span className="text-3xl text-orange-400">★</span>
           <p className="text-gray-600 text-base py-2">
             {recipe?.average_rating} ({recipe?.ratings_count} ratings)
           </p>
@@ -255,6 +264,8 @@ export default function Recipedetails() {
           recipe_id={recipeId}
           user_id={userId}
           setRecipe={setRecipe}
+          comment={comment}
+          setComment={setComment}
         />
         {/* div for rendering comments */}
         <div>
@@ -286,11 +297,42 @@ export default function Recipedetails() {
                   </div>
                   {comment?.user?.id === +userId && (
                     <div className="flex items-center gap-5 mx-10">
-                      <button className="btn btn-sm btn-circle ">✏️</button>
+                      {/* edit comment button */}
+                      <button className="btn btn-sm btn-circle " onClick={() =>editComment(comment)}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round">
+                          <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                          <path d="m15 5 4 4" />
+                        </svg>
+                      </button>
+                      {/* delete comment button */}
                       <button
-                        className="btn btn-sm btn-circle hover:bg-red-500"
+                        className="btn btn-sm btn-circle"
                         onClick={() => deleteComment(comment?.id)}>
-                        🗑️
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="red"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round">
+                          <path d="M3 6h18" />
+                          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                          <line x1="10" x2="10" y1="11" y2="17" />
+                          <line x1="14" x2="14" y1="11" y2="17" />
+                        </svg>
                       </button>
                     </div>
                   )}
