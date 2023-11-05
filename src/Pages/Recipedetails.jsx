@@ -284,7 +284,7 @@ export default function Recipedetails() {
                       {comment?.body}
                     </div>
                   </div>
-                  {comment?.user?.id === userId && (
+                  {comment?.user?.id === +userId && (
                     <div className="flex items-center gap-5 mx-10">
                       <button className="btn btn-sm btn-circle ">✏️</button>
                       <button
