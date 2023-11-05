@@ -97,8 +97,30 @@ export default function Recipedetails() {
       inputValue: comment.body,
       showCancelButton: true,
       showCloseButton: true,
+      confirmButtonColor: "#0056f1",
       confirmButtonText: "Update",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const body = result?.value;
+        patchComment(comment.id, body);
+      }
     });
+  }
+
+  async function patchComment(id, body) {
+    try {
+      const response = await Axios.patch(
+        `https://cookpal.up.railway.app/comments/${id}`,
+        { body }
+      );
+      const responseData = await response.data;
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        comments: [...prevRecipe.comments, responseData],
+      }));
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
@@ -281,7 +303,7 @@ export default function Recipedetails() {
               <div key={comment.id} className="my-2">
                 <div className="flex items-center gap-4 font-bold">
                   <p className="capitalize">{comment?.user?.name}</p>
-                  <p>{comment.created_at_date}</p>
+                  <p>{comment?.created_at_date}</p>
                 </div>
                 <div>
                   <div className="chat chat-start">
