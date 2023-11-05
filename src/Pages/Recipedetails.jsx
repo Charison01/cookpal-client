@@ -77,18 +77,15 @@ export default function Recipedetails() {
         <div className="flex items-center font-bold gap-2">
           <span className="text-3xl text-yellow-400">★</span>
           <p className="text-gray-600 text-base py-2">
-            {recipe?.average_rating} Average community ratings
+            {recipe?.average_rating} ({recipe?.ratings_count} ratings)
           </p>
         </div>
       </div>
       {/* first div to show recipe image and details as flex */}
-      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-5 bg-base-100 rounded-md mb-3">
-        <div className="md:h-[350px]">
-          <img
-            src={recipe?.image}
-            alt="recipe"
-            className="md:mb-5 lg:mb-0 h-full flex-1 md:rounded-l-md"
-          />
+      <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-5  mb-3 bg-white">
+        <div
+          className="h-[200px] md:h-[380px] w-full lg:w-3/5 bg-cover bg-center"
+          style={{ backgroundImage: `url('${recipe?.image}')` }}>
         </div>
         {/* div for the details */}
 
