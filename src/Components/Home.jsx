@@ -21,29 +21,26 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section className=" mb-2 ">
-        <div className="bg-white bg-opacity-[75%] flex flex-col items-center justify-center p-2">
-          <h1 className="font-bold text-3xl lg:text-4xl pb-2 tracking-wide ">
-            Say{" "}
-            <span className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-              GoodBye!
-            </span>
-          </h1>
-          <h2 className="font-bold text-3xl lg:text-4xl my-2 text-center ">
-            {" "}
-            to Mealtime indecision with{" "}
-            <span>
-              C<span className="text-green-500 text-4xl lg:text-5xl">oo</span>
-              kpal🥣
-            </span>
-          </h2>
-          <p className="py-2 leading-loose text-2xl text-center ">
-            explore hundreds of healthy and affordable recipes that are easier
-            to cook without the need of expensive cookware!
-          </p>
-          <a href="/recipes">
-            <button className="btn btn-secondary my-2">Explore Recipes</button>
-          </a>
+      <section className=" mb-2 bg-[url('https://www.indystar.com/gcdn/presto/2020/06/19/PIND/ea36ac0f-4530-45e2-9027-b368290e25bc-header.jpg')] bg-cover bg-center h-[600px] rounded-lg">
+        <div className="flex h-full ">
+          <div className="m-auto inset-0 text-center">
+            <h1 className="font-extrabold text-4xl lg:text-5xl pb-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+              Anyone Can Be A{" "}
+              <span className="text-4xl lg:text-6xl font-serif italic">
+                Chef.
+              </span>
+            </h1>
+            <p className="py-2 leading-loose text-2xl text-center text-slate-100 font-bold">
+              Discover the secret of good cooking
+              <br className="hidden md:block" />
+              and learn all types of recipes with Cookpal!
+            </p>
+            <a href="/recipes">
+              <button className="btn bg-[--sidebar-primary] text-white border-none my-2 hover:bg-green-500">
+                Explore Recipes
+              </button>
+            </a>
+          </div>
         </div>
       </section>
       {/* section for recipe cards */}
