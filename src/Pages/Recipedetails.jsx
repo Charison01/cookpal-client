@@ -66,7 +66,22 @@ export default function Recipedetails() {
       }
     }
   };
-
+//function to delete a comment
+function deleteComment(id){
+  if(id){
+    try {
+      Axios.delete(`https://cookpal.up.railway.app/comments/${id}`);
+      toast.success("Comment deleted successfully!")
+      setRecipe((prev)=>({
+        ...prev,
+        comments: prev.comments.filter((comment) => comment.id !== id)
+      }))
+    } catch (error) {
+      console.error(error)
+      toast.error("Request failed")
+    }
+  }
+}
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* div for card title */}
@@ -269,10 +284,14 @@ export default function Recipedetails() {
                       {comment?.body}
                     </div>
                   </div>
-                  <div className="float-right">
-                    <button className="btn btn-sm btn-circle">Delete</button>
-                    <button className="btn btn-sm btn-circle">Edit</button>
-                  </div>
+                  {comment?.user?.id == userId && (
+                    <div className="flex items-center gap-5 mx-10">
+                      <button className="btn btn-sm btn-circle ">✏️</button>
+                      <button className="btn btn-sm btn-circle hover:bg-red-500" onClick={()=>deleteComment(comment?.id)}>
+                        🗑️
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
