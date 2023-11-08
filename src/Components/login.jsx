@@ -216,6 +216,17 @@ export const LoginModal = () => {
                   Login
                 </span>
               </p>
+              <p className="alert alert-warning block">
+                By signing up, you agree to our{" "}
+                <a href="/terms" className="link link-primary">
+                  Terms of service
+                </a>{" "}
+                and confirm that you have read our{" "}
+                <a href="/privacy" className="link link-primary">
+                  {" "}
+                  Privacy Policy
+                </a>
+              </p>
             </>
           )}
           {errors && <ErrorList errors={errors} />}
