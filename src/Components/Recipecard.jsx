@@ -88,7 +88,9 @@ export default function Recipecard({
         {recipe?.user?.name}
       </p>
       <div className="my-2 font-bold flex items-center justify-between px-2">
-        <p className="text-xl capitalize">{recipe?.title}</p>
+        <p className="text-xl capitalize bg-clip-text  text-transparent bg-gradient-to-r from-gray-300 via-red-500 to-gray-600 ">
+          {recipe?.title}
+        </p>
         <p className="text-xl flex items-center gap-2">
           <span className="text-[#FFD700]">★</span>
           {recipe?.average_rating}

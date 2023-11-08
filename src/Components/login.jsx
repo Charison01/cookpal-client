@@ -79,7 +79,7 @@ export const LoginModal = () => {
           </button>
           {!signup ? (
             <>
-              <h1 className="text-center font-bold my-2 text-2xl">
+              <h1 className="text-center font-bold my-2 text-2xl bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-500">
                 Login to Continue
               </h1>
               <div className="mb-6">
@@ -152,7 +152,7 @@ export const LoginModal = () => {
           ) : (
             <>
               {/* Your Signup Form Here */}
-              <h1 className="text-center font-bold my-2 text-2xl">
+              <h1 className="text-center font-bold my-2 text-2xl bg-clip-text  text-transparent bg-gradient-to-r from-gray-200 to-gray-500">
                 Create an Account
               </h1>
               <div className="mb-6">
