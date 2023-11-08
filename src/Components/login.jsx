@@ -68,7 +68,7 @@ export const LoginModal = () => {
       <div className="modal-box text-gray-600">
         <form method="dialogue" onSubmit={!signup ? handleLogin : handleSignup}>
           <button
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            className="text-3xl cursor-pointer hover:scale-110 absolute right-2 top-2"
             type="button"
             onClick={() => {
               document.getElementById("my_modal_3").close();
@@ -114,14 +114,24 @@ export const LoginModal = () => {
                   className="input input-bordered input-secondary w-full"
                 />
               </div>
-              <div className="mb-6 flex items-center justify-start gap-4">
-                <input
-                  type="checkbox"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
-                  className=""
-                />
-                <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div className="flex items-center justify-start gap-4">
+                  <input
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={() => setShowPassword(!showPassword)}
+                    className=""
+                  />
+                  <p>{!showPassword ? "Show Password" : "Hide Password"}</p>
+                </div>
+
+                <div>
+                  <a
+                    className="hover:link-primary underline cursor-pointer"
+                    href="/reset">
+                    Forgot Password?
+                  </a>
+                </div>
               </div>
               <button type="submit" className="btn btn-primary w-full">
                 {loading ? (
