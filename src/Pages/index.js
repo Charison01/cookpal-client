@@ -5,6 +5,7 @@ import Community from "./Community";
 import Favorites from "./Favorites";
 import MyRecipes from "./MyRecipes";
 import Recipedetails from "./Recipedetails";
+import NotFound from "./NotFound";
 export {
   Explore,
   Settings,
@@ -13,4 +14,5 @@ export {
   Favorites,
   MyRecipes,
   Recipedetails,
+  NotFound 
 };
