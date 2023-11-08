@@ -103,6 +103,11 @@ export default function Recipedetails() {
       if (result.isConfirmed) {
         const body = result?.value;
         patchComment(comment.id, body);
+      } else if (result.isDismissed) {
+        setRecipe((prevRecipe) => ({
+          ...prevRecipe,
+          comments: [...prevRecipe.comments, comment],
+        }));
       }
     });
   }
