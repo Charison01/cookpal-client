@@ -107,7 +107,7 @@ export default function Recipecard({
         {/* svg for like */}
         <div className="flex items-center gap-5">
          {/* eslint-disable-next-line */}
-          {isAuthenticated && recipe?.user?.id == userId ? (
+          {isAuthenticated && recipe?.user?.id === +userId ? (
             <>
               {/* svg for editing */}
               <div
