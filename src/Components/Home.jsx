@@ -21,16 +21,16 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section className=" mb-2 bg-[url('https://www.indystar.com/gcdn/presto/2020/06/19/PIND/ea36ac0f-4530-45e2-9027-b368290e25bc-header.jpg')] bg-cover bg-center h-[600px] rounded-lg">
+      <section className=" mb-2 bg-[url('/public/hero-bg.png')] bg-cover bg-center h-[600px] rounded-lg">
         <div className="flex h-full ">
           <div className="m-auto inset-0 text-center">
-            <h1 className="font-extrabold text-4xl lg:text-5xl pb-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="font-extrabold text-4xl lg:text-7xl pb-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">
               Anyone Can Be A{" "}
               <span className="text-4xl lg:text-6xl font-serif italic">
                 Chef.
               </span>
             </h1>
-            <p className="py-2 leading-loose text-2xl text-center text-slate-100 font-bold">
+            <p className="py-2 leading-loose text-2xl text-center text-slate-100 font-bold glow">
               Discover the secret of good cooking
               <br className="hidden md:block" />
               and learn all types of recipes with Cookpal!

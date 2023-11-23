@@ -39,6 +39,13 @@ body {
 html {
   height: 100%;
 }
+.recipe-image {
+  background-image: url(/public/placeholder.svg);
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center center;
+}
 .recipecard-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -51,5 +58,19 @@ html {
     display: block;
     width: 100%;
     margin: 0;
+  }
+}
+.glow {
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 2px #928b8b;
+  }
+  to {
+    text-shadow: 0 0 10px #0b07e7, 0 0 15px #0b07e7, 0 0 20px #fefefe;
   }
 }

@@ -67,8 +67,8 @@ export default function Recipecard({
   return (
     <div className="xsm:h-fit xsm:pb-2 h-[350px] lg:h-[320px] xsm:w-full md:w-full lg:w-80 card border shadow-lg bg-base-100 my-2 md:my-3 md:mr-5 relative">
       <img
-        alt="recipe"
-        className="h-3/5 rounded-lg cursor-pointer"
+        alt={recipe.title ?? "recipe"}
+        className="h-3/5 rounded-lg cursor-pointer recipe-image"
         src={recipe?.image}
         onClick={() => navigate(`/recipe/${recipe.id}`)}
       />
@@ -106,7 +106,7 @@ export default function Recipecard({
         </div>
         {/* svg for like */}
         <div className="flex items-center gap-5">
-         {/* eslint-disable-next-line */}
+          {/* eslint-disable-next-line */}
           {isAuthenticated && recipe?.user?.id === +userId ? (
             <>
               {/* svg for editing */}
