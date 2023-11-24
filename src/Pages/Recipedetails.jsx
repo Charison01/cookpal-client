@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 import { StarRating, ShareModal, CommentForm } from "../Components";
 import { showLoginPopup } from "../lib";
 import { useAppContext } from "../Context/Provider";
@@ -23,6 +23,10 @@ export default function Recipedetails() {
         if (response.ok) {
           const data = await response.json();
           setRecipe(data);
+        }
+         } else if (response.status === 404) {
+          // Set notFound state to true
+          Redirect("/404");
         }
       })();
     } catch (error) {
