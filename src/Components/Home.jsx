@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <section className="px-2 w-full overflow-hidden flex-1 lg:max-w-[75%] lg:mx-auto">
       {/* section for carousel */}
-      <section className=" mb-2 bg-[url('/public/hero-bg.png')] bg-cover bg-center h-[600px] rounded-lg">
+      <section className=" mb-2 hero-bg bg-cover bg-center h-[600px] rounded-lg">
         <div className="flex h-full ">
           <div className="m-auto inset-0 text-center">
             <h1 className="font-extrabold text-4xl lg:text-7xl pb-2 bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 bg-clip-text text-transparent">

@@ -35,6 +35,9 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+.hero-bg {
+  background-image: url(/public/hero.png);
+}
 
 html {
   height: 100%;
