@@ -86,9 +86,10 @@ html {
     hsl(200, 20%, 80%)
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 3s linear infinite;
+  animation: skeleton-loading 3s linear infinite alternate;
 }
 
+/* keyframes for the animation */
 @keyframes skeleton-loading {
   0% {
     background-position: 200% 0;

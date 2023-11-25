@@ -47,9 +47,6 @@ export default function Home() {
       <div className="py-2 px-2  text-gray-600">
         <h2 className="text-2xl lg:text-3xl font-bold">Featured Recipes</h2>
         <p>Made by popular chefs</p>
-        {loading && (
-          <progress className="progress progress-primary w-full"></progress>
-        )}
       </div>
 
       <section className="py-2 px-2 recipecard-grid-container ">

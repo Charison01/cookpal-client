@@ -11,9 +11,6 @@ export default function Explore({ search, setSearch, recipes, loading }) {
       <div className="py-2 px-2  text-gray-600">
         <h2 className="text-2xl lg:text-3xl font-bold ">Recommended for you</h2>
         <p>Based on your preferences</p>
-        {loading && (
-          <progress className="progress progress-primary w-full"></progress>
-        )}
       </div>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
