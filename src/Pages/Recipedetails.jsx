@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Redirect } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { StarRating, ShareModal, CommentForm } from "../Components";
 import { showLoginPopup } from "../lib";
 import { useAppContext } from "../Context/Provider";
@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 export default function Recipedetails() {
   const { getAuthStatus } = useAppContext();
   const { isAuthenticated, userId } = getAuthStatus();
+  const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const [recipe, setRecipe] = useState();
   const location = useLocation();
@@ -23,16 +24,14 @@ export default function Recipedetails() {
         if (response.ok) {
           const data = await response.json();
           setRecipe(data);
-        }
-         } else if (response.status === 404) {
-          // Set notFound state to true
-          Redirect("/404");
+        } else {
+          navigate("/404");
         }
       })();
     } catch (error) {
       console.error(error);
     }
-  }, [recipeId]);
+  }, [recipeId, navigate]);
 
   //function to handle sharing
   function handleSharing() {
