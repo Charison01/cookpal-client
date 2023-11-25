@@ -9,6 +9,7 @@ import ShareModal from "./Sharemodal";
 import CommentForm from "./CommentForm";
 import Footer from "./Footer";
 import SkeletonRecipeCard from "./SkeletonRecipeCard";
+import SkeletonRecipeDetails from "./SkeletonRecipeDetails";
 export {
   Home,
   Navbar,
@@ -21,4 +22,5 @@ export {
   CommentForm,
   Footer,
   SkeletonRecipeCard,
+  SkeletonRecipeDetails,
 };
