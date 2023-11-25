@@ -77,3 +77,23 @@ html {
     text-shadow: 0 0 10px #0b07e7, 0 0 15px #0b07e7, 0 0 20px #fefefe;
   }
 }
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(200, 20%, 80%),
+    hsl(200, 20%, 95%),
+    hsl(200, 20%, 80%)
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 2s linear infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
