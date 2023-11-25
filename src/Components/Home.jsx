@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Recipecard } from "./index";
+import { Recipecard, SkeletonRecipeCard } from "./index";
 export default function Home() {
   const [recipes, setRecipes] = useState();
   const [loading, setLoading] = useState(true);
@@ -54,6 +54,7 @@ export default function Home() {
 
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
+        {loading && <SkeletonRecipeCard cards={5} />}
         {recipes?.featured?.length > 0 &&
           recipes?.featured?.map((recipe) => (
             <Recipecard key={recipe.id} recipe={recipe} />
@@ -67,6 +68,7 @@ export default function Home() {
 
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
+        {loading && <SkeletonRecipeCard cards={5} />}
         {recipes?.trending?.length > 0 &&
           recipes?.trending?.map((recipe) => (
             <Recipecard key={recipe.id} recipe={recipe} />

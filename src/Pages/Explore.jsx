@@ -1,5 +1,5 @@
 //route to show all recipes
-import { Search, Recipecard } from "../Components";
+import { Search, Recipecard, SkeletonRecipeCard } from "../Components";
 import React from "react";
 
 export default function Explore({ search, setSearch, recipes, loading }) {
@@ -17,6 +17,8 @@ export default function Explore({ search, setSearch, recipes, loading }) {
       </div>
       <section className="py-2 px-2 recipecard-grid-container ">
         {/* set the grid to auto-rows */}
+        {/* skeleton loading for better UX experience */}
+        {loading && <SkeletonRecipeCard cards={5} />}
         {recipes.length > 0 ? (
           recipes.map((recipe) => (
             <Recipecard key={recipe.id} recipe={recipe} />

@@ -8,7 +8,7 @@ import NewRecipeForm from "./NewRecipeForm";
 import ShareModal from "./Sharemodal";
 import CommentForm from "./CommentForm";
 import Footer from "./Footer";
-
+import SkeletonRecipeCard from "./SkeletonRecipeCard";
 export {
   Home,
   Navbar,
@@ -20,4 +20,5 @@ export {
   ShareModal,
   CommentForm,
   Footer,
+  SkeletonRecipeCard,
 };

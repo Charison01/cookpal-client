@@ -86,7 +86,7 @@ html {
     hsl(200, 20%, 80%)
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 2s linear infinite;
+  animation: skeleton-loading 3s linear infinite;
 }
 
 @keyframes skeleton-loading {
