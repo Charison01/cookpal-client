@@ -93,7 +93,7 @@ export function showLoginPopup() {
   if (modal && window.innerWidth >= 480) {
     modal.showModal();
   } else {
-    //redirect to the login page ('/login')
+    window.location.href = "/login";
   }
 }
 //function to create a new recipe

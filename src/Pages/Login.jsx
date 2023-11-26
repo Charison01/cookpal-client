@@ -77,13 +77,13 @@ export default function Login() {
                 Login to Continue
               </h1>
               <div className="mb-6">
-                <label htmlFor="email" className="block mb-2">
+                <label htmlFor="loginemail" className="block mb-2">
                   Email <span className="text-red-600 font-bold">*</span>
                 </label>
                 <input
                   type="email"
                   name="email"
-                  id="email"
+                  id="loginemail"
                   autoComplete="on"
                   value={loginData.email}
                   onChange={handleLoginChange}
@@ -93,13 +93,13 @@ export default function Login() {
                 />
               </div>
               <div className="mb-6">
-                <label htmlFor="password" className="block mb-2">
+                <label htmlFor="loginpassword" className="block mb-2">
                   Password <span className="text-red-600 font-bold">*</span>
                 </label>
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  id="password"
+                  id="loginpassword"
                   autoComplete="on"
                   value={loginData.password}
                   onChange={handleLoginChange}
