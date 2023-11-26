@@ -64,11 +64,11 @@ export default function Login() {
   }
 
   return (
-    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
+    <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto bg-[url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=1932&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
       <div className="w-full flex h-screen flex-col items-center justify-center text-gray-600 ">
         <form
           onSubmit={!signup ? handleLogin : handleSignup}
-          className="border-2 bg-slate-100 p-4 rounded-md ">
+          className="border-2 bg-base-100 p-4 rounded-md ">
           {!signup ? (
             <>
               <h1 className="text-center font-bold my-2 text-2xl bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-500">

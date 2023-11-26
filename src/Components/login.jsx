@@ -68,7 +68,7 @@ export const LoginModal = () => {
       <div className="modal-box text-gray-600">
         <form method="dialogue" onSubmit={!signup ? handleLogin : handleSignup}>
           <button
-            className="text-3xl cursor-pointer hover:scale-110 absolute right-2 top-2"
+            className="text-3xl cursor-pointer outline-none border-none hover:scale-110 absolute right-2 top-2"
             type="button"
             onClick={() => {
               document.getElementById("my_modal_3").close();

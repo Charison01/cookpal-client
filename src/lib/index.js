@@ -90,10 +90,16 @@ export async function handleSignupRequest(
 //function to show login popup if the user is not logged in
 export function showLoginPopup() {
   const modal = document.getElementById("my_modal_3");
-  if (modal && window.innerWidth >= 480) {
-    modal.showModal();
-  } else {
-    window.location.href = "/login";
+  if (typeof window !== "undefined") {
+    const token_session = window.localStorage.getItem("_react_auth_token_");
+    if (token_session) {
+      return false;
+    }
+    if (modal && window.innerWidth >= 480) {
+      modal.showModal();
+    } else {
+      window.location.href = "/login";
+    }
   }
 }
 //function to create a new recipe

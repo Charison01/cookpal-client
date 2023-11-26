@@ -3,6 +3,7 @@ import { useAppContext } from "../Context/Provider";
 import toast from "react-hot-toast";
 import Axios from "axios";
 import Swal from "sweetalert2";
+import { showLoginPopup } from "../lib";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
   const [isloading, setIsloading] = useState(false);
@@ -10,6 +11,10 @@ export const Settings = () => {
   const fileInputRef = useRef(null);
   const [name, setName] = useState("");
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESETS;
+
+  if (!user) {
+    showLoginPopup();
+  }
 
   //function to upload image
 
