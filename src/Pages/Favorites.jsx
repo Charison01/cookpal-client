@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Recipecard } from "../Components";
 import { useAppContext } from "../Context/Provider";
+import { showLoginPopup } from "../lib";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const { getAuthStatus } = useAppContext();
   const { userId } = getAuthStatus();
+
+  if (!userId) {
+    showLoginPopup()
+  }
 
   useEffect(() => {
     if (userId) {
