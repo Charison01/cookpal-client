@@ -1,26 +1,15 @@
 import React, { useState, useRef } from "react";
 import { useAppContext } from "../Context/Provider";
-import { showLoginPopup } from "../lib";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Axios from "axios";
 import Swal from "sweetalert2";
 export const Settings = () => {
   const { user, setUser } = useAppContext();
-  const { getAuthStatus } = useAppContext();
-  const { isAuthenticated } = getAuthStatus();
-  const navigate = useNavigate();
   const [isloading, setIsloading] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const fileInputRef = useRef(null);
   const [name, setName] = useState("");
   const UPLOAD_PRESET = process.env.REACT_APP_UPLOAD_PRESETS;
-
-  //check if there is a logged user
-  if (!isAuthenticated) {
-    showLoginPopup();
-    navigate("/");
-  }
 
   //function to upload image
 
@@ -165,7 +154,7 @@ export const Settings = () => {
               </p>
               <div className="flex flex-col md:flex-row items-center justify-evenly gap-5">
                 <button
-                  className="btn btn-primary my-2 w-40" 
+                  className="btn btn-primary my-2 w-40"
                   disabled={
                     profileImage === "" ||
                     isloading ||

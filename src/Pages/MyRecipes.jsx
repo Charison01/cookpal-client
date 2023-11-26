@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Recipecard, NewRecipeForm } from "../Components";
-import { showLoginPopup } from "../lib";
 import { useAppContext } from "../Context/Provider";
 export default function MyRecipes() {
   const [myRecipes, setMyRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const { getAuthStatus } = useAppContext();
-  const { isAuthenticated, userId } = getAuthStatus();
+  const {  userId } = getAuthStatus();
 
-  //check if there is a logged user
-  if (!isAuthenticated) {
-    showLoginPopup();
-  }
+ 
   //fetch user recipes
   useEffect(() => {
     if (userId) {

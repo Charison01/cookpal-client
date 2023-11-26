@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { showLoginPopup } from "../lib";
-import { useNavigate } from "react-router-dom";
 import { Recipecard } from "../Components";
 import { useAppContext } from "../Context/Provider";
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const { getAuthStatus } = useAppContext();
-  const { isAuthenticated, userId } = getAuthStatus();
-
-  if (!isAuthenticated) {
-    showLoginPopup();
-    navigate("/");
-  }
+  const { userId } = getAuthStatus();
 
   useEffect(() => {
     if (userId) {
@@ -33,7 +25,7 @@ export default function Favorites() {
         setLoading(false);
       }
     }
-  }, [userId, navigate]);
+  }, [userId]);
   return (
     <section className="px-2 flex-1 lg:max-w-[75%] lg:mx-auto">
       <h1 className="text-2xl lg:text-3xl font-bold text-gray-600">
