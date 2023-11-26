@@ -2,6 +2,7 @@ import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginModal } from "./login";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { showLoginPopup } from "../lib";
@@ -448,6 +449,8 @@ export default function Sidebar() {
             Subscribe Now
           </button>
         </div>
+        {/* set the login modal as absolute */}
+        <LoginModal />
       </nav>
     </>
   );
