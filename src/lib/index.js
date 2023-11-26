@@ -30,7 +30,8 @@ export async function handleLoginRequest(
   loginData,
   setLoading,
   setUser,
-  setErrors
+  setErrors,
+  navigate
 ) {
   try {
     const response = await Axios.post(`${api}/login`, loginData);
@@ -43,7 +44,11 @@ export async function handleLoginRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
-    window.location.reload();
+    if (navigate) {
+      navigate("/");
+    } else {
+      window.location.reload();
+    }
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
@@ -56,7 +61,8 @@ export async function handleSignupRequest(
   signupData,
   setLoading,
   setUser,
-  setErrors
+  setErrors,
+  navigate
 ) {
   try {
     const response = await Axios.post(`${api}/signup`, signupData);
@@ -69,6 +75,11 @@ export async function handleSignupRequest(
       "_react_auth_token_",
       encryptUserId(data?.id, SECRETKEY)
     );
+    if (navigate) {
+      navigate("/");
+    } else {
+      window.location.reload();
+    }
   } catch (error) {
     toast.error(error.message);
     setErrors(error?.response?.data?.errors);
@@ -79,10 +90,10 @@ export async function handleSignupRequest(
 //function to show login popup if the user is not logged in
 export function showLoginPopup() {
   const modal = document.getElementById("my_modal_3");
-  if (modal) {
+  if (modal && window.innerWidth >= 480) {
     modal.showModal();
   } else {
-    console.error("Element with ID 'my_modal_3' not found.");
+    //redirect to the login page ('/login')
   }
 }
 //function to create a new recipe
@@ -100,7 +111,7 @@ export async function createRecipe(formData, setLoading, setRecipes) {
     window.location.reload();
   } catch (error) {
     toast.error("Request failed!");
-    setLoading(false)
+    setLoading(false);
   }
 }
 

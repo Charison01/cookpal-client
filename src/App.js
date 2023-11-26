@@ -11,7 +11,8 @@ import {
   Favorites,
   MyRecipes,
   Recipedetails,
-  NotFound 
+  NotFound,
+  Login,
 } from "./Pages";
 function App() {
   //create data in parent component
@@ -62,7 +63,8 @@ function App() {
           <Route path="favorites" element={<Favorites />} />
           <Route path="my-recipes" element={<MyRecipes />} />
           <Route path="recipe/:id" element={<Recipedetails />} />
-          <Route path='*' element={<NotFound />}/>
+          <Route path="*" element={<NotFound />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </section>
       <hr className="mt-2 border-white" />

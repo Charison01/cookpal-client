@@ -6,7 +6,7 @@ import Favorites from "./Favorites";
 import MyRecipes from "./MyRecipes";
 import Recipedetails from "./Recipedetails";
 import NotFound from "./NotFound";
-
+import Login from "./Login";
 export {
   Explore,
   Settings,
@@ -16,4 +16,5 @@ export {
   MyRecipes,
   Recipedetails,
   NotFound,
+  Login
 };
