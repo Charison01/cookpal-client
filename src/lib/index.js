@@ -31,7 +31,7 @@ export async function handleLoginRequest(
   setLoading,
   setUser,
   setErrors,
-  navigate
+  home
 ) {
   try {
     const response = await Axios.post(`${api}/login`, loginData);
@@ -44,8 +44,8 @@ export async function handleLoginRequest(
     setLoading(false);
     document.getElementById("my_modal_3").close();
     toast.success("Login successful!");
-    if (navigate) {
-      navigate("/");
+    if (home) {
+      window.location.href = "/";
     } else {
       window.location.reload();
     }
@@ -62,7 +62,7 @@ export async function handleSignupRequest(
   setLoading,
   setUser,
   setErrors,
-  navigate
+  home
 ) {
   try {
     const response = await Axios.post(`${api}/signup`, signupData);
@@ -75,8 +75,8 @@ export async function handleSignupRequest(
       "_react_auth_token_",
       encryptUserId(data?.id, SECRETKEY)
     );
-    if (navigate) {
-      navigate("/");
+    if (home) {
+      window.location.href = "/";
     } else {
       window.location.reload();
     }

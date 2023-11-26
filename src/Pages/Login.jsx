@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { handleLoginRequest, handleSignupRequest } from "../lib";
 import { ErrorList } from "../Components/Errors";
 import toast from "react-hot-toast";
 import { useAppContext } from "../Context/Provider";
 export default function Login() {
   const { setUser } = useAppContext();
-  const navigate= useNavigate();
   const [signup, setSignup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(false);
@@ -54,7 +52,7 @@ export default function Login() {
     toast("processing signin request...", {
       icon: "⏳",
     });
-    handleLoginRequest(loginData, setLoading, setUser, setErrors, navigate);
+    handleLoginRequest(loginData, setLoading, setUser, setErrors, "home");
   }
   function handleSignup(e) {
     e.preventDefault();
@@ -62,7 +60,7 @@ export default function Login() {
     toast("processing signup request...", {
       icon: "⏳",
     });
-    handleSignupRequest(signupData, setLoading, setUser, setErrors, navigate);
+    handleSignupRequest(signupData, setLoading, setUser, setErrors, "home");
   }
 
   return (

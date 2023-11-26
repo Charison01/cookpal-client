@@ -2,9 +2,9 @@ import "./Navbar.css";
 import { useAppContext } from "../Context/Provider";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginModal } from "./login";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { showLoginPopup } from "../lib";
 
 // beginning of function body
 export default function Sidebar() {
@@ -327,9 +327,7 @@ export default function Sidebar() {
           <h2 className={collapsed ? "hidden" : ""}>
             Login to create recipes!
           </h2>
-          <div
-            className="login"
-            onClick={() => document.getElementById("my_modal_3").showModal()}>
+          <div className="login" onClick={showLoginPopup}>
             {collapsed ? (
               <span className="tooltip">
                 <svg
@@ -352,9 +350,7 @@ export default function Sidebar() {
             ) : (
               <button
                 className="btn btn-primary w-full  mt-5 flex items-center"
-                onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
-                }>
+                onClick={showLoginPopup}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -452,8 +448,6 @@ export default function Sidebar() {
             Subscribe Now
           </button>
         </div>
-        {/* set the login modal as absolute */}
-        <LoginModal />
       </nav>
     </>
   );
