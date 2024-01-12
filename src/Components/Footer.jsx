@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Footer () {
+export default function Footer() {
   return (
     <div className="flex items-center justify-between my-2">
-      <p className=" md:text-2xl"> &copy; 2023 Cookpal</p>
+      <p className=" md:text-2xl"> &copy; {new Date().getFullYear()} Cookpal</p>
       <div className="flex items-center gap-2 mr-2 cursor-pointer hover:link-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
