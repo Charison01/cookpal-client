@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     try {
       (async () => {
-        const response = await fetch("https://cookpal.up.railway.app/recipes");
+        const response = await fetch("https://violent-arliene-donvine-d7a16556.koyeb.app/recipes");
         if (response.ok) {
           const data = await response.json();
           setRecipes(data);
