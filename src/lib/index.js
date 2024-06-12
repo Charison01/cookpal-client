@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { AES } from "crypto-js";
 import CryptoJS from "crypto-js";
-const api = "https://cookpal.up.railway.app";
+const api = "https://violent-arliene-donvine-d7a16556.koyeb.app";
 
 //function to encrypt user id before login
 const SECRETKEY = process.env.REACT_APP_SECRET_KEY;
