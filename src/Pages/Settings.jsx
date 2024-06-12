@@ -43,7 +43,7 @@ export const Settings = () => {
         fileInputRef.current.value = null;
         try {
           await Axios.patch(
-            `https://cookpal.up.railway.app/users/${user?.id}`,
+            `https://violent-arliene-donvine-d7a16556.koyeb.app/users/${user?.id}`,
             {
               picture: imageUrl,
             }
@@ -89,7 +89,7 @@ export const Settings = () => {
         setName(result?.value);
         let newName = result?.value;
         try {
-          Axios.patch(`https://cookpal.up.railway.app/users/${user?.id}`, {
+          Axios.patch(`https://violent-arliene-donvine-d7a16556.koyeb.app/users/${user?.id}`, {
             name: newName,
           });
 
