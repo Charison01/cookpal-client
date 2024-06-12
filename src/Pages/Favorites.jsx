@@ -17,7 +17,7 @@ export default function Favorites() {
       try {
         (async () => {
           const response = await fetch(
-            `https://cookpal.up.railway.app/bookmarks/${userId}`
+            `https://violent-arliene-donvine-d7a16556.koyeb.app/bookmarks/${userId}`
           );
           if (response.ok) {
             const data = await response.json();
