@@ -37,7 +37,7 @@ export default function StarRating({ recipeRating, id }) {
       };
 
       try {
-        await Axios.post("https://cookpal.up.railway.app/ratings", data);
+        await Axios.post("https://cookingpal.up.railway.app/ratings", data);
         toast.success("Thank you for rating!");
       } catch (error) {
         if (error.response && error.response.status === 422) {
