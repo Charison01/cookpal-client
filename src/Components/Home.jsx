@@ -6,7 +6,7 @@ export default function Home() {
   useEffect(() => {
     try {
       (async () => {
-        const response = await fetch("https://cookpal.up.railway.app/featured");
+        const response = await fetch("https://cookingpal.up.railway.app/featured");
         if (response.ok) {
           const data = await response.json();
           setRecipes(data);
