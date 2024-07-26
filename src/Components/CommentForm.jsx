@@ -23,7 +23,7 @@ export default function CommentForm({ recipe_id, user_id, setRecipe }) {
       };
       try {
         const response = await Axios.post(
-          "https://cookpal.up.railway.app/comments",
+          "https://cookingpal.up.railway.app/comments",
           data
         );
         const responseData = await response.data;
