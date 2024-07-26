@@ -18,7 +18,7 @@ export default function MyRecipes() {
       try {
         (async () => {
           const response = await fetch(
-            `https://violent-arliene-donvine-d7a16556.koyeb.app/user/${userId}/recipes`
+            `https://cookingpal.up.railway.app/user/${userId}/recipes`
           );
           if (response.ok) {
             const data = await response.json();
