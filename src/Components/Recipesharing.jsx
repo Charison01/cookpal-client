@@ -131,7 +131,7 @@ async function handleSharing() {
           </svg>
         </button>
 {/*         more */}
-        <button onClick={handleSharing} className="mx-4">
+        <button onClick={handleSharing} className="mx-4 bg-gray-100 rounded-full h-30 w-30 p-1">
          <svg fill="none" viewBox="0 0 24 24" height="30" width="30">
       <path
         fill="currentColor"
