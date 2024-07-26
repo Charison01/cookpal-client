@@ -33,14 +33,14 @@ export default function Recipecard({
     };
     if (newLiked === true) {
       try {
-        Axios.post("https://cookpal.up.railway.app/bookmarks", payload);
+        Axios.post("https://cookingpal.up.railway.app/bookmarks", payload);
         toast.success("recipe bookmarked successfully");
       } catch (error) {
         console.error("Error:", error);
       }
     } else if (newLiked === false) {
       try {
-        Axios.delete("https://cookpal.up.railway.app/bookmarks", payload);
+        Axios.delete("https://cookingpal.up.railway.app/bookmarks", payload);
       } catch (error) {
         console.error("Error:", error);
       }
