@@ -17,7 +17,7 @@ export default function ContextProvider({ children }) {
         try {
           (async () => {
             const response = await fetch(
-              `https://violent-arliene-donvine-d7a16556.koyeb.app/users/${userId}`
+              `https://cookingpal.up.railway.app/users/${userId}`
             );
             if (response.ok) {
               const data = await response.json();
