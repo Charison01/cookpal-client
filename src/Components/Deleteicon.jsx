@@ -30,7 +30,7 @@ export default function Deleteicon({ id, setFavorites }) {
       recipe_id: id,
     };
 
-    fetch("https://cookpal.up.railway.app/bookmarks", {
+    fetch("https://cookingpal.up.railway.app/bookmarks", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
