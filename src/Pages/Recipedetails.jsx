@@ -25,7 +25,7 @@ export default function Recipedetails() {
     try {
       (async () => {
         const response = await fetch(
-          `https://violent-arliene-donvine-d7a16556.koyeb.app/recipes/${recipeId}`
+          `https://cookingpal.up.railway.app/recipes/${recipeId}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -65,14 +65,14 @@ export default function Recipedetails() {
     };
     if (newLiked === true) {
       try {
-        Axios.post("https://violent-arliene-donvine-d7a16556.koyeb.app/bookmarks", data);
+        Axios.post("https://cookingpal.up.railway.app/bookmarks", data);
         toast.success("recipe bookmarked successfully");
       } catch (error) {
         console.error("Error:", error);
       }
     } else if (newLiked === false) {
       try {
-        Axios.delete("https://violent-arliene-donvine-d7a16556.koyeb.app/bookmarks", data);
+        Axios.delete("https://cookingpal.up.railway.app/bookmarks", data);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -82,7 +82,7 @@ export default function Recipedetails() {
   function deleteComment(id) {
     if (id) {
       try {
-        Axios.delete(`https://violent-arliene-donvine-d7a16556.koyeb.app/comments/${id}`);
+        Axios.delete(`https://cookingpal.up.railway.app/comments/${id}`);
         toast.success("Comment deleted successfully!");
         setRecipe((prev) => ({
           ...prev,
@@ -126,7 +126,7 @@ export default function Recipedetails() {
   async function patchComment(id, body) {
     try {
       const response = await Axios.patch(
-        `https://violent-arliene-donvine-d7a16556.koyeb.app/comments/${id}`,
+        `https://cookingpal.up.railway.app/comments/${id}`,
         { body }
       );
       const responseData = await response.data;
