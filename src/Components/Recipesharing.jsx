@@ -2,7 +2,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const RecipeSharing = ({ recipe }) => {
-  const recipeUrl = `https://cookingpal.vercel.app/recipe/${recipe}`;
+  const recipeUrl = `https://cookingpal.up.railway.app/recipe/${recipe}`;
 
   // Function to open the share dialog for Facebook
   const shareOnFacebook = () => {
@@ -23,7 +23,26 @@ const RecipeSharing = ({ recipe }) => {
     )}`;
     window.open(whatsappUrl);
   };
+async function handleSharing() {
+    // setPopupOpen(false);
+    // setShowShareModal(true);
 
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${recipeUrl}`,
+          text: "See this lovely recipe i found on cookpal!",
+          url: `${recipeUrl.slug}`,
+        });
+        console.log("Content shared successfully");
+      } catch (error) {
+        toast.error("Something went wrong");
+        console.error("Error sharing content:", error);
+      }
+    } else {
+      toast.error("Web Share API not supported in this browser.");
+    }
+  }
   // Function to copy the recipe link to the clipboard
   const copyRecipeLink = async () => {
     try {
@@ -110,6 +129,15 @@ const RecipeSharing = ({ recipe }) => {
             <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
             <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
           </svg>
+        </button>
+{/*         more */}
+        <button onClick={handleSharing} className="mx-4">
+         <svg fill="none" viewBox="0 0 24 24" height="30" width="30">
+      <path
+        fill="currentColor"
+        d="M8 12a2 2 0 11-4 0 2 2 0 014 0zM14 12a2 2 0 11-4 0 2 2 0 014 0zM18 14a2 2 0 100-4 2 2 0 000 4z"
+      />
+    </svg>
         </button>
       </div>
     </div>
